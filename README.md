@@ -1,13 +1,7 @@
-# express_reactv2
+# eRestaurantv2
 
 So, this new and improved Repo (I hope), it actually just has React and Express integrated together.
 I am not a genius, I just spent some time watching Youtube videos and reading articles.
-
-As of 25/03/2020, I still have not integrated Firebase as our database, but am working on
-that now! Hopefully, it'll be integrated by next workshop. I've been working on setting
-the basis of our server environment early, as we're all fairly not confident with our
-coding, thus, probably needing a bit more time playing around with the code. Also, we need to start
-preparing the prototype for Week 4, so I wanted to start working on that ASAP.
 
 In order to properly access the servers, you'll have to install React and Express onto
 you systems. I'll try to go step by step and explain things as best as I can, but if you need further
@@ -34,6 +28,12 @@ clarification on anything, please message me.
    - To view the database, open a new tab, and go to 'localhost:5000/api/customers
 7. To stop your servers, in your terminal/command line, just press 'Ctrl + C' twice - this basically suspends everything
 
-OK! I'm done. ILY <3 We can do this!!
+The main html and js files are in client/src
+- Currently, App.js is the initial loaded page
+
+----------------------------------------------------------------------------------------------------------------------------
+UPDATE - 27/03/2020
+- Have integrated Firebase into our servers (Woooohoooo! But still don't know how to properly use it)
+- Will try to reorganise files/folders soon, because right now it looks so messy and I am not a fan.
  
 
