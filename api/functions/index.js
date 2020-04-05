@@ -6,7 +6,7 @@ const cors = require('cors')({origin:true});
 
 app.use(cors);
 app.listen(port, () => console.log(`Server started on port ${port}`));
-app.get('/api/customers', (req,res) => {
+app.get('/api/employees', (req,res) => {
     const customers = [
         {id: 1, firstName: 'Chase', lastName: 'Stein'},
         {id: 2, firstName: 'Karolina', lastName: 'Dean'},
