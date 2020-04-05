@@ -1,15 +1,14 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Customers from './components/customers/customers';
+import Employees from '../employees/employees.js';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <Customers/>
+          {/* <img src={logo} className="App-logo" alt="logo" /> */}
+          <Employees/>
         </header>
       </div>
     );
