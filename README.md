@@ -1,39 +1,28 @@
 # eRestaurantv2
 
-So, this new and improved Repo (I hope), it actually just has React and Express integrated together.
-I am not a genius, I just spent some time watching Youtube videos and reading articles.
-
-In order to properly access the servers, you'll have to install React and Express onto
-you systems. I'll try to go step by step and explain things as best as I can, but if you need further
-clarification on anything, please message me.
-
-1. Add the repo to your own GitHub Desktop.
-2. Download npm, if you don't have it installed onto your computer already. 
-   - npm is a package manager for the node.js platform (Express framework) and it basically manages
-     the dependencies of the server
-3. Open your Terminal/Command Prompt and type the command 'cd eRestaurantv2'.
-   - This should be the same for both Mac and Windows devices
-4. Type 'npm install'
-   - This is installing all the dependencies and files for the react framework
-5. Type 'npm run client-install'
-   - This is a custom script that is design the "cd" (go into) the client folder, and then install
-   the express framework dependencies
-   - NOTE: If this doesn't work, the script doesn't work (HAHAHAHAHA) Instead, run the commands
-   separately, i.e. 'cd client' and then, 'npm install'.
-6. Type 'npm run dev' to run both the react and express servers, simultaneously.
-   - It should open up a separate web browser to localhost:3000, and show the sample data I put in there.
-   	- SIDE NOTE: Since we're in quaratine, I recommend watching Marvel's Runaways, whose characters'
-	   names I put as the sample data. Unfortunately, only Season 1 is available on Disney+, and it sadly, only has
-	   a  total of 3 seasons. Enjoy :)
-   - To view the database, open a new tab, and go to 'localhost:5000/api/customers
-7. To stop your servers, in your terminal/command line, just press 'Ctrl + C' twice - this basically suspends everything
-
-The main html and js files are in client/src
-- Currently, App.js is the initial loaded page
-
-----------------------------------------------------------------------------------------------------------------------------
-UPDATE - 27/03/2020
+## UPDATE - 27/03/2020
 - Have integrated Firebase into our servers (Woooohoooo! But still don't know how to properly use it)
 - Will try to reorganise files/folders soon, because right now it looks so messy and I am not a fan.
  
+## UPDATE - 10/04/2020
+Alright, so hopefully, these instructions are a bit better than the first ones... (my bad guys)
 
+1. Please download the following:
+   - __Node.js__ & __npm__ -> https://nodejs.org/en/
+      - NOTE: npm is automatically installed when you install node.js
+   - GitHub Desktop (this is a personal choice, but I would recommend it, as it makes pushing & pulling changes easier)
+2. Clone the repo to your own computer (either via GitHub Desktop or through your terminal)
+3. Open you terminal and install the __Concurrently__ npm package using either command
+   - **npm install -g concurrently**
+   - **npm install concurrently** --save (using npm scripts - I don't know what this exactly means)
+4. Install the __nodemon__ package -> npm install -g nodemon
+4. By using the **cd** command, go to where ever you saved the repo and type 'cd eRestaurantv2'
+5. Type **npm install** - this should now be installing the React framework
+6. Type **npm run client-install** - this is going into the client folder & installing the Express framework dependencies
+7. Hopefully, that all worked out fine. So if you run **npm run dev** in your terminal, or in the terminal provided in VSCode, 
+   you should be able to access the servers, which run our frontend and backend
+   - http://localhost:3000/ -> frontend; should open up automatically
+   - http://localhost:5000/api/employees -> database
+   - NOTE: you shouldn't need to restart the servers when looking at your code changes, as they should occur when you **save**.
+     But, if not, just try refreshing the page. 
+8. To stop/end the servers, in your terminal, press **ctrl+c**, which is a signal that ends processes
