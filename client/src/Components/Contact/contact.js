@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 
 class Contact extends Component {
-  redner() {
+  render() {
     return (
         <div>
             <h1>Contact Us</h1>
