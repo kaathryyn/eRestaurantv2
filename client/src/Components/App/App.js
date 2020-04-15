@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 // eslint-disable-next-line
 import { Route, Link } from 'react-router-dom';
+import fire from '../../config/fire';
 
 import './App.css';
 import Header from '../Header/header';
