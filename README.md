@@ -21,8 +21,10 @@ Alright, so hopefully, these instructions are a bit better than the first ones..
 6. Type **npm run client-install** - this is going into the client folder & installing the Express framework dependencies
 7. Hopefully, that all worked out fine. So if you run **npm run dev** in your terminal, or in the terminal provided in VSCode, 
    you should be able to access the servers, which run our frontend and backend
-   - http://localhost:3000/ -> frontend; should open up automatically
-   - http://localhost:5000/api/employees -> database
+   - http://localhost:3000/ -> website (this should open up automatically)\
+      - Use **npm run client** to ONLY run this
+   - http://localhost:5000/api/employees -> database (this only holds test data for now)
+      - Use **npm run server** to ONLY run this
    - NOTE: you shouldn't need to restart the servers when looking at your code changes, as they should occur when you **save**.
-     But, if not, just try refreshing the page. 
+     But, if not, just try refreshing the page.
 8. To stop/end the servers, in your terminal, press **ctrl+c**, which is a signal that ends processes
