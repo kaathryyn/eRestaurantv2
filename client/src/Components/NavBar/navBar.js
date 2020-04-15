@@ -5,7 +5,7 @@ function NavBar() {
     return (
         <div class = "navBar">
             <a class="active" href="/">Home</a>
-            <a class="active" href="/Menu">Menu</a>
+            <a class="active" href="/menu">Menu</a>
             <a class="active" href="/order">Order Now</a>
             <a class="active" href="/booking">Make a Booking</a>
             <a class="active" href="/contactUs">Contact Us</a>

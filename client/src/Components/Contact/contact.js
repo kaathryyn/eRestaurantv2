@@ -1,11 +1,13 @@
-import React from "react";
+import React, {Component} from "react";
 
-function Contact() {
+class Contact extends Component {
+  redner() {
     return (
         <div>
             <h1>Contact Us</h1>
         </div>
     );
-} //Contact class
+  }
+}
 
 export default Contact;

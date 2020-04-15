@@ -1,11 +1,13 @@
-import React from "react";
+import React, {Component} from "react";
 
-function Menu() {
+class Menu extends Component {
+  render() {
     return (
-        <div>
-            <h1>Our Menu</h1>
-        </div>
+      <div>
+         <h1>Our Menu</h1>
+      </div>
     );
-} //Menu class
+  }
+}
 
 export default Menu;

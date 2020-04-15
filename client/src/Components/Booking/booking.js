@@ -1,11 +1,13 @@
-import React from "react";
+import React, {Component} from "react";
 
-function Booking() {
+class Booking extends Component {
+  render() {
     return (
         <div>
             <h1>Make a Booking</h1>
         </div>
     );
-} //Booking class
+  }
+}
 
 export default Booking;
