@@ -1,17 +1,13 @@
-import React, {useState} from 'react';
+import React, {Component} from 'react';
 
-function Login() {
-
-    const [count, setcount] = useState(0);
-
+class Login extends Component {
+  render() {
     return (
         <div>
-            <h2>Log in to your account</h2>
-            <button class="loginButton" onClick={() => setcount(count+1)}>
-                Login
-            </button>
+          <h2>Log in to your account</h2>
         </div>
     );
+  }
 }
 
 export default Login;

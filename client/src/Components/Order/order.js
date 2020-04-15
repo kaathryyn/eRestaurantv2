@@ -1,11 +1,13 @@
-import React from "react";
+import React, {Component} from "react";
 
-function Order() {
+class Order extends Component {
+  render() {
     return (
-        <div>
-            <h1>Order Online</h1>
-        </div>
+      <div>
+        <h1>Order Online</h1>
+      </div>
     );
+  }
 }
 
 export default Order;

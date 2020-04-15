@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-function Register() {
+class Register extends Component {
+  render() {
     return (
-        <div>
-            <h2>Join us now. Register below! </h2>
-        </div>
+      <div>
+        <h2>Join us now. Register below! </h2>
+      </div>
     );
+  }
 }
 
 export default Register;
