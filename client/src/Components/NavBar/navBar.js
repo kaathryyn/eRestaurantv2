@@ -4,13 +4,13 @@ import './navBar.css';
 function NavBar() {
     return (
         <div class = "navBar">
-            <ul>
-                <li><a href="/login">Login</a></li>
-                <text>Sapori Unici</text>
-                <li><a href="/">Menu</a></li>
-                <li><a href="/order">Order</a></li>
-                <li><a href="/reservation">Reservation</a></li>
-            </ul>
+            <a class="active" href="/">Home</a>
+            <a class="active" href="/menu">Menu</a>
+            <a class="active" href="/order">Order Now</a>
+            <a class="active" href="/booking">Make a Booking</a>
+            <a class="active" href="/contactUs">Contact Us</a>
+            <a class="login" href ="/login">Login</a>
+            <a class="register" href="/register">Join Us!</a>
         </div>  
     );
 }
