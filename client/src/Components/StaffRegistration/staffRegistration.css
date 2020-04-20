@@ -1,0 +1,50 @@
+.staffRegoForm {
+    border-left: 1px solid #808080;
+}
+
+.staffRegoForm {
+    position: fixed;
+    right: 100px;
+}
+
+hr {
+    width: 100%;
+}
+
+/* label {
+    font-size: 20px;
+    padding: 100px;
+} */
+
+/* input {
+    width: 197;
+    height: 48px;
+    padding: 15px;
+    margin: 5px 2 22px 0;
+    display: inline;
+    border: 0.5px solid #D1D5D8;
+} */
+
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.staffRegoNextBtn {
+    position: fixed;
+    right: 50px;
+    height: 30px;
+    width: 100px;
+    background-color: #333333;
+    color: white;
+    border-radius: 25px;
+}
+
+.staffRegoNextBtn:hover {
+    background: #616060;
+}
