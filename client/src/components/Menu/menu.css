@@ -1,0 +1,6 @@
+.landingpage_image {
+    background-image: url("../../Images/Landing_page.jpg");
+     height: auto;
+     background-size: cover;
+     padding:275px;
+  }
