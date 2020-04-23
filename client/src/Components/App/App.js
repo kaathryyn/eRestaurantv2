@@ -10,6 +10,7 @@ import Reservation from '../Reservation/reservation';
 import Contact from '../Contact/contact';
 import Login from '../Login/login';
 import Register from '../Registration/registration';
+import GenerateStaffLogin from '../GenerateStaffLogin/GenerateStaffLogin';
 
 class App extends Component {
   render() {
@@ -22,6 +23,7 @@ class App extends Component {
         <Route exact path="/contactUs" component={Contact} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
+        <Route exact path="/GenerateStaffLogin" component = {GenerateStaffLogin} />
       </div>
     );
   }
