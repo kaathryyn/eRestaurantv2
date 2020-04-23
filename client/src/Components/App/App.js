@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
-// eslint-disable-next-line
-import { Route, Link } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import firebase from '../../config/firebase';
 
 import './App.css';
@@ -20,7 +19,7 @@ class App extends Component {
       user: null
     };
   }
-  
+
   //collects a snapshot of the current data (user) and determines if changes need to made to website
   componentDidMount() {
     const ref = firebase.database().ref('user');
@@ -34,13 +33,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NavBar />
-        <Route exact path="/" component={Menu} />
-        <Route exact path="/order" component={Order} />
-        <Route exact path="/reservation" component={Reservation} />
-        <Route exact path="/contactUs" component={Contact} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
+          <NavBar />
+          <Route exact path="/" component={Menu} />
+          <Route path="/order" component={Order} />
+          <Route path="/reservation" component={Reservation} />
+          <Route path="/contactUs" component={Contact} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
       </div>
     );
   }
