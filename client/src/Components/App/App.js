@@ -18,12 +18,12 @@ class App extends Component {
       <div className="App">
         <NavBar />
         <Route exact path="/" component={Menu} />
-        <Route exact path="/order" component={Order} />
-        <Route exact path="/reservation" component={Reservation} />
-        <Route exact path="/contactUs" component={Contact} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/GenerateStaffLogin" component = {GenerateStaffLogin} />
+        <Route path="/order" component={Order} />
+        <Route path="/reservation" component={Reservation} />
+        <Route path="/contactUs" component={Contact} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route path="/GenerateStaffLogin" component = {GenerateStaffLogin} />
       </div>
     );
   }
