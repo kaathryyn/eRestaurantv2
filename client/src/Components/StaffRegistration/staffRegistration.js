@@ -87,7 +87,8 @@ class StaffRegistration extends Component {
                         <option selected value="" disabled hidden />
                         <option value="wait">Waiter/Waitress</option>
                         <option value="chef">Chef</option>
-                        <option value="otherRole">Other</option>
+                        <option value="businessOwner">Business Owner</option>
+                        <option value="restaurantManager">Restaurant Manager</option>
                     </select>
 
                     <hr />
