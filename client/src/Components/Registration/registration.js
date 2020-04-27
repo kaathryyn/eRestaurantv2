@@ -74,8 +74,9 @@ class Register extends Component {
       this.setState ( { //program is aware that the state has changed - after the user has input the values 
         firstName:"",
         lastName:"",
-        emailAddress:"",
         phoneNumber:"",
+        gender:"",
+        emailAddress:"",     
         password:"",
         confirmPassword:"",
       })
@@ -97,25 +98,45 @@ class Register extends Component {
                 <h2>Registration Form:</h2>
 
                 <label>First Name: </label> 
-                  <input type="text" value={this.state.firstName} onChange={this.firsthandler} placeholder="Enter your First Name " /> 
+                  <input type="text" value={this.state.firstName} 
+                    onChange={this.firsthandler} 
+                    placeholder="Enter your First Name " /> 
                   {this.state.firstNameError ? <div>{this.state.firstNameError} </div> : null} <br />
 
                 <label>Last Name: </label> 
-                  <input type="text" value= {this.state.lastName} onChange={this.lasthandler} placeholder="Enter your  Last Name " /> <br />
+                  <input type="text" value= {this.state.lastName} 
+                    onChange={this.lasthandler}  
+                    placeholder="Enter your  Last Name " /> <br />
 
                 <label>Phone Number: </label> 
-                  <input type="text" value={this.state.phoneNumber} onChange={this.phonehandler} placeholder="Enter your Phone Number " /> <br />
+                  <input type="text" value={this.state.phoneNumber} 
+                    onChange={this.phonehandler} 
+                    placeholder="Enter your Phone Number " /> <br />
 
-                <label>Gender: </label>
+                <label>Gender :</label><select 
+                  onChange={this.genderhandler} 
+                  defaultValue="Select Gender">
+                    <option defaultValue>Select Gender</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="other">Other</option>
+                    </select><br />
 
                 <label>Email Address: </label> 
-                  <input type="text" value={this.state.emailAddress} onChange={this.emailhandler} placeholder="Enter your Email " /> <br />
+                  <input type="text" value={this.state.emailAddress} 
+                    onChange={this.emailhandler} 
+                    placeholder="Enter your Email " /> <br />
 
                 <label>Password: </label> 
-                  <input type="password" value={this.state.password} onChange={this.passwordhandler} placeholder="Enter your Password " /> <br />
+                  <input type="password" value={this.state.password} 
+                  onChange={this.passwordhandler} 
+                  placeholder="Enter your Password " /> <br />
 
                 <label>Confirm Password: </label> 
-                  <input type="password" value={this.state.confirmPassword} onChange={this.confirmpasswordhandler} placeholder="Enter your Password " /> <br />
+                  <input type="password" value={this.state.confirmPassword} 
+                  onChange={this.confirmpasswordhandler} 
+                  placeholder="Enter your Password " /> <br />
+
                 <input type="submit" value="Submit" />
               </form>
       </div>     
