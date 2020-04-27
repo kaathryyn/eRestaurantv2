@@ -1,0 +1,32 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.top-padding {
+    padding: 50px;
+}
+
+.button {
+    box-sizing: border-box;
+    height: 50px;
+    width: 167px;
+    border-radius: 25px;
+    border: 1px solid #21BB36;
+    background-color: white;
+    font-family: Arial;
+    font-size: 18px;
+    letter-spacing: 1.41px;
+    line-height: 22px;
+    text-align: center;
+    align-self: flex-end;
+    flex-shrink: 2;
+    margin-top: 60px;
+    margin-right: 130px;
+
+}
+
+.greenPlus {
+    width: 23px;
+    padding-right: 10px;
+};

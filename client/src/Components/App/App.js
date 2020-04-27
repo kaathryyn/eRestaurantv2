@@ -10,6 +10,7 @@ import Reservation from '../Reservation/reservation';
 import Contact from '../Contact/contact';
 import Login from '../Login/login';
 import Register from '../Registration/registration';
+import StaffList from '../StaffList/StaffList';
 
 class App extends Component {
   //constructor to initialise user that is on website
@@ -40,6 +41,7 @@ class App extends Component {
           <Route path="/contactUs" component={Contact} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/staffList" component={StaffList} />
       </div>
     );
   }
