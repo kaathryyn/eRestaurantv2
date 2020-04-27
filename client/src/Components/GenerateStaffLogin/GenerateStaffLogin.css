@@ -1,0 +1,59 @@
+.wrapper {
+  display: flex;
+  align-items: flex-end;
+}
+
+.background_image {
+  background-image: url(../../Images/staff_registration.jpg);
+  height: 778px;
+  width: 700px;
+  opacity: 0.8;
+  margin-left: 355px;
+  margin-right: 180px;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.confirmation_box {
+  height: 407px;
+  width: 397px;
+  background-color: #FFF;
+}
+
+
+.button1 {
+  height: 50px;
+  width: 155px;
+  color: #FFF;
+  font-family: Arial;
+  font-size: 18px;
+  letter-spacing: 1.41px;
+  line-height: 20px;
+  text-align: center;
+  background-color: #158A25;
+  border-radius: 25px;
+}
+
+.login_info {
+  height: 154px;
+  width: 397px;
+}
+
+.button2 {
+  height: 50px;
+  width: 167px;
+  border-radius: 25px;
+  background-color: #333;
+  color: #FFF;
+  font-family: Arial;
+  font-size: 18px;
+  letter-spacing: 1.41px;
+  line-height: 22px;
+  text-align: center;
+  margin-bottom: 30px;
+  margin-right: 20px;
+  flex-shrink: 3;
+};

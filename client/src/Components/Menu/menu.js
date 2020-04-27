@@ -1,11 +1,14 @@
 import React, {Component} from "react";
-
+import './menu.css';
 class Menu extends Component {
   render() {
     return (
       <div>
-         <h1>Our Menu</h1>
+      <div class = "landingpage_image">
+         <h1>   </h1>
       </div>
+        <h1>Menu</h1>
+      </div>  
     );
   }
 }
