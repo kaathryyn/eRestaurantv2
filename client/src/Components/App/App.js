@@ -7,9 +7,9 @@ import NavBar from '../NavBar/navBar';
 import Menu from '../Menu/menu';
 import Order from '../Order/order';
 import Reservation from '../Reservation/reservation';
-import Contact from '../Contact/contact';
 import Login from '../Login/login';
 import Register from '../Registration/registration';
+import StaffRegistration from '../StaffRegistration/staffRegistration';
 import GenerateStaffLogin from '../GenerateStaffLogin/GenerateStaffLogin';
 
 class App extends Component {
@@ -38,9 +38,9 @@ class App extends Component {
         <Route exact path="/" component={Menu} />
         <Route path="/order" component={Order} />
         <Route path="/reservation" component={Reservation} />
-        <Route path="/contactUs" component={Contact} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
+        <Route path="/registerStaff" component={StaffRegistration} />
         <Route path="/GenerateStaffLogin" component = {GenerateStaffLogin} />
       </div>
     );
