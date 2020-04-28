@@ -1,0 +1,145 @@
+.staffRegoImg {
+    width: 50%;
+    /* This height is relative to my screen, so it might look a bit weird on other screens - will test this and find a solution*/
+    height: 534px; 
+    float: left;
+    position: static;
+}
+
+.staffRegoForm {
+    border-left: 1px solid #808080;
+    width: 50%;
+    height: 100%;
+    position: fixed;
+    right: 0px;
+}
+
+h1 {
+    margin: 10px;
+}
+
+/* Table Column Width */
+td {
+    width: 250px;
+}
+
+/* Label & Input formatting */
+input[type=text], input[type=tel], input[type=email], select {
+    padding: 6px 10px;
+    margin: 6px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}
+
+label {
+    padding-top: 5px;
+}
+
+/*First Name */
+.firstNameLbl {
+    float: left;
+    padding-left: 16px;
+}
+
+.firstName {
+    width: 82%;
+}
+
+/*Last Name */
+.lastNameLbl {
+    float: left;
+    padding-left: 16px;
+}
+
+.lastName {
+    width: 82%;
+}
+
+/*Mobile Number */
+.mobNumLbl {
+    float: left;
+    padding-left: 16px;
+}
+
+.mobNum {
+    width: 82%
+}
+
+/*Gender */
+.genderLbl {
+    float: left;
+    padding-left: 16px;
+}
+
+.gender {
+    width: 91%;
+}
+
+/*Email Address */
+.emailLbl {
+    float: left;
+    padding-left: 85px;
+    padding-right: 100px;
+}
+
+.emailInput {
+    width: 72%;
+}
+
+/*Role */
+.roleLbl {
+    float: left;
+    padding-left: 85px;
+    padding-right: 500px;
+}
+
+.roleSelect {
+    width: 75%;
+}
+
+/*Horizontal Line */
+hr {
+    margin: 15px;
+    float: center;
+    width: 95%;
+}
+
+.tableAccDetails {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/*Account Number */
+.accNumLbl {
+    float: left;
+    padding-left: 16px;
+}
+
+.accNum {
+    width: 82%;
+}
+
+/*BSB */
+.accBSBLbl {
+    padding-right: 190px;
+}
+
+.accBSB {
+    padding-left: 50px;
+    width: 82%;
+}
+
+/*Next Button */
+.staffRegoNextBtn {
+    position: fixed;
+    right: 50px;
+    height: 30px;
+    width: 100px;
+    background-color: #333333;
+    color: white;
+    border-radius: 25px;
+}
+
+.staffRegoNextBtn:hover {
+    background: #616060;
+}
