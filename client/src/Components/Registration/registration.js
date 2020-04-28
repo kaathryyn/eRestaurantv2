@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import './registration.css'
+import './registration.css';
+import customerRegistrationImage from '../../Images/customer_registration.jpg';
 
 class Register extends Component {
   constructor(props){  
@@ -13,12 +14,7 @@ class Register extends Component {
       emailAddress:"",
       password:"",
       confirmPassword:"",
-      firstNameError: "First Name is empty.", // strings that represent the error message displayed to the user 
-      lastNameError: "Last Name is empty.",
-      emailError: "",
-      phoneError: "",
-      passwordError: "",
-      confirmError: "",
+
     }
 
     this.handleSubmit=this.handleSubmit.bind(this) //method used to bind the handleSubmit operation with the constructor 
@@ -70,7 +66,10 @@ class Register extends Component {
 
     handleSubmit = (event) => { //storing the state when the user provides data  
       alert(`${this.state.firstName} ${this.state.lastName}  You are now Registered! Please check your inbox your confirmation.`)
-        console.log(this.state);
+      const isValid = this.validate();
+      if (isValid) {
+      console.log(this.state);
+      }
       this.setState ( { //program is aware that the state has changed - after the user has input the values 
         firstName:"",
         lastName:"",
@@ -85,59 +84,62 @@ class Register extends Component {
   
   
     render() {return (
-      <div>
-        <h1>
-          Join us now. Register below! 
-        </h1>
-          <p> 
-            Please fill in all the required fields to create a new user account.
-          </p> 
-              <form onSubmit={
+      <div class= "customerRegistrationForm">
+      <img src={customerRegistrationImage} alt="customerRegistrationImage" class="customerRegistrationImage" />
+              <form class= "custRegForm" actionSubmit={
                 this.handleSubmit
                 }>
-                <h2>Registration Form:</h2>
+                <h1 class= "registerLabel"> Register</h1>
+            
+            <table>
+              <tr>
+                <td><label for = "firstName" class = "firstNameLabel">First Name </label> </td>
+                <td><label class = "lastNameLabel"> Last Name </label></td>
+              </tr>
 
-                <label>First Name: </label> 
-                  <input type="text" value={this.state.firstName} 
-                    onChange={this.firsthandler} 
-                    placeholder="Enter your First Name " /> 
-                  {this.state.firstNameError ? <div>{this.state.firstNameError} </div> : null} <br />
+              <tr>
+                <td><input type="text" required value={this.state.firstName} onChange={this.firsthandler} name = "firstName" class = "firstName" placeholder="First Name " /></td>
+                <td><input type="text" required value= {this.state.lastName} onChange={this.lasthandler} name = "lastName" class = "lastName" placeholder="Last Name " /> <br /></td>
+              </tr>
+            </table>
 
-                <label>Last Name: </label> 
-                  <input type="text" value= {this.state.lastName} 
-                    onChange={this.lasthandler}  
-                    placeholder="Enter your  Last Name " /> <br />
+            <table>
+              <tr>
+                <td><label for = "phone" class = "phoneLabel" > Phone </label></td>
+                <td><label for = "gender" class = "genderLabel"> Gender</label></td>
+              </tr>
 
-                <label>Phone Number: </label> 
-                  <input type="text" value={this.state.phoneNumber} 
-                    onChange={this.phonehandler} 
-                    placeholder="Enter your Phone Number " /> <br />
-
-                <label>Gender :</label><select 
-                  onChange={this.genderhandler} 
-                  defaultValue="Select Gender">
-                    <option defaultValue>Select Gender</option>
+              <tr>
+                <td><input type="text" required value={this.state.phoneNumber} onChange={this.phonehandler} name = "phone" class = "phone" placeholder="Phone Number " /> <br /> </td>
+                <td><select 
+                  name = "gender" class = "gender" value = {this.state.gender} onChange={this.genderhandler}>
+                  <option selected value="Select Gender" disabled hidden />
+                    <option defaultValue>Gender</option>
                       <option value="male">Male</option>
                       <option value="female">Female</option>
                       <option value="other">Other</option>
-                    </select><br />
+                    </select><br /> </td>
+              </tr>
+            </table>
 
-                <label>Email Address: </label> 
-                  <input type="text" value={this.state.emailAddress} 
-                    onChange={this.emailhandler} 
-                    placeholder="Enter your Email " /> <br />
+            <table>
 
-                <label>Password: </label> 
-                  <input type="password" value={this.state.password} 
-                  onChange={this.passwordhandler} 
-                  placeholder="Enter your Password " /> <br />
+                <tr><label for = "emailAddress" class = "emailLabel"> Email </label></tr>
+                <tr><input type= "emailAddress" required value={this.state.emailAddress} onChange={this.emailhandler} name = "emailAddress" class = "email" placeholder="Email " /> <br /></tr>
+  
+                <tr><label for = "password" class = "passwordLabel" >Password </label></tr>
+                <tr><input type= "password" required value={this.state.password} onChange={this.passwordhandler} name = "password" class = "password" placeholder= "6 Digit" /> <br /></tr>
 
-                <label>Confirm Password: </label> 
-                  <input type="password" value={this.state.confirmPassword} 
-                  onChange={this.confirmpasswordhandler} 
-                  placeholder="Enter your Password " /> <br />
 
-                <input type="submit" value="Submit" />
+
+                <tr><label for = "confirmPassword" class = "confirmPassLabel" >Confirm Password </label></tr>
+                <tr><input type="password" required value={this.state.confirmPassword} onChange={this.confirmpasswordhandler} name = "confirmPassword" class = "confirmPassword"placeholder="6 Digit" /> <br /></tr>
+
+
+            </table>
+
+
+                <button name = "register" class = "registerButton">Register</button>
               </form>
       </div>     
     

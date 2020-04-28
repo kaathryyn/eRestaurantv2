@@ -1,0 +1,208 @@
+.customerRegistrationForm {
+  height: 729px;
+  width: 1280px;
+}
+
+.customerRegistrationImage {
+      height: 908.8px;
+      width: 639px;
+    float: left;
+    position: static;
+}
+
+.custRegForm {
+    /*border-left: 1px solid #808080;*/
+    width: 50%;
+    height: 100%;
+    position: fixed;
+    right: 0px;
+
+  }
+
+h1 {
+    height: 33.06px;
+    width: 155.81px;
+    color: #0B2031;
+    font-family: "Helvetica Neue";
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 1.86px;
+    line-height: 36px;
+    text-align: center;
+  }
+
+  table {
+    border-collapse: separate; 
+    border-spacing: 0 5px; 
+  }
+
+/* Table Column Width */
+td {
+    padding: 10px;
+}
+
+tr {
+  padding: 25px;
+}
+
+label {
+    padding-top: 5px;
+}
+
+/*First Name */
+.firstNameLabel {
+  height: 21.22px;
+  width: 92.89px;
+  color: #0B2031;
+  font-family: "Helvetica Neue";
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.69px;
+  line-height: 16px;
+  float: left;
+}
+
+.firstName {
+    box-sizing: border-box;
+    height: 47.75px;
+    width: 197.16px;
+    border-radius: 4px;
+    border: 0.5px solid #D1D5D8;
+}
+
+/*Last Name */
+.lastNameLabel {
+  height: 21.22px;
+  width: 92.89px;
+  color: #0B2031;
+  font-family: "Helvetica Neue";
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.69px;
+  line-height: 16px;
+  float: left;
+}
+
+.lastName {
+    box-sizing: border-box;
+    height: 47.75px;
+    width: 197.16px;
+    border-radius: 4px;
+    border: 0.5px solid #D1D5D8;
+  }
+
+/*Mobile Number */
+.phoneLabel {
+  height: 21.22px;
+  width: 92.89px;
+  color: #0B2031;
+  font-family: "Helvetica Neue";
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.69px;
+  line-height: 16px;
+  float: left;
+}
+
+.phone {
+  box-sizing: border-box;
+  height: 47.75px;
+  width: 197.16px;
+  border-radius: 4px;
+  border: 0.5px solid #D1D5D8;
+}
+
+/*Gender */
+.genderLabel {
+  height: 21.22px;
+  width: 92.89px;
+  color: #0B2031;
+  font-family: "Helvetica Neue";
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.69px;
+  line-height: 16px;
+  float: left;
+}
+
+.gender {
+  box-sizing: border-box;
+  height: 47.98px;
+  width: 83.78px;
+  border-radius: 4px;
+  border: 0.5px solid #D1D5D8;
+  /*width: 82%;*/
+}
+
+/*Email Address */
+.emailLabel {
+  height: 21.22px;
+  width: 92.89px;
+  color: #0B2031;
+  font-family: "Helvetica Neue";
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.69px;
+  line-height: 16px;
+  float: left;
+}
+
+.email {
+    box-sizing: border-box;
+    height: 47.75px;
+    width: 369.16px;
+    border-radius: 4px;
+    border: 0.5px solid #D1D5D8;
+}
+
+/*Password*/
+.passwordLabel {
+    height: 21.22px;
+    width: 92.89px;
+    color: #0B2031;
+    font-family: "Helvetica Neue";
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.69px;
+    line-height: 16px;
+    float: left;
+}
+
+.password {
+    box-sizing: border-box;
+    height: 47.75px;
+    width: 369.16px;
+    border-radius: 4px;
+    border: 0.5px solid #D1D5D8;
+  }
+
+/*Confirm Password*/
+.confirmPassLabel {
+    height: 21.22px;
+    width: 168px;
+    color: #0B2031;
+    font-family: "Helvetica Neue";
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.69px;
+    line-height: 16px;
+    float: left;
+  }
+
+.confirmPassword {
+    box-sizing: border-box;
+    height: 47.75px;
+    width: 369.16px;
+    border-radius: 4px;
+    border: 0.5px solid #D1D5D8;
+  }
+
+  .registerButton {
+    position: fixed;
+    height: 50px;
+    width: 167px;
+    background-color: #333333;
+    color: white;
+    border-radius: 25px;
+  }
+
