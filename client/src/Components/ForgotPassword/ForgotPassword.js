@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import "./ForgotPassword.css";
 import photo from "../../Images/greyLock.png";
 import successTick from "../../Images/successTick.png"
-import { auth } from '../../config/fire.js';
+import { auth } from '../../config/firebase.js';
 
 class ForgotPassword extends Component {
   state = {
