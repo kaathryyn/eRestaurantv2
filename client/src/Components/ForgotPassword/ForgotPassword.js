@@ -3,7 +3,6 @@ import "./ForgotPassword.css";
 import photo from "../../Images/greyLock.png";
 import successTick from "../../Images/successTick.png"
 import { auth } from '../../config/firebase.js';
-import Grid from '@material-ui/core/Grid';
 
 class ForgotPassword extends Component {
   state = {
