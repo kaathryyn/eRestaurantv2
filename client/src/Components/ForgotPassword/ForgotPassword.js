@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import "./ForgotPassword.css";
 import photo from "../../Images/greyLock.png";
 import successTick from "../../Images/successTick.png"
-import { auth } from '../../config/fire.js';
+import { auth } from '../../config/firebase.js';
+import Grid from '@material-ui/core/Grid';
 
 class ForgotPassword extends Component {
   state = {
@@ -42,42 +43,38 @@ class ForgotPassword extends Component {
     if (formSent) {
       component = (
         <div className="success">
-          <img src={successTick} className="greenTick" alt="lock"/>
-          <p>An email to reset your password has been sent!</p>
-          {/* <div className='form-group row'>
-            <input
-                type="homePage"
-                value="Login Page"
-            />
-          </div> */}
+              <img src={successTick} className="greenTick" alt="lock"/>
+              <p>An email to reset your password has been sent!</p>
         </div>
       );
     } else {
       component = (
-        <form onSubmit={this.handleSendReset}>
-          
-          {error ? <div className="error">{error}</div> : ''}
-          <div>
-            <img src={photo} className="photo" alt="lock"/>
-          </div>
-          <p>Forgot Password?</p>
-          <p>Enter your email address below and we'll send you a link to reset your password.</p>
-          <div className='form-group row'>
-            <input
-              onChange={this.setEmailText}
-              value={email}
-              type="text"
-              placeholder="Email"
-              required
-            />
-          </div>
-          <div className="form-group row">
-            <input
-              type="submit"
-              value="Send Link"
-            />
-          </div>
-        </form>
+        <div className="centerAlign">
+<form onSubmit={this.handleSendReset}>
+            
+              {error ? <div className="error">{error}</div> : ''}
+                <div>
+                  <img src={photo} className="photo" alt="lock"/>
+                </div>
+                <p>Forgot Password?</p>
+                <p>Enter your email address below and we'll send you a link to reset your password.</p>
+                <div className='form-group row'>
+                  <input
+                    onChange={this.setEmailText}
+                    value={email}
+                    type="text"
+                    placeholder="Email"
+                    required
+                  />
+                </div>
+                <div className="form-group row">
+                  <input
+                    type="submit"
+                    value="Send Link"
+                  />
+                </div>
+            </form>
+        </div>
       );
     }
 
