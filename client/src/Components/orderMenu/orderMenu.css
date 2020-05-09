@@ -38,6 +38,9 @@ h3 {
   letter-spacing: 1.41px;
   line-height: 22px;
 }
+.menu {
+  background-color: rgba(255, 255, 255, 0.637);
+}
 .alignPage {
   padding-left: 5%;
   padding-right: 5%;
@@ -65,7 +68,7 @@ h3 {
   overflow: hidden;
  }
  .addButton {
-   color: red;
+   color: black;
  }
  .details {
   display: flex;
@@ -129,5 +132,5 @@ h3 {
     left: 0px;
     right: 0px;
     top: 72%;
-    bottom: 14%;
+    bottom: 16%;
   }

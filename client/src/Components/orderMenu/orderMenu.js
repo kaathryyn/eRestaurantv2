@@ -4,10 +4,10 @@ import { firestore } from'../../config/firebase.js';
 import headerImage from '../../Images/headerImage.png';
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
-import CardActionArea from '@material-ui/core/CardActionArea';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import FormControl from '@material-ui/core/FormControl';
+import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Tab from '@material-ui/core/Tab';
@@ -17,6 +17,8 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import CardHeader from '@material-ui/core/CardHeader';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+
+
 
 class orderMenu extends Component {
     constructor(props) {
@@ -99,10 +101,10 @@ class orderMenu extends Component {
                         onChange={this.handleChange}
                         variant="fullWidth"
                     >
-                        <Tab label="Entree" />
-                        <Tab label="Main" />
-                        <Tab label="Dessert" />
-                        <Tab label="Drinks" />
+                        <MyTab label="Entree" />
+                        <MyTab label="Main" />
+                        <MyTab label="Dessert" />
+                        <MyTab label="Drinks" />
                     </Tabs>
                 </Paper>
                 { activeIndex === 0 && <TabContainer>
@@ -117,7 +119,9 @@ class orderMenu extends Component {
                     >
                           {entree.map((entreeItem, index) => (
                                 <Grid item xs key={entreeItem}> 
-                                    <Card className="root" variant="outlined">
+                                    <MyCard className="root" variant="outlined" raised="false"
+                                    boxShadow={3}>
+                                 
                                         <CardHeader
                                         style={{ textAlign: 'left', height: '4%', paddingLeft: '5%', paddingTop: '5%'}}
                                             title={entreeItem.name}
@@ -155,7 +159,9 @@ class orderMenu extends Component {
                                         variant="filled"
                                         onChange={this.handleAddItem}
                                     />
+                                    
                                     <Button
+                                    
                                         variant="contained"
                                         className="addButton"
                                         startIcon={<AddShoppingCartIcon />}
@@ -163,9 +169,10 @@ class orderMenu extends Component {
                                     >
                                         <h1>Add to Order</h1>
                                     </Button>
+                                    
                                     </CardActions>
                                     </div>
-                                    </Card>
+                                    </MyCard>
                                 </Grid>
                           ))}
                     </Grid>
@@ -176,6 +183,27 @@ class orderMenu extends Component {
       );
   }
 }
+
+const MyTab = withStyles(theme => ({
+    selected: {
+        color: 'red',
+      borderBottom: '10px solid red',
+      boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    }
+  }))(Tab);
+
+  const MyCard = withStyles(theme => ({
+      root: {
+        boxShadow: '0 16px 40px -12.125px rgba(0,0,0,0.3)',
+        borderRadius: '2%',
+        transition: '0.3s',
+
+      }
+
+  }))(Card);
+
+
+
 function TabContainer(props) {
     return (
       <Typography component="div" style={{ padding: 24 }}>
