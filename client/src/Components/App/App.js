@@ -8,7 +8,7 @@ import Menu from '../Menu/menu';
 import Order from '../Order/order';
 import Reservation from '../Reservation/reservation';
 import Login from '../Login/login';
-import Register from '../Registration/registration';
+import Registration from '../Registration/registration';
 
 
 import StaffRegistration from '../StaffRegistration/staffRegistration';
@@ -22,7 +22,9 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: null
+      user: null,
+      displayName: null,
+      userID: null
     };
   }
 
@@ -31,8 +33,23 @@ class App extends Component {
     const ref = firebase.database().ref('user');
 
     ref.on('value', snapshot => {
-      let webUser = snapshot.val();
-      this.setState({ user: webUser });
+      let FBUser = snapshot.val();
+      this.setState({ user: FBUser });
+    })
+  }
+
+  registerUser = userName => {
+    firebase.auth().onAuthStateChanged(FBUser => {
+      FBUser.updateProfile({
+        displayName: userName
+      }).then(()=>{
+        this.setState({
+          user: FBUser,
+          displayName: FBUser.displayName, 
+          userID: FBUser.uid
+        });
+      })
+
     })
   }
 
@@ -40,11 +57,12 @@ class App extends Component {
     return (
       <div className="App">
 
-        <NavBar />
+        <NavBar/>
+
         <Route path="/order" component={Order} />
         <Route path="/reservation" component={Reservation} />
         <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
+        <Route path="/registration" registerUser={this.registerUser} component={Registration}  />
         <Route path="/registerStaff" component={StaffRegistration} />
         <Route path="/GenerateStaffLogin" component = {GenerateStaffLogin} />
         <Route path="/ForgotPassword" component={ForgotPassword} />

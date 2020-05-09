@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import staffRegoImg from '../../Images/staff registration.jpg';
+import staffRegoImg from '../../Images/staff_registration.jpg';
 
 import './staffRegistration.css';
 
