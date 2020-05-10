@@ -1,9 +1,8 @@
 .staffRegoImg {
-    width: 50%;
-    /* This height is relative to my screen, so it might look a bit weird on other screens - will test this and find a solution*/
-    height: 534px; 
-    float: left;
-    position: static;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  background-size: cover;
 }
 
 .staffRegoForm {
@@ -131,8 +130,6 @@ hr {
 
 /*Next Button */
 .staffRegoNextBtn {
-    position: fixed;
-    right: 50px;
     height: 30px;
     width: 100px;
     background-color: #333333;
@@ -142,4 +139,4 @@ hr {
 
 .staffRegoNextBtn:hover {
     background: #616060;
-}
+};
