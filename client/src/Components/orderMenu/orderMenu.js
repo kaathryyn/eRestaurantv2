@@ -15,16 +15,16 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import CardHeader from '@material-ui/core/CardHeader';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import StarRatingComponent from 'react-star-rating-component';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
+import { createMuiTheme } from '@material-ui/core/styles';
+
 
 class orderMenu extends Component {
     constructor(props) {
         super(props);
-        // this.state = { quantity: '' };
         this.state = {
         entree: [],
         main: [],
@@ -35,6 +35,7 @@ class orderMenu extends Component {
     }
 
     componentDidMount() {
+        var entree = "Entree"
         firestore.collection("menuItems")
             .where("category", "==", "Entree")
             .get()
@@ -59,6 +60,7 @@ class orderMenu extends Component {
                 console.log(data);
                 this.setState({ dessert: data });
             });
+            
             firestore.collection("menuItems")
             .where("category", "==", "Drinks")
             .get()
@@ -76,10 +78,18 @@ class orderMenu extends Component {
         this.setState({ quantity: evt.target.value });
     }
 
+    handleDeleteOrder = (event, foodName) => {
+        event.preventDefault();
+        this.setState({foodName: event.target.value});
+        var foodTitle = foodName;
+        firestore.collection("resFood").doc("resId").collection("foodOrder").doc(foodTitle).delete()
+    }
+
     handleSaveQty = (event, foodName) => {
         event.preventDefault();
         const { quantity } = this.state;
         this.setState({foodName: event.target.value});
+        var foodTitle = foodName;
         // var orderDetails = firestore.collection("resFood").doc().collection('orderDeets');
         // var qty = {quantity}
         // var title = {foodName}
@@ -90,10 +100,11 @@ class orderMenu extends Component {
         //     }
         // })
         // db.collection('users').doc(this.username).collection('booksList').add
-       firestore.collection("resFood").doc("resId").collection("foodOrder").doc(foodName).add({
+       firestore.collection("resFood").doc("resId").collection("foodOrder").doc(foodTitle).set({
            orderDetails: {quantity, foodName},
         //    title: {foodName}
        })
+       
         // firestore.collection("resFood").add({
         //     orderDetails: {quantity},
         //     name: {foodName}
@@ -105,6 +116,7 @@ class orderMenu extends Component {
     const { dessert } = this.state;
     const { drinks } = this.state;
     const { activeIndex } = this.state;
+    const { inputValue } = this.state;
       return(
         <div class="menu">
             <div className="header">
@@ -122,6 +134,16 @@ class orderMenu extends Component {
                         <MyTab label="Drinks" />
                     </Tabs>
                 </Paper>
+                <Grid container className="buttonGrid" spacing={2} direction="row" justify="center"
+  alignItems="center">
+                <Grid item xs={3}>
+                <MyButton variant="contained" >Skip Food Pre-Ordering</MyButton>
+                </Grid>
+                <Grid item xs={3}>
+                <MyButton variant="contained">Finished Pre-Ordering</MyButton>
+                </Grid>
+                </Grid>
+      
                 { activeIndex === 0 && <TabContainer>
                 <div className="alignPage"> 
                 <Grid
@@ -132,8 +154,11 @@ class orderMenu extends Component {
                         alignItems="center"
                         alignContent="center"
                     >
+                      
                           {entree.map((entreeItem, index) => (
+                              
                                 <Grid item xs key={entreeItem}> 
+                                    
                                     <MyCard className="root" variant="outlined" raised="false"
                                     boxShadow={3}>
                                  
@@ -152,7 +177,6 @@ class orderMenu extends Component {
                                     <div className="details">
                                     <CardContent className="content">
                                     <Typography gutterBottom variant="h5" component="h2">
-                                        {/* <h1>{entreeItem.name} {this.state.quantity} </h1> */}
                                         <h2>{entreeItem.ingredients}</h2>
                                     </Typography>
                                     </CardContent>
@@ -163,23 +187,256 @@ class orderMenu extends Component {
                                 </CardContent>
                                 <Divider className="divider" variant="middle" />
                                     <CardActions className="controls">
-                                    <TextField
-                                        id="filled-number"
+                                    <MyTextField
+                                        id="filledNumber"
                                         label="Quantity"
                                         type="number"
+                                        value={this.state.value}
                                         InputLabelProps={{
                                           shrink: true,
                                         }}
-                                        variant="filled"
+                                        variant="outlined"
                                         onChange={this.handleAddItem}
                                     />
-                                    <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
+                                    <ButtonGroup variant="contained"  aria-label="contained primary button group">
                                         <MyButton variant="contained"
                                         className="addButton"
                                         onClick={event => this.handleSaveQty(event, entreeItem.name)}
                                         startIcon={<AddIcon />}>
                                             Add</MyButton>
                                         <MyButton
+                                        
+                                        variant="contained"
+                                        className="addButton"
+                                        onClick={event => this.handleDeleteOrder(event, entreeItem.name)}
+                                        startIcon={<RemoveIcon />}>Remove</MyButton>
+                                    </ButtonGroup>
+                                    </CardActions>
+                                    </div>
+                                    </MyCard>
+                                </Grid>
+                          ))}
+                    </Grid>
+                </div>
+                </TabContainer> }
+
+                { activeIndex === 1 && <TabContainer>
+                <div className="alignPage"> 
+                <Grid
+                        container
+                        spacing={3}
+                        direction="row"
+                        justify="center"
+                        alignItems="center"
+                        alignContent="center"
+                    >
+                      
+                          {main.map((mainItem, index) => (
+                              
+                                <Grid item xs key={mainItem}> 
+                                    
+                                    <MyCard className="root" variant="outlined" raised="false"
+                                    boxShadow={3}>
+                                 
+                                        <CardHeader
+                                        style={{ textAlign: 'left', height: '6%', paddingLeft: '5%', paddingTop: '8%'}}
+                                            title={mainItem.name}
+                                            subheader= {<StarRatingComponent 
+                                            name="rate2" 
+                                            editing={false}
+                                            renderStarIcon={() => <span1>✰</span1>}
+                                            starCount={5}
+                                            value={mainItem.rating}
+                                            />}
+                                        />
+                                         <Divider className="divider" variant="middle" />
+                                    <div className="details">
+                                    <CardContent className="content">
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                        <h2>{mainItem.ingredients}</h2>
+                                    </Typography>
+                                    </CardContent>
+                                    <CardContent className="subcontent">
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                        <h3>${mainItem.cost}</h3>
+                                    </Typography>
+                                </CardContent>
+                                <Divider className="divider" variant="middle" />
+                                    <CardActions className="controls">
+                                    <MyTextField
+                                        id="filledNumber"
+                                        label="Quantity"
+                                        type="number"
+                                        value={this.state.value}
+                                        InputLabelProps={{
+                                          shrink: true,
+                                        }}
+                                        variant="outlined"
+                                        onChange={this.handleAddItem}
+                                    />
+                                    <ButtonGroup variant="contained"  aria-label="contained primary button group">
+                                        <MyButton variant="contained"
+                                        className="addButton"
+                                        onClick={event => this.handleSaveQty(event, mainItem.name)}
+                                        startIcon={<AddIcon />}>
+                                            Add</MyButton>
+                                        <MyButton
+                                        
+                                        variant="contained"
+                                        className="addButton"
+                                        onClick={event => this.handleDeleteOrder(event, mainItem.name)}
+                                        startIcon={<RemoveIcon />}>Remove</MyButton>
+                                    </ButtonGroup>
+                                    </CardActions>
+                                    </div>
+                                    </MyCard>
+                                </Grid>
+                          ))}
+                    </Grid>
+                </div>
+                </TabContainer> }
+
+                { activeIndex === 2 && <TabContainer>
+                <div className="alignPage"> 
+                <Grid
+                        container
+                        spacing={3}
+                        direction="row"
+                        justify="center"
+                        alignItems="center"
+                        alignContent="center"
+                    >
+                      
+                          {dessert.map((dessertItem, index) => (
+                              
+                                <Grid item xs key={dessertItem}> 
+                                    
+                                    <MyCard className="root" variant="outlined" raised="false"
+                                    boxShadow={3}>
+                                 
+                                        <CardHeader
+                                        style={{ textAlign: 'left', height: '6%', paddingLeft: '5%', paddingTop: '8%'}}
+                                            title={dessertItem.name}
+                                            subheader= {<StarRatingComponent 
+                                            name="rate2" 
+                                            editing={false}
+                                            renderStarIcon={() => <span1>✰</span1>}
+                                            starCount={5}
+                                            value={dessertItem.rating}
+                                            />}
+                                        />
+                                         <Divider className="divider" variant="middle" />
+                                    <div className="details">
+                                    <CardContent className="content">
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                        <h2>{dessertItem.ingredients}</h2>
+                                    </Typography>
+                                    </CardContent>
+                                    <CardContent className="subcontent">
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                        <h3>${dessertItem.cost}</h3>
+                                    </Typography>
+                                </CardContent>
+                                <Divider className="divider" variant="middle" />
+                                    <CardActions className="controls">
+                                    <MyTextField
+                                        id="filledNumber"
+                                        label="Quantity"
+                                        type="number"
+                                        value={this.state.value}
+                                        InputLabelProps={{
+                                          shrink: true,
+                                        }}
+                                        variant="outlined"
+                                        onChange={this.handleAddItem}
+                                    />
+                                    <ButtonGroup variant="contained"  aria-label="contained primary button group">
+                                        <MyButton variant="contained"
+                                        className="addButton"
+                                        onClick={event => this.handleSaveQty(event, dessertItem.name)}
+                                        startIcon={<AddIcon />}>
+                                            Add</MyButton>
+                                        <MyButton
+                                        
+                                        variant="contained"
+                                        className="addButton"
+                                        onClick={event => this.handleDeleteOrder(event, dessertItem.name)}
+                                        startIcon={<RemoveIcon />}>Remove</MyButton>
+                                    </ButtonGroup>
+                                    </CardActions>
+                                    </div>
+                                    </MyCard>
+                                </Grid>
+                          ))}
+                    </Grid>
+                </div>
+                </TabContainer> }
+
+                { activeIndex === 3 && <TabContainer>
+                <div className="alignPage"> 
+                <Grid
+                        container
+                        spacing={3}
+                        direction="row"
+                        justify="center"
+                        alignItems="center"
+                        alignContent="center"
+                    >
+                      
+                          {entree.map((drinksItem, index) => (
+                              
+                                <Grid item xs key={drinksItem}> 
+                                    
+                                    <MyCard className="root" variant="outlined" raised="false"
+                                    boxShadow={3}>
+                                 
+                                        <CardHeader
+                                        style={{ textAlign: 'left', height: '6%', paddingLeft: '5%', paddingTop: '8%'}}
+                                            title={drinksItem.name}
+                                            subheader= {<StarRatingComponent 
+                                            name="rate2" 
+                                            editing={false}
+                                            renderStarIcon={() => <span1>✰</span1>}
+                                            starCount={5}
+                                            value={drinksItem.rating}
+                                            />}
+                                        />
+                                         <Divider className="divider" variant="middle" />
+                                    <div className="details">
+                                    <CardContent className="content">
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                        <h2>{drinksItem.ingredients}</h2>
+                                    </Typography>
+                                    </CardContent>
+                                    <CardContent className="subcontent">
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                        <h3>${drinksItem.cost}</h3>
+                                    </Typography>
+                                </CardContent>
+                                <Divider className="divider" variant="middle" />
+                                    <CardActions className="controls">
+                                    <MyTextField
+                                        id="filledNumber"
+                                        label="Quantity"
+                                        type="number"
+                                        value={this.state.value}
+                                        InputLabelProps={{
+                                          shrink: true,
+                                        }}
+                                        variant="outlined"
+                                        onChange={this.handleAddItem}
+                                    />
+                                    <ButtonGroup variant="contained"  aria-label="contained primary button group">
+                                        <MyButton variant="contained"
+                                        className="addButton"
+                                        onClick={event => this.handleSaveQty(event, drinksItem.name)}
+                                        startIcon={<AddIcon />}>
+                                            Add</MyButton>
+                                        <MyButton
+                                        
+                                        variant="contained"
+                                        className="addButton"
+                                        onClick={event => this.handleDeleteOrder(event, drinksItem.name)}
                                         startIcon={<RemoveIcon />}>Remove</MyButton>
                                     </ButtonGroup>
                                     </CardActions>
@@ -198,21 +455,50 @@ class orderMenu extends Component {
 
 const MyTab = withStyles(theme => ({
     selected: {
-        color: 'red',
-        borderBottom: '10px solid red',
+        color: 'maroon',
+        borderTop: '10px solid maroon',
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
     }
   }))(Tab);
 
   const MyButton = withStyles(theme => ({
     root: {
-        backgroundColor: 'rgba(139, 4, 4, 0.22)',
+        backgroundColor: 'maroon',
     },
      contained: {
         textTransform: 'capitalize',
-        color: 'black'
-     }
+        color: 'white',
+        fontSize: '70%',
+     },
+    
   }))(Button);
+
+  const MyTextField = withStyles(theme => ({
+    root: {
+        '& label.Mui-focused': {
+          color: 'maroon',
+        },
+        '& .MuiInput-underline:after': {
+            color: 'maroon',
+          borderBottomColor: 'maroon',
+        },
+        '& .MuiOutlinedInput-root': {
+          '& fieldset': {
+              color: 'maroon',
+            borderColor: 'maroon',
+          },
+          '&:hover fieldset': {
+            color: 'maroon',
+            borderColor: 'maroon',
+          },
+          '&.Mui-focused fieldset': {
+            color: 'maroon',
+            borderColor: 'maroon',
+          },
+        },
+      },
+  }))(TextField);
+
  
   const MyCard = withStyles(theme => ({
       root: {
