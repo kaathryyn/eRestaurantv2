@@ -4,7 +4,6 @@ import { firestore } from'../../config/firebase.js';
 import headerImage from '../../Images/headerImage.png';
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import { withStyles } from '@material-ui/core/styles';
@@ -17,8 +16,10 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import CardHeader from '@material-ui/core/CardHeader';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-
-
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import StarRatingComponent from 'react-star-rating-component';
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
 
 class orderMenu extends Component {
     constructor(props) {
@@ -79,10 +80,24 @@ class orderMenu extends Component {
         event.preventDefault();
         const { quantity } = this.state;
         this.setState({foodName: event.target.value});
-        firestore.collection("resFood").add({
-            orderDetails: {quantity},
-            name: {foodName}
-            })
+        // var orderDetails = firestore.collection("resFood").doc().collection('orderDeets');
+        // var qty = {quantity}
+        // var title = {foodName}
+        // orderDetails.({
+        //     orderDetails: { 
+        //         qty, 
+        //         title
+        //     }
+        // })
+        // db.collection('users').doc(this.username).collection('booksList').add
+       firestore.collection("resFood").doc("resId").collection("foodOrder").doc(foodName).add({
+           orderDetails: {quantity, foodName},
+        //    title: {foodName}
+       })
+        // firestore.collection("resFood").add({
+        //     orderDetails: {quantity},
+        //     name: {foodName}
+        //     })
       }
   render() {
     const { entree } = this.state;
@@ -123,10 +138,17 @@ class orderMenu extends Component {
                                     boxShadow={3}>
                                  
                                         <CardHeader
-                                        style={{ textAlign: 'left', height: '4%', paddingLeft: '5%', paddingTop: '5%'}}
+                                        style={{ textAlign: 'left', height: '6%', paddingLeft: '5%', paddingTop: '8%'}}
                                             title={entreeItem.name}
-                                            // subheader={entreeItem.rating}
+                                            subheader= {<StarRatingComponent 
+                                            name="rate2" 
+                                            editing={false}
+                                            renderStarIcon={() => <span1>✰</span1>}
+                                            starCount={5}
+                                            value={entreeItem.rating}
+                                            />}
                                         />
+                                         <Divider className="divider" variant="middle" />
                                     <div className="details">
                                     <CardContent className="content">
                                     <Typography gutterBottom variant="h5" component="h2">
@@ -137,14 +159,6 @@ class orderMenu extends Component {
                                     <CardContent className="subcontent">
                                     <Typography gutterBottom variant="h5" component="h2">
                                         <h3>${entreeItem.cost}</h3>
-                                        {/* <p>Customer Rating: <StarRatingComponent 
-                                            name="rate2" 
-                                            editing={false}
-                                            renderStarIcon={() => <span>✰</span>}
-                                            starCount={5}
-                                            value={entreeItem.rating}
-                                            />
-                                        </p> */}
                                     </Typography>
                                 </CardContent>
                                 <Divider className="divider" variant="middle" />
@@ -159,17 +173,15 @@ class orderMenu extends Component {
                                         variant="filled"
                                         onChange={this.handleAddItem}
                                     />
-                                    
-                                    <Button
-                                    
-                                        variant="contained"
+                                    <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
+                                        <MyButton variant="contained"
                                         className="addButton"
-                                        startIcon={<AddShoppingCartIcon />}
                                         onClick={event => this.handleSaveQty(event, entreeItem.name)}
-                                    >
-                                        <h1>Add to Order</h1>
-                                    </Button>
-                                    
+                                        startIcon={<AddIcon />}>
+                                            Add</MyButton>
+                                        <MyButton
+                                        startIcon={<RemoveIcon />}>Remove</MyButton>
+                                    </ButtonGroup>
                                     </CardActions>
                                     </div>
                                     </MyCard>
@@ -187,17 +199,27 @@ class orderMenu extends Component {
 const MyTab = withStyles(theme => ({
     selected: {
         color: 'red',
-      borderBottom: '10px solid red',
-      boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+        borderBottom: '10px solid red',
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
     }
   }))(Tab);
 
+  const MyButton = withStyles(theme => ({
+    root: {
+        backgroundColor: 'rgba(139, 4, 4, 0.22)',
+    },
+     contained: {
+        textTransform: 'capitalize',
+        color: 'black'
+     }
+  }))(Button);
+ 
   const MyCard = withStyles(theme => ({
       root: {
         boxShadow: '0 16px 40px -12.125px rgba(0,0,0,0.3)',
         borderRadius: '2%',
         transition: '0.3s',
-
+        backgroundColor: 'transparent white'
       }
 
   }))(Card);
