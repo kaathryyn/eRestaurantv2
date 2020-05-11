@@ -9,7 +9,7 @@ import Order from '../Order/order';
 import Reservation from '../Reservation/reservation';
 import Login from '../Login/login';
 import Register from '../Registration/registration';
-
+import OrderMenu from '../orderMenu/orderMenu';
 
 import StaffRegistration from '../StaffRegistration/staffRegistration';
 import GenerateStaffLogin from '../GenerateStaffLogin/GenerateStaffLogin';
@@ -49,7 +49,7 @@ class App extends Component {
         <Route path="/GenerateStaffLogin" component = {GenerateStaffLogin} />
         <Route path="/ForgotPassword" component={ForgotPassword} />
         <Route path="/staffList" component={StaffList} />
-
+        <Route path="/orderMenu" component={OrderMenu} />
       </div>
     );
   }
