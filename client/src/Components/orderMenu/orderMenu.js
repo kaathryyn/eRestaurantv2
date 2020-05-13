@@ -85,11 +85,15 @@ class orderMenu extends Component {
         firestore.collection("resFood").doc("resId").collection("foodOrder").doc(foodTitle).delete()
     }
 
-    handleSaveQty = (event, foodName) => {
+    handleSaveQty = (event, foodName, foodCost, foodCategory) => {
         event.preventDefault();
         const { quantity } = this.state;
         this.setState({foodName: event.target.value});
+        this.setState({foodCategory: event.target.value});
+        this.setState({foodCost: event.target.value});
         var foodTitle = foodName;
+        var foodCost = foodCost;
+        var foodCategory = foodCategory;
         // var orderDetails = firestore.collection("resFood").doc().collection('orderDeets');
         // var qty = {quantity}
         // var title = {foodName}
@@ -101,7 +105,7 @@ class orderMenu extends Component {
         // })
         // db.collection('users').doc(this.username).collection('booksList').add
        firestore.collection("resFood").doc("resId").collection("foodOrder").doc(foodTitle).set({
-           orderDetails: {quantity, foodName},
+           orderDetails: {quantity, foodName, foodCategory, foodCost},
         //    title: {foodName}
        })
        
@@ -201,7 +205,7 @@ class orderMenu extends Component {
                                     <ButtonGroup variant="contained"  aria-label="contained primary button group">
                                         <MyButton variant="contained"
                                         className="addButton"
-                                        onClick={event => this.handleSaveQty(event, entreeItem.name)}
+                                        onClick={event => this.handleSaveQty(event, entreeItem.name, entreeItem.cost, entreeItem.category)}
                                         startIcon={<AddIcon />}>
                                             Add</MyButton>
                                         <MyButton
