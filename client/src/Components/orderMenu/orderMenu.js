@@ -281,7 +281,7 @@ class orderMenu extends Component {
                                     <ButtonGroup variant="contained"  aria-label="contained primary button group">
                                         <MyButton variant="contained"
                                         className="addButton"
-                                        onClick={event => this.handleSaveQty(event, mainItem.name)}
+                                        onClick={event => this.handleSaveQty(event, mainItem.name, mainItem.cost, mainItem.category)}
                                         startIcon={<AddIcon />}>
                                             Add</MyButton>
                                         <MyButton
@@ -357,7 +357,7 @@ class orderMenu extends Component {
                                     <ButtonGroup variant="contained"  aria-label="contained primary button group">
                                         <MyButton variant="contained"
                                         className="addButton"
-                                        onClick={event => this.handleSaveQty(event, dessertItem.name)}
+                                        onClick={event => this.handleSaveQty(event, dessertItem.name, dessertItem.cost, dessertItem.category)}
                                         startIcon={<AddIcon />}>
                                             Add</MyButton>
                                         <MyButton
@@ -433,7 +433,7 @@ class orderMenu extends Component {
                                     <ButtonGroup variant="contained"  aria-label="contained primary button group">
                                         <MyButton variant="contained"
                                         className="addButton"
-                                        onClick={event => this.handleSaveQty(event, drinksItem.name)}
+                                        onClick={event => this.handleSaveQty(event, drinksItem.name, drinksItem.cost, drinksItem.category)}
                                         startIcon={<AddIcon />}>
                                             Add</MyButton>
                                         <MyButton
