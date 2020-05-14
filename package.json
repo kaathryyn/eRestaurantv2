@@ -8,7 +8,8 @@
     "start": "node functions/index.js",
     "server": "nodemon api/functions/index.js",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "jest"
   },
   "author": "Kathryn Corpuz",
   "license": "ISC",
@@ -24,6 +25,9 @@
     "react-star-rating-component": "^1.4.1"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.9.6",
+    "babel-preset-env": "^1.7.0",
+    "jest": "^24.9.0",
     "nodemon": "^2.0.2"
   }
 }
