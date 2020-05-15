@@ -7,14 +7,17 @@
 
 .staffRegoForm {
     border-left: 1px solid #808080;
-    width: 50%;
+    width: 95%;
     height: 100%;
-    position: fixed;
-    right: 0px;
+    position: relative;
+    transform: translateY(0%)
 }
 
 h1 {
     margin: 10px;
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 /* Table Column Width */
@@ -96,13 +99,6 @@ label {
     width: 75%;
 }
 
-/*Horizontal Line */
-hr {
-    margin: 15px;
-    float: center;
-    width: 95%;
-}
-
 .tableAccDetails {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -128,8 +124,9 @@ hr {
     width: 82%;
 }
 
-/*Next Button */
-.staffRegoNextBtn {
+/*Submit Button */
+.staffRegoSubmitBtn {
+    margin-top: 10px;
     height: 30px;
     width: 100px;
     background-color: #333333;
@@ -137,6 +134,6 @@ hr {
     border-radius: 25px;
 }
 
-.staffRegoNextBtn:hover {
+.staffRegoSubmitBtn:hover {
     background: #616060;
 };
