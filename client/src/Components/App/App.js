@@ -8,12 +8,9 @@ import Menu from '../Menu/menu';
 import Order from '../Order/order';
 import Reservation from '../Reservation/reservation';
 import Login from '../Login/login';
-<<<<<<< HEAD
 import Registration from '../Registration/registration';
-=======
 import Register from '../Registration/registration';
 import OrderMenu from '../orderMenu/orderMenu';
->>>>>>> master
 
 import StaffRegistration from '../StaffRegistration/staffRegistration';
 import GenerateStaffLogin from '../GenerateStaffLogin/GenerateStaffLogin';
