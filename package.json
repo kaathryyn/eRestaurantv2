@@ -19,6 +19,7 @@
     "express": "^4.17.1",
     "firebase": "^7.14.0",
     "generate-password": "^1.5.1",
+    "react-confirm-alert": "^2.6.1",
     "react-image": "^2.4.0",
     "react-router-dom": "^5.1.2",
     "react-star-rating-component": "^1.4.1"
