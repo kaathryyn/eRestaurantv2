@@ -1,18 +1,9 @@
 .customerRegistrationForm {
-  position: left;
-    top: 10%;
-    left: 50%;
-    bottom: 50%;
-    right: 20%;
-    width: 40%;
-    height: 100%;
-    grid-column: 1;
-    grid-row: 2;
-    display: grid;
-    padding: 30px;
-    background-color: rgba(255,255,255,0.9);
-    border-radius: 10px;
-    box-shadow: 0 32px 64px rgba(0,0,0,0.2);
+  position: fixed;
+  box-sizing: border-box;
+  width: 50%;
+  height: 100%;
+  border: 1px solid #808080;
 }
 
 input[type=submit] {
@@ -30,11 +21,11 @@ input[type=submit] {
 }
 
 .customerRegistrationImage {
-   height: 908.8px;
-   width: 639px;
-    float: left;
-    position: static;
+  display: flex;
+  flex-direction: column;
+  background-size: cover;
   }
+    
 
 h1 {
     height: 33.06px;
@@ -204,13 +195,16 @@ label {
   }
 
   .registerButton {
-    position: fixed;
-    right: 50px;
-    height: 30px;
-    width: 100px;
-    background-color: #333333;
-    color: white;
-    border-radius: 25px;
+      height: 50px;
+      width: 167px;
+      border-radius: 25px;
+      background-color: #333;
+      color: #FFF;
+      font-family: Arial;
+      font-size: 18px;
+      letter-spacing: 1.41px;
+      line-height: 22px;
+      text-align: center;
+    }
 
-  }
 

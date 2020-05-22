@@ -10,7 +10,6 @@ import Reservation from '../Reservation/reservation';
 import Login from '../Login/login';
 import Registration from '../Registration/registration';
 
-
 import StaffRegistration from '../StaffRegistration/staffRegistration';
 import GenerateStaffLogin from '../GenerateStaffLogin/GenerateStaffLogin';
 import ForgotPassword from '../ForgotPassword/ForgotPassword'
