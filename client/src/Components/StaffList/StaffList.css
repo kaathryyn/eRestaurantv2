@@ -1,12 +1,7 @@
-.wrapper {
+/* .wrapper {
     display: flex;
     flex-direction: column;
-}
-
-.top-padding {
-    padding: 50px;
-}
-
+} */
 .button {
     box-sizing: border-box;
     height: 50px;
