@@ -18,10 +18,15 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { withStyles } from '@material-ui/core/styles';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
+import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import { firestore } from'../../config/firebase.js';
+import MenuItem from '@material-ui/core/MenuItem';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 class MenuInventory extends Component {
     constructor(props) {
@@ -31,17 +36,28 @@ class MenuInventory extends Component {
             ingredients: '',
             rating: '',
             cost: '',
-            category: ''
+            category: '',
+            items: [],
         };
     }
-
+    componentDidMount() {
+        var entree = "Entree"
+        firestore.collection("menuItems")
+            .get()
+            .then(querySnapshot => {
+                const data = querySnapshot.docs.map(doc => doc.data());
+                console.log(data);
+                this.setState({ items: data });
+            });
+      }
     state = { activeIndex: 0 }
     handleChange = (_, activeIndex) => this.setState({ activeIndex })
-   
+
     handleItemName = (evt) => {
         this.setState({ name: evt.target.value });
     }
 
+   
     handleItemIngredients = (evt) => {
         this.setState({ ingredients: evt.target.value });
     }
@@ -73,10 +89,10 @@ class MenuInventory extends Component {
             cost,
             category
         })
-
     }
     render() {
         const { activeIndex } = this.state;
+        const { items } = this.state;
 
         return(
             <Grid
@@ -203,6 +219,30 @@ class MenuInventory extends Component {
                                         onClick={event => this.handleSaveItem(event)}
                                         startIcon={<AddIcon />}>
                                             Add to Menu</MyButton>
+                                            
+                      </CardActions>
+                        </Card>
+                    </TabContainer> }
+                    { activeIndex === 1 && <TabContainer>
+                        <Card>
+                            <CardHeader
+                                style={{ textAlign: 'left', height: '6%', paddingLeft: '5%', paddingTop: '8%'}}
+                                title="Edit Existing Item In the Sapori Unici Menu"
+                                subheader="Instructions?"
+                            />
+                            <Divider className="divider" variant="middle" />
+                            <CardActions>
+                                <Select>
+                                {this.state.items.map((entreeItem) => <MenuItem key={entreeItem.name} value={entreeItem.name}>{entreeItem.name}</MenuItem>)}
+                                </Select>
+                            </CardActions>
+                      <CardActions>
+                      <MyButton variant="contained"
+                                        className="addButton"
+                                        onClick={event => this.handleSaveItem(event)}
+                                        startIcon={<AddIcon />}>
+                                            Update Item</MyButton>
+                                            
                       </CardActions>
                         </Card>
                     </TabContainer> }
