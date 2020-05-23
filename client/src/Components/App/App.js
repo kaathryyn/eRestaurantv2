@@ -11,7 +11,6 @@ import Login from '../Login/login';
 import Registration from '../Registration/registration';
 import Register from '../Registration/registration';
 import OrderMenu from '../orderMenu/orderMenu';
-
 import StaffRegistration from '../StaffRegistration/staffRegistration';
 import GenerateStaffLogin from '../GenerateStaffLogin/GenerateStaffLogin';
 import ForgotPassword from '../ForgotPassword/ForgotPassword'

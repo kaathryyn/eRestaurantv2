@@ -42,20 +42,26 @@ class Register extends Component {
   }
 
   handleSubmit = (e) => { //storing the state when the user provides data  
-    var registrationInfo = {
-      firstName: this.state.firstName, 
-      lastName: this.state.lastName,
-      phoneNumber: this.state.phoneNumber,
-      gender: this.state.gender,
-      emailAddress: this.state.emailAddress,
-      password: this.state.password
-    }
-    e.preventDefault()
+    e.preventDefault();
+
     firebase.auth().createUserWithEmailAndPassword (
-      registrationInfo.emailAddress,
-      registrationInfo.password
-    ).then(()=> {
-      this.props.registerUser(registrationInfo.firstName)
+      this.state.email,
+      this.state.password
+    ).then( cred => {
+        const customerDb = firebase.firestore();
+        return customerDb.collection("customer").doc(cred.user.uid).set(
+          {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            mobNum: this.state.mobNum,
+            gender: this.state.gender,
+            email: this.state.email,
+            role: this.state.role,
+            accNum: this.state.accNum,
+            accBSB: this.state.accBSB,
+            password: this.state.password
+          });
+      //this.props.registerUser(registrationInfo.firstName)
     })
      .catch(error => {
       if (error.message !== null) {
