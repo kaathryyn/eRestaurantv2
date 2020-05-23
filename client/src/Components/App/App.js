@@ -10,7 +10,7 @@ import Reservation from '../Reservation/reservation';
 import Login from '../Login/login';
 import Register from '../Registration/registration';
 import OrderMenu from '../orderMenu/orderMenu';
-
+import MenuInventory from '../menuInventory/menuInventory';
 import StaffRegistration from '../StaffRegistration/staffRegistration';
 import GenerateStaffLogin from '../GenerateStaffLogin/GenerateStaffLogin';
 import ForgotPassword from '../ForgotPassword/ForgotPassword'
@@ -50,6 +50,7 @@ class App extends Component {
         <Route path="/ForgotPassword" component={ForgotPassword} />
         <Route path="/staffList" component={StaffList} />
         <Route path="/orderMenu" component={OrderMenu} />
+        <Route path="/menuInventory" component={MenuInventory} />
       </div>
     );
   }
