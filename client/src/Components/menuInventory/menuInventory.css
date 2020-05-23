@@ -4,3 +4,10 @@
     width: 550px;
     height: 100%;
    }
+
+   .controls {
+    display: flex;
+    justify-content: center;
+    height: 25%;
+    overflow: hidden;
+   }

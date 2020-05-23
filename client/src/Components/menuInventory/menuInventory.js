@@ -23,8 +23,8 @@ import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import { firestore } from'../../config/firebase.js';
 import MenuItem from '@material-ui/core/MenuItem';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
@@ -167,25 +167,29 @@ class MenuInventory extends Component {
                                         onChange={this.handleItemRating}
                                     />
                             </CardActions>
-                            <CardActions>
-                            <MyTextField
-                                        id="filledNumber"
-                                        label="Item Cost"
-                                        type="number"
-                                        fullWidth="true"
-                                        // value={this.state.value}
-                                        InputProps = {{
-                                            inputProps: {
-                                                min: 1, max: 50},
-                                        }}
-                                        InputLabelProps={{
-                                          shrink: true,
-                                        }}
-                                        variant="filled"
-                                        onChange={this.handleItemCost}
-                                    />
-                            </CardActions>
-                            <CardActions>
+                           
+                                    <CardActions>
+                                    <MyTextField
+        
+        id="input-with-icon-textfield"
+        label="Item Cost"
+        type="number"
+        fullWidth="true"
+        variant="filled"
+        onChange={this.handleItemCost}
+        InputProps={{
+            inputProps: {
+                min: 1, max: 50},
+          startAdornment: (
+            <InputAdornment position="start">
+              <AttachMoneyIcon />
+            </InputAdornment>
+          ),
+        }}
+      />
+                                    </CardActions> 
+                                   
+                            <CardActions className="controls">
                             <RadioGroup row aria-label="position" name="position" defaultValue="Entree" onChange={this.handleItemCategory}>
                                     <FormControlLabel
                                     value="Entree"
@@ -213,9 +217,9 @@ class MenuInventory extends Component {
                                     />
                                     </RadioGroup>
                       </CardActions>
-                      <CardActions>
+                      <CardActions className="controls">
                       <MyButton variant="contained"
-                                        className="addButton"
+                                        
                                         onClick={event => this.handleSaveItem(event)}
                                         startIcon={<AddIcon />}>
                                             Add to Menu</MyButton>
