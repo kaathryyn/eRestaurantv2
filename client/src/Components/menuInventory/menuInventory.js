@@ -170,23 +170,23 @@ class MenuInventory extends Component {
                            
                                     <CardActions>
                                     <MyTextField
-        
-        id="input-with-icon-textfield"
-        label="Item Cost"
-        type="number"
-        fullWidth="true"
-        variant="filled"
-        onChange={this.handleItemCost}
-        InputProps={{
-            inputProps: {
-                min: 1, max: 50},
-          startAdornment: (
-            <InputAdornment position="start">
-              <AttachMoneyIcon />
-            </InputAdornment>
-          ),
-        }}
-      />
+                                    
+                                    id="input-with-icon-textfield"
+                                    label="Item Cost"
+                                    type="number"
+                                    fullWidth="true"
+                                    variant="filled"
+                                    onChange={this.handleItemCost}
+                                    InputProps={{
+                                        inputProps: {
+                                            min: 1, max: 50},
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                        <AttachMoneyIcon />
+                                        </InputAdornment>
+                                    ),
+                                    }}
+                                />
                                     </CardActions> 
                                    
                             <CardActions className="controls">
