@@ -67,6 +67,10 @@ h3 {
    padding-top: 2%;
    padding-bottom: 1%;
  }
+ .imageHeader {
+   background-repeat: repeat;
+   width: 100%;
+ }
  .controls {
   display: flex;
   justify-content: center;
@@ -110,13 +114,38 @@ h3 {
      width: 100%;
      margin: auto;
  }
+ 
+ .headerImg {
+  background-image: url(../../Images/headerbackground.jpg);
+  background-repeat: repeat;
+  height: 100%;
+ }
 
- .headerImage {
-    width: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
+.drinksBg {
+  background-image: url(../../Images/drinksbg.jpg);
+  background-repeat: repeat;
+  height: 100%;
 }
 
+.dessertbg {
+  background-image: url(../../Images/dessertbg.jpg);
+  background-repeat: repeat;
+  height: 100%;
+}
+.entreebg {
+  background-image: url(../../Images/entreebg.jpg);
+  background-repeat: repeat;
+  height: 50%;
+}
+.img {
+  background-image: url(../../Images/headerbackground.jpg);
+  background-repeat: repeat-x;
+  /* height: 100%; */
+}
+.wrapper {
+  display: flex;
+  align-items: flex-end;
+}
  .container {
     position: absolute;
     margin-left: 10%;
@@ -136,5 +165,5 @@ h3 {
     position: absolute;
     left: 0%;
     right: 0%;
-    top: 75%;
+    /* top: 75%; */
   }

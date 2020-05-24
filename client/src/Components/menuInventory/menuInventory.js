@@ -11,7 +11,7 @@ import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
 import CardHeader from '@material-ui/core/CardHeader';
 import Typography from '@material-ui/core/Typography';
-import background from '../../Images/background.jpg';
+import background from '../../Images/backgroundSize.jpg';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -25,8 +25,6 @@ import { firestore } from'../../config/firebase.js';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 
 class MenuInventory extends Component {
     constructor(props) {
@@ -99,9 +97,10 @@ class MenuInventory extends Component {
             container 
             spacing={0}
             direction="row"
+
             >
-                <Grid item xs>
-                <img className="headerImage" src={background} alt=""/>
+                <Grid item xs zeroMinWidth>
+                <img  style={{ width: '100%'}} src={background} alt=""/>
                 </Grid>
                 <Grid item xs>
                     <Paper>
