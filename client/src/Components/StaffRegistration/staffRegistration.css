@@ -1,8 +1,8 @@
 .staffRegoImg {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    background-size: cover;
 }
 
 .staffRegoForm {
@@ -26,7 +26,10 @@ td {
 }
 
 /* Label & Input formatting */
-input[type=text], input[type=tel], input[type=email], select {
+input[type=text],
+input[type=tel],
+input[type=email],
+select {
     padding: 6px 10px;
     margin: 6px;
     border: 1px solid #cccccc;
@@ -126,14 +129,24 @@ label {
 
 /*Submit Button */
 .staffRegoSubmitBtn {
-    margin-top: 10px;
-    height: 30px;
-    width: 100px;
+    height: 50px;
+    width: 150px;
     background-color: #333333;
     color: white;
     border-radius: 25px;
+    font-family: Arial;
+    font-size: 18px;
 }
 
 .staffRegoSubmitBtn:hover {
     background: #616060;
-};
+}
+
+.login_info {
+    height: 125px;
+    width: 397px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+;
