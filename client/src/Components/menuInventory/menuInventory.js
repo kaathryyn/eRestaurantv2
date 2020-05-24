@@ -26,6 +26,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 
+
 class MenuInventory extends Component {
     constructor(props) {
         super(props);
