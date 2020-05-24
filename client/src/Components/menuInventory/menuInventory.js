@@ -74,6 +74,7 @@ class MenuInventory extends Component {
 
     handleSaveItem = (event) => {
         event.preventDefault();
+        alert('Item has been added to the Menu');
         const { name } = this.state;
         const { ingredients } = this.state;
         const { rating } = this.state;
@@ -87,6 +88,7 @@ class MenuInventory extends Component {
             cost,
             category
         })
+        window.location.reload(false);
     }
     render() {
         const { activeIndex } = this.state;
