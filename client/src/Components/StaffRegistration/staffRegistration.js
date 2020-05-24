@@ -4,6 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl'
 import { Card } from '@material-ui/core';
 import firebase from '../../config/firebase';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 
 import './staffRegistration.css';
 
@@ -78,18 +80,20 @@ class StaffRegistration extends Component {
     render() {
         return (
             <Grid container>
-                <Grid item xs={6} >
-                    <div class="staffRegoImg" >
-                        <img src={staffRegoImg} alt="staffRegoImg" />
-                    </div>
+                <Grid item xs zeroMinWidth >
+
+                    <img style={{ width: '100%' }} src={staffRegoImg} alt="staffRegoImg" />
+
 
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs>
                     <form class="staffRegoForm" onSubmit={this.addStaff}>
                         <FormControl>
                             <Grid container spacing={2} justify="center">
                                 <Grid item>
-                                    <h1 class="staffRego">Register Staff</h1>
+                                    <Typography variant="h4" component="h2">
+                                        Register Staff<br></br>
+                                    </Typography>
                                 </Grid>
                                 <Grid item>
                                     <table class="tableNames" align="center">
@@ -101,9 +105,6 @@ class StaffRegistration extends Component {
                                             <td><input type="text" placeholder="First Name" name="firstName" class="firstName" required value={this.state.firstName} onChange={this.handleChange} /></td>
                                             <td><input type="text" placeholder="Last Name" name="lastName" class="lastName" required value={this.state.lastName} onChange={this.handleChange} /></td>
                                         </tr>
-                                    </table>
-
-                                    <table class="tableMobandGen" align="center">
                                         <tr>
                                             <td><label for="mobNum" class="mobNumLbl"><b>Mobile Number</b></label></td>
                                             <td><label for="gender" class="genderLbl"><b>Gender</b></label></td>
@@ -120,6 +121,7 @@ class StaffRegistration extends Component {
                                                 </select>
                                             </td>
                                         </tr>
+
                                     </table>
 
 
@@ -149,9 +151,17 @@ class StaffRegistration extends Component {
                                 <Grid item>
                                     <button onClick={this.generatePassword} className="button1" >Generate Password</button>
                                     <Card className="login_info" variant="outlined">
-                                        <h2>Login Details</h2>
-                                Email: {this.state.email} <br></br>
+
+                                        <CardContent>
+                                            <Typography variant="h6" component="h2">
+                                                Login Details
+                                            </Typography>
+                                            <Typography variant="h6" color="textSecondary" gutterBottom>
+                                                Email: {this.state.email} <br></br>
                                 Password: {this.state.password}
+                                            </Typography>
+
+                                        </CardContent>
                                     </Card>
                                     <button class="staffRegoSubmitBtn">Submit</button>
                                 </Grid>
