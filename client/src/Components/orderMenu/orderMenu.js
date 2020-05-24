@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import "./orderMenu.css";
 import { firestore } from'../../config/firebase.js';
 import headerImage from '../../Images/headerImage.png';
+import drinksbg from '../../Images/drinksbg.jpg';
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
 import CardActions from '@material-ui/core/CardActions';
@@ -80,6 +81,7 @@ class orderMenu extends Component {
 
     handleDeleteOrder = (event, foodName) => {
         event.preventDefault();
+        alert('Food Removed from Reservation');
         this.setState({foodName: event.target.value});
         var foodTitle = foodName;
         firestore.collection("resFood").doc("resId").collection("foodOrder").doc(foodTitle).delete()
@@ -87,6 +89,7 @@ class orderMenu extends Component {
 
     handleSaveQty = (event, foodName, foodCost, foodCategory) => {
         event.preventDefault();
+        alert('Food Added to Reservation');
         const { quantity } = this.state;
         this.setState({foodName: event.target.value});
         this.setState({foodCategory: event.target.value});
@@ -122,185 +125,194 @@ class orderMenu extends Component {
     const { activeIndex } = this.state;
     const { inputValue } = this.state;
       return(
-        <div class="menu">
+          <div className="wrapper">
             <div className="header">
-            <img className="headerImage" src={headerImage} alt=""/>
-                <Paper className="topnav">
-                <Tabs
-                        centered
-                        value={activeIndex}
-                        onChange={this.handleChange}
-                        variant="fullWidth"
-                    >
-                        <MyTab label="Entree" />
-                        <MyTab label="Main" />
-                        <MyTab label="Dessert" />
-                        <MyTab label="Drinks" />
-                    </Tabs>
-                </Paper>
-                <Grid container className="buttonGrid" spacing={2} direction="row" justify="center"
-  alignItems="center">
-                <Grid item xs={3}>
-                <MyButton variant="contained" >Skip Food Pre-Ordering</MyButton>
-                </Grid>
-                <Grid item xs={3}>
-                <MyButton variant="contained">Finished Pre-Ordering</MyButton>
-                </Grid>
-                </Grid>
-      
-                { activeIndex === 0 && <TabContainer>
-                <div className="alignPage"> 
                 <Grid
-                        container
-                        spacing={3}
-                        direction="row"
-                        justify="center"
-                        alignItems="center"
-                        alignContent="center"
-                    >
-                      
-                          {entree.map((entreeItem, index) => (
-                              
-                                <Grid item xs key={entreeItem}> 
-                                    
-                                    <MyCard className="root" variant="outlined" raised="false"
-                                    boxShadow={3}>
-                                 
-                                        <CardHeader
-                                        style={{ textAlign: 'left', height: '6%', paddingLeft: '5%', paddingTop: '8%'}}
-                                            title={entreeItem.name}
-                                            subheader= {<StarRatingComponent 
-                                            name="rate2" 
-                                            editing={false}
-                                            renderStarIcon={() => <span1>✰</span1>}
-                                            starCount={5}
-                                            value={entreeItem.rating}
-                                            />}
-                                        />
-                                         <Divider className="divider" variant="middle" />
-                                    <div className="details">
-                                    <CardContent className="content">
-                                    <Typography gutterBottom variant="h5" component="h2">
-                                        <h2>{entreeItem.ingredients}</h2>
-                                    </Typography>
-                                    </CardContent>
-                                    <CardContent className="subcontent">
-                                    <Typography gutterBottom variant="h5" component="h2">
-                                        <h3>${entreeItem.cost}</h3>
-                                    </Typography>
-                                </CardContent>
-                                <Divider className="divider" variant="middle" />
-                                    <CardActions className="controls">
-                                    <MyTextField
-                                        id="filledNumber"
-                                        label="Quantity"
-                                        type="number"
-                                        value={this.state.value}
-                                        InputLabelProps={{
-                                          shrink: true,
-                                        }}
-                                        variant="outlined"
-                                        onChange={this.handleAddItem}
-                                    />
-                                    <ButtonGroup variant="contained"  aria-label="contained primary button group">
-                                        <MyButton variant="contained"
-                                        className="addButton"
-                                        onClick={event => this.handleSaveQty(event, entreeItem.name, entreeItem.cost, entreeItem.category)}
-                                        startIcon={<AddIcon />}>
-                                            Add</MyButton>
-                                        <MyButton
-                                        
-                                        variant="contained"
-                                        className="addButton"
-                                        onClick={event => this.handleDeleteOrder(event, entreeItem.name)}
-                                        startIcon={<RemoveIcon />}>Remove</MyButton>
-                                    </ButtonGroup>
-                                    </CardActions>
-                                    </div>
-                                    </MyCard>
-                                </Grid>
-                          ))}
-                    </Grid>
-                </div>
-                </TabContainer> }
+                container
+                spacing={10}
+                direction="column"
+                justify="space-evenly"
+                alignItems="center"
+                alignContent="center"
+                >
+                    <Grid item xs>
+                        <Paper className="topnav">
+                            <Tabs
+                            centered
+                            value={activeIndex}
+                            onChange={this.handleChange}
+                            variant="fullWidth"
+                            >
+                                <MyTab label="Entree" />
+                                <MyTab label="Main" />
+                                <MyTab label="Dessert" />
+                                <MyTab label="Drinks" />
+                            </Tabs>
+                        </Paper>
+               </Grid>  
+                    
+               <Grid item xs>
+               <ButtonGroup variant="contained"  aria-label="contained primary button group">
+                            <MyButton variant="contained" >Skip Food Pre-Ordering</MyButton>
+                            <MyButton variant="contained">Finished Food Pre-Ordering</MyButton>
+                        </ButtonGroup>
+                   </Grid> 
+               </Grid>
 
-                { activeIndex === 1 && <TabContainer>
-                <div className="alignPage"> 
-                <Grid
-                        container
-                        spacing={3}
-                        direction="row"
-                        justify="center"
-                        alignItems="center"
-                        alignContent="center"
-                    >
+               { activeIndex === 0 && <TabContainer>
+                 <div className="alignPage"> 
+                 <Grid
+                         container
+                         spacing={3}
+                         direction="row"
+                         justify="center"
+                         alignItems="center"
+                         alignContent="center"
+                         className="entreebg"
+                     >
                       
-                          {main.map((mainItem, index) => (
+                           {entree.map((entreeItem, index) => (
                               
-                                <Grid item xs key={mainItem}> 
+                                 <Grid item xs key={entreeItem}> 
                                     
-                                    <MyCard className="root" variant="outlined" raised="false"
-                                    boxShadow={3}>
+                                     <MyCard className="root" variant="outlined" raised="false"
+                                     boxShadow={3}>
                                  
-                                        <CardHeader
-                                        style={{ textAlign: 'left', height: '6%', paddingLeft: '5%', paddingTop: '8%'}}
-                                            title={mainItem.name}
-                                            subheader= {<StarRatingComponent 
-                                            name="rate2" 
-                                            editing={false}
-                                            renderStarIcon={() => <span1>✰</span1>}
-                                            starCount={5}
-                                            value={mainItem.rating}
-                                            />}
-                                        />
-                                         <Divider className="divider" variant="middle" />
-                                    <div className="details">
-                                    <CardContent className="content">
-                                    <Typography gutterBottom variant="h5" component="h2">
-                                        <h2>{mainItem.ingredients}</h2>
-                                    </Typography>
-                                    </CardContent>
-                                    <CardContent className="subcontent">
-                                    <Typography gutterBottom variant="h5" component="h2">
-                                        <h3>${mainItem.cost}</h3>
-                                    </Typography>
-                                </CardContent>
-                                <Divider className="divider" variant="middle" />
-                                    <CardActions className="controls">
-                                    <MyTextField
-                                        id="filledNumber"
-                                        label="Quantity"
-                                        type="number"
-                                        value={this.state.value}
-                                        InputLabelProps={{
-                                          shrink: true,
-                                        }}
-                                        variant="outlined"
-                                        onChange={this.handleAddItem}
-                                    />
-                                    <ButtonGroup variant="contained"  aria-label="contained primary button group">
-                                        <MyButton variant="contained"
-                                        className="addButton"
-                                        onClick={event => this.handleSaveQty(event, mainItem.name, mainItem.cost, mainItem.category)}
-                                        startIcon={<AddIcon />}>
-                                            Add</MyButton>
-                                        <MyButton
+                                         <CardHeader
+                                         style={{ textAlign: 'left', height: '6%', paddingLeft: '5%', paddingTop: '8%'}}
+                                             title={entreeItem.name}
+                                             subheader= {<StarRatingComponent 
+                                             name="rate2" 
+                                             editing={false}
+                                             renderStarIcon={() => <span1>✰</span1>}
+                                             starCount={5}
+                                             value={entreeItem.rating}
+                                             />}
+                                         />
+                                          <Divider className="divider" variant="middle" />
+                                     <div className="details">
+                                     <CardContent className="content">
+                                     <Typography gutterBottom variant="h5" component="h2">
+                                         <h2>{entreeItem.ingredients}</h2>
+                                     </Typography>
+                                     </CardContent>
+                                     <CardContent className="subcontent">
+                                     <Typography gutterBottom variant="h5" component="h2">
+                                         <h3>${entreeItem.cost}</h3>
+                                     </Typography>
+                                 </CardContent>
+                                 <Divider className="divider" variant="middle" />
+                                     <CardActions className="controls">
+                                     <MyTextField
+                                         id="filledNumber"
+                                         label="Quantity"
+                                         type="number"
+                                         value={this.state.value}
+                                         InputLabelProps={{
+                                           shrink: true,
+                                         }}
+                                         variant="outlined"
+                                         onChange={this.handleAddItem}
+                                     />
+                                     <ButtonGroup variant="contained"  aria-label="contained primary button group">
+                                         <MyButton variant="contained"
+                                         className="addButton"
+                                         onClick={event => this.handleSaveQty(event, entreeItem.name, entreeItem.cost, entreeItem.category)}
+                                         startIcon={<AddIcon />}>
+                                             Add</MyButton>
+                                         <MyButton
                                         
-                                        variant="contained"
-                                        className="addButton"
-                                        onClick={event => this.handleDeleteOrder(event, mainItem.name)}
-                                        startIcon={<RemoveIcon />}>Remove</MyButton>
-                                    </ButtonGroup>
-                                    </CardActions>
-                                    </div>
-                                    </MyCard>
-                                </Grid>
-                          ))}
-                    </Grid>
-                </div>
-                </TabContainer> }
+                                         variant="contained"
+                                         className="addButton"
+                                         onClick={event => this.handleDeleteOrder(event, entreeItem.name)}
+                                         startIcon={<RemoveIcon />}>Remove</MyButton>
+                                     </ButtonGroup>
+                                     </CardActions>
+                                     </div>
+                                     </MyCard>
+                                 </Grid>
+                           ))}
+                     </Grid>
+                 </div>
+                 </TabContainer> }
 
-                { activeIndex === 2 && <TabContainer>
+                 { activeIndex === 1 && <TabContainer>
+                 <div className="alignPage"> 
+                 <Grid
+                         container
+                         spacing={3}
+                         direction="row"
+                         justify="center"
+                         alignItems="center"
+                         alignContent="center"
+                         className="headerImg"
+                     >
+                      
+                           {main.map((mainItem, index) => (
+                              
+                                 <Grid item xs key={mainItem}> 
+                                    
+                                     <MyCard className="root" variant="outlined" raised="false"
+                                     boxShadow={3}>
+                                 
+                                         <CardHeader
+                                         style={{ textAlign: 'left', height: '6%', paddingLeft: '5%', paddingTop: '8%'}}
+                                             title={mainItem.name}
+                                             subheader= {<StarRatingComponent 
+                                             name="rate2" 
+                                             editing={false}
+                                             renderStarIcon={() => <span1>✰</span1>}
+                                             starCount={5}
+                                             value={mainItem.rating}
+                                             />}
+                                         />
+                                          <Divider className="divider" variant="middle" />
+                                     <div className="details">
+                                     <CardContent className="content">
+                                     <Typography gutterBottom variant="h5" component="h2">
+                                         <h2>{mainItem.ingredients}</h2>
+                                     </Typography>
+                                     </CardContent>
+                                     <CardContent className="subcontent">
+                                     <Typography gutterBottom variant="h5" component="h2">
+                                         <h3>${mainItem.cost}</h3>
+                                     </Typography>
+                                 </CardContent>
+                                 <Divider className="divider" variant="middle" />
+                                     <CardActions className="controls">
+                                     <MyTextField
+                                         id="filledNumber"
+                                         label="Quantity"
+                                         type="number"
+                                         value={this.state.value}
+                                         InputLabelProps={{
+                                           shrink: true,
+                                         }}
+                                         variant="outlined"
+                                         onChange={this.handleAddItem}
+                                     />
+                                     <ButtonGroup variant="contained"  aria-label="contained primary button group">
+                                         <MyButton variant="contained"
+                                         className="addButton"
+                                         onClick={event => this.handleSaveQty(event, mainItem.name)}
+                                         startIcon={<AddIcon />}>
+                                             Add</MyButton>
+                                         <MyButton
+                                        
+                                         variant="contained"
+                                         className="addButton"
+                                         onClick={event => this.handleDeleteOrder(event, mainItem.name)}
+                                         startIcon={<RemoveIcon />}>Remove</MyButton>
+                                     </ButtonGroup>
+                                     </CardActions>
+                                     </div>
+                                     </MyCard>
+                                 </Grid>
+                           ))}
+                     </Grid>
+                 </div>
+                 </TabContainer> }
+                 { activeIndex === 2 && <TabContainer>
                 <div className="alignPage"> 
                 <Grid
                         container
@@ -309,6 +321,7 @@ class orderMenu extends Component {
                         justify="center"
                         alignItems="center"
                         alignContent="center"
+                        className="dessertbg"
                     >
                       
                           {dessert.map((dessertItem, index) => (
@@ -357,7 +370,7 @@ class orderMenu extends Component {
                                     <ButtonGroup variant="contained"  aria-label="contained primary button group">
                                         <MyButton variant="contained"
                                         className="addButton"
-                                        onClick={event => this.handleSaveQty(event, dessertItem.name, dessertItem.cost, dessertItem.category)}
+                                        onClick={event => this.handleSaveQty(event, dessertItem.name)}
                                         startIcon={<AddIcon />}>
                                             Add</MyButton>
                                         <MyButton
@@ -375,7 +388,6 @@ class orderMenu extends Component {
                     </Grid>
                 </div>
                 </TabContainer> }
-
                 { activeIndex === 3 && <TabContainer>
                 <div className="alignPage"> 
                 <Grid
@@ -385,9 +397,10 @@ class orderMenu extends Component {
                         justify="center"
                         alignItems="center"
                         alignContent="center"
+                        className="drinksBg"
                     >
                       
-                          {entree.map((drinksItem, index) => (
+                          {drinks.map((drinksItem, index) => (
                               
                                 <Grid item xs key={drinksItem}> 
                                     
@@ -433,7 +446,7 @@ class orderMenu extends Component {
                                     <ButtonGroup variant="contained"  aria-label="contained primary button group">
                                         <MyButton variant="contained"
                                         className="addButton"
-                                        onClick={event => this.handleSaveQty(event, drinksItem.name, drinksItem.cost, drinksItem.category)}
+                                        onClick={event => this.handleSaveQty(event, drinksItem.name)}
                                         startIcon={<AddIcon />}>
                                             Add</MyButton>
                                         <MyButton
@@ -451,8 +464,9 @@ class orderMenu extends Component {
                     </Grid>
                 </div>
                 </TabContainer> }
-            </div>
-        </div>
+          </div>
+          </div>
+          
       );
   }
 }

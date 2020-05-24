@@ -11,17 +11,20 @@ import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
 import CardHeader from '@material-ui/core/CardHeader';
 import Typography from '@material-ui/core/Typography';
-import background from '../../Images/background.jpg';
+import background from '../../Images/backgroundSize.jpg';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { withStyles } from '@material-ui/core/styles';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
+import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import { firestore } from'../../config/firebase.js';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 
 class MenuInventory extends Component {
     constructor(props) {
@@ -31,17 +34,28 @@ class MenuInventory extends Component {
             ingredients: '',
             rating: '',
             cost: '',
-            category: ''
+            category: '',
+            items: [],
         };
     }
-
+    componentDidMount() {
+        var entree = "Entree"
+        firestore.collection("menuItems")
+            .get()
+            .then(querySnapshot => {
+                const data = querySnapshot.docs.map(doc => doc.data());
+                console.log(data);
+                this.setState({ items: data });
+            });
+      }
     state = { activeIndex: 0 }
     handleChange = (_, activeIndex) => this.setState({ activeIndex })
-   
+
     handleItemName = (evt) => {
         this.setState({ name: evt.target.value });
     }
 
+   
     handleItemIngredients = (evt) => {
         this.setState({ ingredients: evt.target.value });
     }
@@ -73,19 +87,20 @@ class MenuInventory extends Component {
             cost,
             category
         })
-
     }
     render() {
         const { activeIndex } = this.state;
+        const { items } = this.state;
 
         return(
             <Grid
             container 
             spacing={0}
             direction="row"
+
             >
-                <Grid item xs>
-                <img className="headerImage" src={background} alt=""/>
+                <Grid item xs zeroMinWidth>
+                <img  style={{ width: '100%'}} src={background} alt=""/>
                 </Grid>
                 <Grid item xs>
                     <Paper>
@@ -151,25 +166,29 @@ class MenuInventory extends Component {
                                         onChange={this.handleItemRating}
                                     />
                             </CardActions>
-                            <CardActions>
-                            <MyTextField
-                                        id="filledNumber"
-                                        label="Item Cost"
-                                        type="number"
-                                        fullWidth="true"
-                                        // value={this.state.value}
-                                        InputProps = {{
-                                            inputProps: {
-                                                min: 1, max: 50},
-                                        }}
-                                        InputLabelProps={{
-                                          shrink: true,
-                                        }}
-                                        variant="filled"
-                                        onChange={this.handleItemCost}
-                                    />
-                            </CardActions>
-                            <CardActions>
+                           
+                                    <CardActions>
+                                    <MyTextField
+                                    
+                                    id="input-with-icon-textfield"
+                                    label="Item Cost"
+                                    type="number"
+                                    fullWidth="true"
+                                    variant="filled"
+                                    onChange={this.handleItemCost}
+                                    InputProps={{
+                                        inputProps: {
+                                            min: 1, max: 50},
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                        <AttachMoneyIcon />
+                                        </InputAdornment>
+                                    ),
+                                    }}
+                                />
+                                    </CardActions> 
+                                   
+                            <CardActions className="controls">
                             <RadioGroup row aria-label="position" name="position" defaultValue="Entree" onChange={this.handleItemCategory}>
                                     <FormControlLabel
                                     value="Entree"
@@ -197,12 +216,36 @@ class MenuInventory extends Component {
                                     />
                                     </RadioGroup>
                       </CardActions>
+                      <CardActions className="controls">
+                      <MyButton variant="contained"
+                                        
+                                        onClick={event => this.handleSaveItem(event)}
+                                        startIcon={<AddIcon />}>
+                                            Add to Menu</MyButton>
+                                            
+                      </CardActions>
+                        </Card>
+                    </TabContainer> }
+                    { activeIndex === 1 && <TabContainer>
+                        <Card>
+                            <CardHeader
+                                style={{ textAlign: 'left', height: '6%', paddingLeft: '5%', paddingTop: '8%'}}
+                                title="Edit Existing Item In the Sapori Unici Menu"
+                                subheader="Instructions?"
+                            />
+                            <Divider className="divider" variant="middle" />
+                            <CardActions>
+                                <Select>
+                                {this.state.items.map((entreeItem) => <MenuItem key={entreeItem.name} value={entreeItem.name}>{entreeItem.name}</MenuItem>)}
+                                </Select>
+                            </CardActions>
                       <CardActions>
                       <MyButton variant="contained"
                                         className="addButton"
                                         onClick={event => this.handleSaveItem(event)}
                                         startIcon={<AddIcon />}>
-                                            Add to Menu</MyButton>
+                                            Update Item</MyButton>
+                                            
                       </CardActions>
                         </Card>
                     </TabContainer> }
