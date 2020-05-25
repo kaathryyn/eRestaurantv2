@@ -1,0 +1,17 @@
+.root{
+    flex-grow: 1;
+    position: relative;
+    width: 550px;
+    height: 100%;
+   }
+
+   .controls {
+    display: flex;
+    justify-content: center;
+    height: 25%;
+    overflow: hidden;
+   }
+
+   .sideImage {
+       width: 50%;
+   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import "./menu.css";
+import "./orderMenu.css";
 import { firestore } from'../../config/firebase.js';
 import headerImage from '../../Images/headerImage.png';
 import drinksbg from '../../Images/drinksbg.jpg';
@@ -23,7 +23,7 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import { createMuiTheme } from '@material-ui/core/styles';
 
 
-class Menu extends Component {
+class orderMenu extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -75,6 +75,48 @@ class Menu extends Component {
     state = { activeIndex: 0 }
     handleChange = (_, activeIndex) => this.setState({ activeIndex })
     
+    handleAddItem = (evt) => {
+        this.setState({ quantity: evt.target.value });
+    }
+
+    handleDeleteOrder = (event, foodName) => {
+        event.preventDefault();
+        alert('Food Removed from Reservation');
+        this.setState({foodName: event.target.value});
+        var foodTitle = foodName;
+        firestore.collection("resFood").doc("resId").collection("foodOrder").doc(foodTitle).delete()
+    }
+
+    handleSaveQty = (event, foodName, foodCost, foodCategory) => {
+        event.preventDefault();
+        alert('Food Added to Reservation');
+        const { quantity } = this.state;
+        this.setState({foodName: event.target.value});
+        this.setState({foodCategory: event.target.value});
+        this.setState({foodCost: event.target.value});
+        var foodTitle = foodName;
+        var foodCost = foodCost;
+        var foodCategory = foodCategory;
+        // var orderDetails = firestore.collection("resFood").doc().collection('orderDeets');
+        // var qty = {quantity}
+        // var title = {foodName}
+        // orderDetails.({
+        //     orderDetails: { 
+        //         qty, 
+        //         title
+        //     }
+        // })
+        // db.collection('users').doc(this.username).collection('booksList').add
+       firestore.collection("resFood").doc("resId").collection("foodOrder").doc(foodTitle).set({
+           orderDetails: {quantity, foodName, foodCategory, foodCost},
+        //    title: {foodName}
+       })
+       
+        // firestore.collection("resFood").add({
+        //     orderDetails: {quantity},
+        //     name: {foodName}
+        //     })
+      }
   render() {
     const { entree } = this.state;
     const { main } = this.state;
@@ -108,6 +150,13 @@ class Menu extends Component {
                             </Tabs>
                         </Paper>
                </Grid>  
+                    
+               <Grid item xs>
+               <ButtonGroup variant="contained"  aria-label="contained primary button group">
+                            <MyButton variant="contained" >Skip Food Pre-Ordering</MyButton>
+                            <MyButton variant="contained">Finished Food Pre-Ordering</MyButton>
+                        </ButtonGroup>
+                   </Grid> 
                </Grid>
 
                { activeIndex === 0 && <TabContainer>
@@ -153,6 +202,32 @@ class Menu extends Component {
                                      </Typography>
                                  </CardContent>
                                  <Divider className="divider" variant="middle" />
+                                     <CardActions className="controls">
+                                     <MyTextField
+                                         id="filledNumber"
+                                         label="Quantity"
+                                         type="number"
+                                         value={this.state.value}
+                                         InputLabelProps={{
+                                           shrink: true,
+                                         }}
+                                         variant="outlined"
+                                         onChange={this.handleAddItem}
+                                     />
+                                     <ButtonGroup variant="contained"  aria-label="contained primary button group">
+                                         <MyButton variant="contained"
+                                         className="addButton"
+                                         onClick={event => this.handleSaveQty(event, entreeItem.name, entreeItem.cost, entreeItem.category)}
+                                         startIcon={<AddIcon />}>
+                                             Add</MyButton>
+                                         <MyButton
+                                        
+                                         variant="contained"
+                                         className="addButton"
+                                         onClick={event => this.handleDeleteOrder(event, entreeItem.name)}
+                                         startIcon={<RemoveIcon />}>Remove</MyButton>
+                                     </ButtonGroup>
+                                     </CardActions>
                                      </div>
                                      </MyCard>
                                  </Grid>
@@ -204,6 +279,32 @@ class Menu extends Component {
                                      </Typography>
                                  </CardContent>
                                  <Divider className="divider" variant="middle" />
+                                     <CardActions className="controls">
+                                     <MyTextField
+                                         id="filledNumber"
+                                         label="Quantity"
+                                         type="number"
+                                         value={this.state.value}
+                                         InputLabelProps={{
+                                           shrink: true,
+                                         }}
+                                         variant="outlined"
+                                         onChange={this.handleAddItem}
+                                     />
+                                     <ButtonGroup variant="contained"  aria-label="contained primary button group">
+                                         <MyButton variant="contained"
+                                         className="addButton"
+                                         onClick={event => this.handleSaveQty(event, mainItem.name)}
+                                         startIcon={<AddIcon />}>
+                                             Add</MyButton>
+                                         <MyButton
+                                        
+                                         variant="contained"
+                                         className="addButton"
+                                         onClick={event => this.handleDeleteOrder(event, mainItem.name)}
+                                         startIcon={<RemoveIcon />}>Remove</MyButton>
+                                     </ButtonGroup>
+                                     </CardActions>
                                      </div>
                                      </MyCard>
                                  </Grid>
@@ -254,6 +355,32 @@ class Menu extends Component {
                                     </Typography>
                                 </CardContent>
                                 <Divider className="divider" variant="middle" />
+                                    <CardActions className="controls">
+                                    <MyTextField
+                                        id="filledNumber"
+                                        label="Quantity"
+                                        type="number"
+                                        value={this.state.value}
+                                        InputLabelProps={{
+                                          shrink: true,
+                                        }}
+                                        variant="outlined"
+                                        onChange={this.handleAddItem}
+                                    />
+                                    <ButtonGroup variant="contained"  aria-label="contained primary button group">
+                                        <MyButton variant="contained"
+                                        className="addButton"
+                                        onClick={event => this.handleSaveQty(event, dessertItem.name)}
+                                        startIcon={<AddIcon />}>
+                                            Add</MyButton>
+                                        <MyButton
+                                        
+                                        variant="contained"
+                                        className="addButton"
+                                        onClick={event => this.handleDeleteOrder(event, dessertItem.name)}
+                                        startIcon={<RemoveIcon />}>Remove</MyButton>
+                                    </ButtonGroup>
+                                    </CardActions>
                                     </div>
                                     </MyCard>
                                 </Grid>
@@ -304,6 +431,32 @@ class Menu extends Component {
                                     </Typography>
                                 </CardContent>
                                 <Divider className="divider" variant="middle" />
+                                    <CardActions className="controls">
+                                    <MyTextField
+                                        id="filledNumber"
+                                        label="Quantity"
+                                        type="number"
+                                        value={this.state.value}
+                                        InputLabelProps={{
+                                          shrink: true,
+                                        }}
+                                        variant="outlined"
+                                        onChange={this.handleAddItem}
+                                    />
+                                    <ButtonGroup variant="contained"  aria-label="contained primary button group">
+                                        <MyButton variant="contained"
+                                        className="addButton"
+                                        onClick={event => this.handleSaveQty(event, drinksItem.name)}
+                                        startIcon={<AddIcon />}>
+                                            Add</MyButton>
+                                        <MyButton
+                                        
+                                        variant="contained"
+                                        className="addButton"
+                                        onClick={event => this.handleDeleteOrder(event, drinksItem.name)}
+                                        startIcon={<RemoveIcon />}>Remove</MyButton>
+                                    </ButtonGroup>
+                                    </CardActions>
                                     </div>
                                     </MyCard>
                                 </Grid>
@@ -338,7 +491,32 @@ const MyTab = withStyles(theme => ({
     
   }))(Button);
 
- 
+  const MyTextField = withStyles(theme => ({
+    root: {
+        '& label.Mui-focused': {
+          color: 'maroon',
+        },
+        '& .MuiInput-underline:after': {
+            color: 'maroon',
+          borderBottomColor: 'maroon',
+        },
+        '& .MuiOutlinedInput-root': {
+          '& fieldset': {
+              color: 'maroon',
+            borderColor: 'maroon',
+          },
+          '&:hover fieldset': {
+            color: 'maroon',
+            borderColor: 'maroon',
+          },
+          '&.Mui-focused fieldset': {
+            color: 'maroon',
+            borderColor: 'maroon',
+          },
+        },
+      },
+  }))(TextField);
+
  
   const MyCard = withStyles(theme => ({
       root: {
@@ -359,4 +537,4 @@ function TabContainer(props) {
       </Typography>
     );
   }
-export default Menu;
+export default orderMenu;

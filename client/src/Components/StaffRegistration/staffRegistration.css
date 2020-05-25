@@ -1,0 +1,152 @@
+.staffRegoImg {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    background-size: cover;
+}
+
+.staffRegoForm {
+    border-left: 1px solid #808080;
+    width: 95%;
+    height: 100%;
+    position: relative;
+    transform: translateY(0%)
+}
+
+h1 {
+    margin: 10px;
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* Table Column Width */
+td {
+    width: 250px;
+}
+
+/* Label & Input formatting */
+input[type=text],
+input[type=tel],
+input[type=email],
+select {
+    padding: 6px 10px;
+    margin: 6px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}
+
+label {
+    padding-top: 5px;
+}
+
+/*First Name */
+.firstNameLbl {
+    float: left;
+    padding-left: 16px;
+}
+
+.firstName {
+    width: 82%;
+}
+
+/*Last Name */
+.lastNameLbl {
+    float: left;
+    padding-left: 16px;
+}
+
+.lastName {
+    width: 82%;
+}
+
+/*Mobile Number */
+.mobNumLbl {
+    float: left;
+    padding-left: 16px;
+}
+
+.mobNum {
+    width: 82%
+}
+
+/*Gender */
+.genderLbl {
+    float: left;
+    padding-left: 16px;
+}
+
+.gender {
+    width: 91%;
+}
+
+/*Email Address */
+.emailLbl {
+    float: left;
+    padding-left: 85px;
+    padding-right: 100px;
+}
+
+.emailInput {
+    width: 72%;
+}
+
+/*Role */
+.roleLbl {
+    float: left;
+    padding-left: 85px;
+    padding-right: 500px;
+}
+
+.roleSelect {
+    width: 75%;
+}
+
+.tableAccDetails {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/*Account Number */
+.accNumLbl {
+    float: left;
+    padding-left: 16px;
+}
+
+.accNum {
+    width: 82%;
+}
+
+/*BSB */
+.accBSBLbl {
+    padding-right: 190px;
+}
+
+.accBSB {
+    padding-left: 50px;
+    width: 82%;
+}
+
+/*Submit Button */
+.staffRegoSubmitBtn {
+    height: 50px;
+    width: 150px;
+    background-color: #333333;
+    color: white;
+    border-radius: 25px;
+    font-family: Arial;
+    font-size: 18px;
+}
+
+.staffRegoSubmitBtn:hover {
+    background: #616060;
+}
+
+.login_info {
+    height: 125px;
+    width: 397px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+;
