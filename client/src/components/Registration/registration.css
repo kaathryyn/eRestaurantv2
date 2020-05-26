@@ -8,6 +8,7 @@
 
 input[type=text],
 input[type=emailAdress],
+input[type=password],
 select {
     padding: 6px 10px;
     margin: 6px;
@@ -95,7 +96,7 @@ label {
   padding-right: 500px;
 }
 
-.email {
+.emailAddress {
   width: 75%;
   height: 8%;
 }
