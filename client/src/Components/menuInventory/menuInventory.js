@@ -16,17 +16,17 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { withStyles } from '@material-ui/core/styles';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
 import { firestore } from'../../config/firebase.js';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
-
-
+  
 class MenuInventory extends Component {
     constructor(props) {
         super(props);
@@ -36,9 +36,17 @@ class MenuInventory extends Component {
             rating: '',
             cost: '',
             category: '',
+            updatedName: '',
             items: [],
+            open: false,
+            updatedCategory: '',
+            updatedCost: '',
+            updatedIngredients: '',
+            updatedRating: '',
         };
+        
     }
+  
     componentDidMount() {
         var entree = "Entree"
         firestore.collection("menuItems")
@@ -50,6 +58,7 @@ class MenuInventory extends Component {
             });
       }
     state = { activeIndex: 0 }
+    
     handleChange = (_, activeIndex) => this.setState({ activeIndex })
 
     handleItemName = (evt) => {
@@ -72,7 +81,99 @@ class MenuInventory extends Component {
     handleItemCategory = (evt) => {
         this.setState({ category: evt.target.value });
     }
+    handleUpdateName = (evt) => {
+        this.setState({ updatedName: evt.target.value });
+    }
+    handleUpdateCategory = (evt) => {
+        this.setState({ updatedCategory: evt.target.value });
+    }
+    handleUpdateCost = (evt) => {
+        this.setState({ updatedCost: evt.target.value });
+    }
+    handleUpdateIngredients = (evt) => {
+        this.setState({ updatedIngredients: evt.target.value });
+    }
+    handleUpdateRating = (evt) => {
+        this.setState({ updatedRating: evt.target.value });
+    }
+    handleSaveUpdateName = (event, itemName) => {
+        event.preventDefault();
+        alert('Item name has been updated');
+        const { updatedName } = this.state;
+        this.setState({itemName: event.target.value});
+        var foodTitle = itemName;
+        var name = updatedName;
+        var docName = updatedName;
+        docName = docName.replace(/\s/g, '');
+        foodTitle = foodTitle.replace(/\s/g, '');
+        firestore.collection("menuItems").doc(foodTitle).get().then(function (doc) {
+            if (doc && doc.exists) {
+                var data = doc.data();
+                firestore.collection("menuItems").doc(name).set(data)
+                firestore.collection("menuItems").doc(foodTitle).delete();
+            }
+        })
 
+        firestore.collection("menuItems").doc(foodTitle).update({
+            name
+        })
+    }
+    handleDeleteItem = (event, itemName) => {
+        event.preventDefault();
+        alert('Item name has been updated');
+        this.setState({itemName: event.target.value});
+        var foodTitle = itemName;
+        foodTitle = foodTitle.replace(/\s/g, '');
+        firestore.collection("menuItems").doc(foodTitle).delete();
+    }
+    handleSaveUpdateIngredients = (event, itemName) => {
+        event.preventDefault();
+        alert('Item ingredients have been updated');
+        const { updatedIngredients } = this.state;
+        this.setState({itemName: event.target.value});
+        var foodTitle = itemName;
+        foodTitle = foodTitle.replace(/\s/g, '');
+        var ingredients = updatedIngredients;
+        firestore.collection("menuItems").doc(foodTitle).update({
+            ingredients
+        })
+    }
+    handleSaveUpdateCategory = (event, itemName) => {
+        event.preventDefault();
+        alert('Item category has been updated');
+        const { updatedCategory } = this.state;
+        this.setState({itemName: event.target.value});
+        var foodTitle = itemName;
+        foodTitle = foodTitle.replace(/\s/g, '');
+        var category = updatedCategory;
+        firestore.collection("menuItems").doc(foodTitle).update({
+            category
+        })
+    }
+    handleSaveUpdateCost = (event, itemName) => {
+        event.preventDefault();
+        alert('Item cost has been updated');
+        const { updatedCost } = this.state;
+        this.setState({itemName: event.target.value});
+        var foodTitle = itemName;
+        foodTitle = foodTitle.replace(/\s/g, '');
+        var cost = updatedCost;
+        firestore.collection("menuItems").doc(foodTitle).update({
+            cost
+        })
+    }
+    handleSaveUpdateRating = (event, itemName) => {
+        event.preventDefault();
+        alert('Item rating has been updated');
+        const { updatedRating } = this.state;
+        this.setState({itemName: event.target.value});
+        var foodTitle = itemName;
+        foodTitle = foodTitle.replace(/\s/g, '');
+        var rating = updatedRating;
+        firestore.collection("menuItems").doc(foodTitle).update({
+            rating
+        })
+    }
     handleSaveItem = (event) => {
         event.preventDefault();
         alert('Item has been added to the Menu');
@@ -82,6 +183,7 @@ class MenuInventory extends Component {
         const { cost } = this.state;
         const { category } = this.state;
         var foodTitle = name;
+        foodTitle = foodTitle.replace(/\s/g, '');
         firestore.collection("menuItems").doc(foodTitle).set({
             name,
             ingredients,
@@ -94,7 +196,7 @@ class MenuInventory extends Component {
     render() {
         const { activeIndex } = this.state;
         const { items } = this.state;
-
+       
         return(
             <Grid
             container 
@@ -102,10 +204,7 @@ class MenuInventory extends Component {
             direction="row"
 
             >
-                <Grid item xs zeroMinWidth>
-                <img  style={{ width: '100%'}} src={background} alt=""/>
-                </Grid>
-                <Grid item xs>
+                <Grid item xs className="background">
                     <Paper>
                         <Tabs
                             centered
@@ -118,14 +217,15 @@ class MenuInventory extends Component {
                         </Tabs>
                     </Paper>
                     { activeIndex === 0 && <TabContainer>
-                        <Card>
+                        <Card >
                             <CardHeader
                                 style={{ textAlign: 'left', height: '6%', paddingLeft: '5%', paddingTop: '8%'}}
                                 title="Add New Item to the Sapori Unici Menu"
-                                subheader="Instructions?"
+                                
+                                
                             />
                             <Divider className="divider" variant="middle" />
-                            <CardActions>
+                            <CardActions>  
                             <MyTextField
                                         id="filledNumber"
                                         label="Item Name"
@@ -230,33 +330,105 @@ class MenuInventory extends Component {
                         </Card>
                     </TabContainer> }
                     { activeIndex === 1 && <TabContainer>
-                        <Card>
-                            <CardHeader
-                                style={{ textAlign: 'left', height: '6%', paddingLeft: '5%', paddingTop: '8%'}}
-                                title="Edit Existing Item In the Sapori Unici Menu"
-                                subheader="Instructions?"
-                            />
-                            <Divider className="divider" variant="middle" />
-                            <CardActions>
-                                <Select>
-                                {this.state.items.map((entreeItem) => <MenuItem key={entreeItem.name} value={entreeItem.name}>{entreeItem.name}</MenuItem>)}
-                                </Select>
-                            </CardActions>
-                      <CardActions>
-                      <MyButton variant="contained"
-                                        className="addButton"
-                                        onClick={event => this.handleSaveItem(event)}
-                                        startIcon={<AddIcon />}>
-                                            Update Item</MyButton>
-                                            
-                      </CardActions>
-                        </Card>
+                        <Grid
+                         container
+                         spacing={3}
+                         direction="row"
+                         justify="center"
+                         alighnItems="center"
+                         alignContent="center"
+                         className="background"
+                     >
+                           {items.map((entreeItem, index) => (
+                              
+                                 <Grid item xs key={entreeItem}> 
+                                    
+                                     <MyCard className="root" variant="outlined" raised="false"
+                                     boxShadow={3}>
+                                 
+                                         <CardHeader
+                                         style={{ textAlign: 'left', height: '3%', paddingLeft: '5%', paddingTop: '5%'}}
+                                             title={entreeItem.name}
+                                         />
+                                          <Divider className="divider" variant="middle" />
+                                     <div className="details">
+                                     <CardContent className="content">
+                                     <Typography gutterBottom variant="h5" component="h2">
+                                       
+                                       <h3>Item Name: {entreeItem.name}</h3>
+                                       <p><input
+                                        placeholder="Item Name"
+                                        onChange={this.handleUpdateName}
+                                    /> <MyButton variant="contained"
+                                    className="addButton"
+                                    onClick={event => this.handleSaveUpdateName(event, entreeItem.name)}
+                                    startIcon={<AddIcon />}>
+                                        Save Changes</MyButton></p> 
+                                     
+                                     <h3>Item Ingredients: {entreeItem.ingredients}</h3>
+                                     <p><input
+                                        placeholder="Item Ingredients"
+                                        onChange={this.handleUpdateIngredients}
+                                    /> <MyButton variant="contained"
+                                    className="addButton"
+                                    onClick={event => this.handleSaveUpdateIngredients(event, entreeItem.name)}
+                                    startIcon={<AddIcon />}>
+                                        Save Changes</MyButton></p> 
+                                    
+                                    <h3>Item Category: {entreeItem.category}</h3>
+                                    <p><input
+                                        placeholder="Item Category"
+                                        onChange={this.handleUpdateCategory}
+                                    /> <MyButton variant="contained"
+                                    className="addButton"
+                                    onClick={event => this.handleSaveUpdateCategory(event, entreeItem.name)}
+                                    startIcon={<AddIcon />}>
+                                        Save Changes</MyButton></p> 
+                                    
+                                    <h3>Item Cost: ${entreeItem.cost}</h3> 
+                                    <p><input
+                                        placeholder="Item Cost"
+                                        onChange={this.handleUpdateCost}
+                                    /> <MyButton variant="contained"
+                                    className="addButton"
+                                    onClick={event => this.handleSaveUpdateCost(event, entreeItem.name)}
+                                    startIcon={<AddIcon />}>
+                                        Save Changes</MyButton></p>
+                                    
+                                    <h3>Item Rating: {entreeItem.rating}</h3>
+                                    <p><input
+                                        placeholder="Item Rating"
+                                        onChange={this.handleUpdateRating}
+                                    /> <MyButton variant="contained"
+                                    className="addButton"
+                                    onClick={event => this.handleSaveUpdateRating(event, entreeItem.name)}
+                                    startIcon={<AddIcon />}>
+                                        Save Changes</MyButton></p> 
+                                     </Typography>
+                                     </CardContent>
+                                 
+                                 <Divider className="divider" variant="middle" />
+                                     <CardActions className="controls">
+                                     <ButtonGroup variant="contained"  aria-label="contained primary button group">
+                                         <MyButton
+                                         variant="contained"
+                                         className="addButton"
+                                         onClick={event => this.handleDeleteItem(event, entreeItem.name)}
+                                         startIcon={<RemoveIcon />}>Remove Item</MyButton>
+                                     </ButtonGroup>
+                                     </CardActions>
+                                     </div>
+                                     </MyCard>
+                                 </Grid>
+                           ))}
+                     </Grid>
                     </TabContainer> }
                 </Grid>
             </Grid>
         );
     }
 }
+
 
 const MyButton = withStyles(theme => ({
     root: {
@@ -265,7 +437,7 @@ const MyButton = withStyles(theme => ({
      contained: {
         textTransform: 'capitalize',
         color: 'white',
-        fontSize: '70%',
+        fontSize: '50%',
      },
     
   }))(Button);
@@ -312,4 +484,14 @@ const MyTab = withStyles(theme => ({
     );
   }
   
+  const MyCard = withStyles(theme => ({
+    root: {
+      boxShadow: '0 16px 40px -12.125px rgba(0,0,0,0.3)',
+      borderRadius: '2%',
+      transition: '0.3s',
+      backgroundColor: 'transparent white',
+      height: '100%'
+    }
+
+}))(Card);
   export default MenuInventory;
