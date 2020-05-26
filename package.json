@@ -16,13 +16,15 @@
   "dependencies": {
     "@material-ui/core": "^4.9.14",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.54",
     "concurrently": "^5.1.0",
     "express": "^4.17.1",
-    "firebase": "^7.14.0",
+    "firebase": "^7.14.5",
     "generate-password": "^1.5.1",
+    "react-bootstrap": "^1.0.1",
     "react-bootstrap-validation": "^0.1.11",
     "react-image": "^2.4.0",
-    "react-router-dom": "^5.1.2",
+    "react-router-dom": "^5.2.0",
     "react-star-rating-component": "^1.4.1"
   },
   "devDependencies": {

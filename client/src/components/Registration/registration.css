@@ -1,42 +1,33 @@
 .customerRegistrationForm {
-  position: fixed;
-  box-sizing: border-box;
-  width: 50%;
-  height: 100%;
-  border: 1px solid #808080;
+    border-left: 1px solid #808080;
+    width: 95%;
+    height: 100%;
+    position: relative;
+    transform: translateY(0%)
 }
 
-input[type=submit] {
-  width: 35%;
-  background-color: rgb(17, 122, 21);
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 17px;
-  font-size: 100%;
-  margin-top: 25px;
+input[type=text],
+input[type=emailAdress],
+select {
+    padding: 6px 10px;
+    margin: 6px;
+    border: 1px solid #cccccc;
+    border-radius: 4px; 
 }
 
 .customerRegistrationImage {
-  display: flex;
-  flex-direction: column;
-  background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    background-size: cover;
   }
     
 
 h1 {
-    height: 33.06px;
-    width: 155.81px;
-    color: #0B2031;
-    font-family: "Helvetica Neue";
-    font-size: 30px;
-    font-weight: 700;
-    letter-spacing: 1.86px;
-    line-height: 36px;
-    text-align: center;
+  margin: 10px;
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
   }
 
   table {
@@ -46,7 +37,7 @@ h1 {
 
 /* Table Column Width */
 td {
-    width: 500px;
+    width: 250px;
 }
 
 tr {
@@ -54,7 +45,7 @@ tr {
 }
 
 label {
-    padding-top: 10px;
+    padding-top: 5px;
 }
 
 /*First Name */
@@ -69,142 +60,82 @@ label {
 
 /*Last Name */
 .lastNameLabel {
-  height: 21.22px;
-  width: 92.89px;
-  color: #0B2031;
-  font-family: "Helvetica Neue";
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.69px;
-  line-height: 16px;
   float: left;
+  padding-left: 16px;
 }
 
 .lastName {
-    box-sizing: border-box;
-    height: 47.75px;
-    width: 197.16px;
-    border-radius: 4px;
-    border: 0.5px solid #D1D5D8;
+  width: 82%;
   }
 
 /*Mobile Number */
 .phoneLabel {
-  height: 21.22px;
-  width: 92.89px;
-  color: #0B2031;
-  font-family: "Helvetica Neue";
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.69px;
-  line-height: 16px;
   float: left;
+    padding-left: 16px;
 }
 
 .phone {
-  box-sizing: border-box;
-  height: 47.75px;
-  width: 197.16px;
-  border-radius: 4px;
-  border: 0.5px solid #D1D5D8;
+  width: 82%;
 }
 
 /*Gender */
 .genderLabel {
-  height: 21.22px;
-  width: 92.89px;
-  color: #0B2031;
-  font-family: "Helvetica Neue";
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.69px;
-  line-height: 16px;
   float: left;
+  padding-left: 16px;
 }
 
 .gender {
-  box-sizing: border-box;
-  height: 47.98px;
-  width: 83.78px;
-  border-radius: 4px;
-  border: 0.5px solid #D1D5D8;
-  /*width: 82%;*/
+  width: 91%;
 }
 
 /*Email Address */
 .emailLabel {
-  height: 21.22px;
-  width: 92.89px;
-  color: #0B2031;
-  font-family: "Helvetica Neue";
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.69px;
-  line-height: 16px;
   float: left;
+  padding-left: 85px;
+  padding-right: 500px;
 }
 
 .email {
-    box-sizing: border-box;
-    height: 47.75px;
-    width: 369.16px;
-    border-radius: 4px;
-    border: 0.5px solid #D1D5D8;
+  width: 75%;
+  height: 8%;
 }
 
 /*Password*/
 .passwordLabel {
-    height: 21.22px;
-    width: 92.89px;
-    color: #0B2031;
-    font-family: "Helvetica Neue";
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.69px;
-    line-height: 16px;
-    float: left;
+  float: left;
+  padding-left: 85px;
+  padding-right: 500px;
 }
 
 .password {
-    box-sizing: border-box;
-    height: 47.75px;
-    width: 369.16px;
-    border-radius: 4px;
-    border: 0.5px solid #D1D5D8;
+  width: 75%;
+  height: 8%;
   }
 
 /*Confirm Password*/
 .confirmPassLabel {
-    height: 21.22px;
-    width: 168px;
-    color: #0B2031;
-    font-family: "Helvetica Neue";
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.69px;
-    line-height: 16px;
-    float: left;
+  float: left;
+  padding-left: 85px;
+  padding-right: 100px;
   }
 
 .confirmPassword {
-    box-sizing: border-box;
-    height: 47.75px;
-    width: 369.16px;
-    border-radius: 4px;
-    border: 0.5px solid #D1D5D8;
+   width: 75%;
+   height: 8%;
   }
 
   .registerButton {
-      height: 50px;
-      width: 167px;
-      border-radius: 25px;
-      background-color: #333;
-      color: #FFF;
-      font-family: Arial;
-      font-size: 18px;
-      letter-spacing: 1.41px;
-      line-height: 22px;
-      text-align: center;
+    height: 50px;
+    width: 150px;
+    background-color: #333333;
+    color: white;
+    border-radius: 25px;
+    font-family: Arial;
+    font-size: 12px;
     }
+
+    .registerButton:hover {
+      background: #616060;
+  }
 
 
