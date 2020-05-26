@@ -18,7 +18,8 @@ class Registration extends Component {
       emailAddress: '',
       password: '',
       confirmPassword: '',
-      errorMessage: null
+      errorMessage: null,
+      emailError: null 
     };
 
     this.handleChange = this.handleChange.bind(this); //method used to bind the handleSubmit operation with the constructor - setting up the handle change method 
@@ -60,9 +61,9 @@ class Registration extends Component {
       if (error.message !== null) {
         this.setState({ errorMessage: error.message });
       } else {
-        this.setState({ errorMessage: null });
+        this.setState({ errorMessage: null });        
       }
-    });
+      });
   }
 
   render() {
@@ -81,8 +82,8 @@ class Registration extends Component {
                     Registration<br></br>
                   </Typography>
 
-                  {this.state.errorMessage !== null ? (
-                    <Alert severity="error">Passwords Do Not Match</Alert>
+                  {this.state.password !== this.state.confirmPassword ? (
+                    <Alert severity="error">Passwords do not match</Alert>
                   ) : null}
 
                 </Grid>
@@ -114,8 +115,9 @@ class Registration extends Component {
                         <option selected value="" disabled hidden>Gender</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
+                        <option value="none">Prefer not to say</option>
                         <option value="other">Other</option>
-                      </select><br /> </td>
+                      </select><br /></td>
                     </tr>
 
                   </table>
@@ -129,7 +131,7 @@ class Registration extends Component {
                   <label for="confirmPassword" class="confirmPassLabel" >Confirm Password </label>
                   <input type="password" required value={this.state.confirmPassword} onChange={this.handleChange} name="confirmPassword" class="confirmPassword" placeholder="6 Digit" /> <br />
 
-                  <button class="registerButton" > Register </button>
+                  <button onClick={this.handleSubmit} class="registerButton" href = "menu.js"> Register </button>
 
                 </Grid>
               </Grid>
