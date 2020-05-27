@@ -73,7 +73,7 @@ class Registration extends Component {
     }).
     then(() => {
       alert('Registration Successful! Please Log in to start booking.');
-      window.location='login.js';
+      window.location='login';
     }).
     catch(error => {
       if (error.message != null) {
