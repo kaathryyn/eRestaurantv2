@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import firebase from '../../config/firebase';
-
 import './App.css';
 import NavBar from '../NavBar/navBar';
 import Menu from '../Menu/menu';
 import Order from '../Order/order';
 import Reservation from '../Reservation/reservation';
 import Login from '../Login/login';
+import Registration from '../Registration/registration';
 import Register from '../Registration/registration';
 import OrderMenu from '../orderMenu/orderMenu';
 import MenuInventory from '../menuInventory/menuInventory';
@@ -22,7 +22,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: null
+      user: null,
     };
   }
 
@@ -36,15 +36,29 @@ class App extends Component {
     })
   }
 
+  registerUser = userName => {
+    firebase.auth().onAuthStateChanged(webUser => {
+      webUser.updateProfile({
+        displayName: userName
+      }).then(()=>{
+        this.setState({
+          user: webUser,
+        });
+      })
+
+    })
+  }
+
   render() {
     return (
       <div className="App">
 
-        <NavBar />
+        <NavBar/>
+
         <Route path="/order" component={Order} />
         <Route path="/reservation" component={Reservation} />
         <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
+        <Route path="/registration" registerUser={this.registerUser} component={Registration}  />
         <Route path="/registerStaff" component={StaffRegistration} />
         <Route path="/GenerateStaffLogin" component = {GenerateStaffLogin} />
         <Route path="/ForgotPassword" component={ForgotPassword} />

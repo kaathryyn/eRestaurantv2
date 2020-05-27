@@ -1,0 +1,143 @@
+.customerRegistrationForm {
+    border-left: 1px solid #808080;
+    width: 95%;
+    height: 100%;
+    position: relative;
+    transform: translateY(0%)
+}
+
+input[type=text],
+input[type=emailAdress],
+input[type=password],
+select {
+    padding: 6px 10px;
+    margin: 6px;
+    border: 1px solid #cccccc;
+    border-radius: 4px; 
+}
+
+.customerRegistrationImage {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    background-size: cover;
+  }
+    
+
+h1 {
+  margin: 10px;
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: left;
+  }
+
+  table {
+    border-collapse: separate; 
+    border-spacing: 0 10px; 
+  }
+
+/* Table Column Width */
+td {
+    width: 250px;
+}
+
+tr {
+  padding: 100px;
+}
+
+label {
+    padding-top: 5px;
+}
+
+/*First Name */
+.firstNameLabel {
+  float: left;
+    padding-left: 16px;
+}
+
+.firstName {
+    width: 82%;
+}
+
+/*Last Name */
+.lastNameLabel {
+  float: left;
+  padding-left: 16px;
+}
+
+.lastName {
+  width: 82%;
+  }
+
+/*Mobile Number */
+.phoneLabel {
+  float: left;
+    padding-left: 16px;
+}
+
+.phone {
+  width: 82%;
+}
+
+/*Gender */
+.genderLabel {
+  float: left;
+  padding-left: 16px;
+}
+
+.gender {
+  width: 91%;
+}
+
+/*Email Address */
+.emailLabel {
+  float: left;
+  padding-left: 85px;
+  padding-right: 500px;
+}
+
+.emailAddress {
+  width: 75%;
+  height: 8%;
+}
+
+/*Password*/
+.passwordLabel {
+  float: left;
+  padding-left: 85px;
+  padding-right: 500px;
+}
+
+.password {
+  width: 75%;
+  height: 8%;
+  }
+
+/*Confirm Password*/
+.confirmPassLabel {
+  float: left;
+  padding-left: 85px;
+  padding-right: 100px;
+  }
+
+.confirmPassword {
+   width: 75%;
+   height: 8%;
+  }
+
+  .registerButton {
+    height: 50px;
+    width: 150px;
+    background-color: #333333;
+    color: white;
+    border-radius: 25px;
+    font-family: Arial;
+    font-size: 12px;
+    }
+
+    .registerButton:hover {
+      background: #616060;
+  }
+
+
