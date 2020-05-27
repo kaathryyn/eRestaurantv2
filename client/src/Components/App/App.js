@@ -14,7 +14,6 @@ import StaffRegistration from '../StaffRegistration/staffRegistration';
 import GenerateStaffLogin from '../GenerateStaffLogin/GenerateStaffLogin';
 import ForgotPassword from '../ForgotPassword/ForgotPassword'
 import StaffList from '../StaffList/StaffList';
-import EmailConfirmBooking from '../EmailConfirmBooking/emailConfirmBooking';
 
 
 class App extends Component {
@@ -64,7 +63,6 @@ class App extends Component {
         <Route path="/ForgotPassword" component={ForgotPassword} />
         <Route path="/staffList" component={StaffList} />
         <Route path="/orderMenu" component={OrderMenu} />
-        <Route path="/emailConfirmBooking" component={EmailConfirmBooking}/>
       </div>
     );
   }

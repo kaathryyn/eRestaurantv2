@@ -30,40 +30,58 @@ class Registration extends Component {
     const itemName = e.target.name;
     const itemValue = e.target.value;
 
-    this.setState({ [itemName]: itemValue }, () => {
+    this.setState({ [itemName]: itemValue });
+  }
+
+  //storing the state when the user provides data  
+  handleSubmit = (e) => {
+    e.preventDefault();
+    firebase.auth().createUserWithEmailAndPassword(this.state.emailAddress, this.state.password).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // [START_EXCLUDE]
+      if (errorCode == 'auth/weak-password') {
+        alert('The password is too weak.');
+      } 
+      else {
+        alert(errorMessage);
+      }
+      console.log(error);
+      // [END_EXCLUDE]
+      })
+    .then(cred => {
+      const customerDb = firebase.firestore();
+      return customerDb.collection("customer").doc(cred.user.uid).set(
+        {
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          phoneNumber: this.state.phoneNumber,
+          gender: this.state.gender,
+          emailAddress: this.state.emailAddress,
+          password: this.state.password,
+          confirmPassword: this.state.confirmPassword
+        });
+    }).
+    then(() => {
       if (this.state.password !== this.state.confirmPassword) {
         this.setState({ errorMessage: 'Passwords do not match' })
       }
       else {
         this.setState({ errorMessage: null });
       }
-    });
-  }
-
-  //storing the state when the user provides data  
-  handleSubmit = (e) => {
-    e.preventDefault();
-    firebase.auth().createUserWithEmailAndPassword(
-      this.state.emailAddress,
-      this.state.password
-    ).then(cred => {
-      const customerDb = firebase.firestore();
-      return customerDb.collection("customer").doc(cred.user.uid).set(
-        {
-          firstName: this.state.firstName,
-          lastName: this.state.lastName,
-          mobNum: this.state.phoneNumber,
-          gender: this.state.gender,
-          email: this.state.emailAddress,
-          password: this.state.password
-        });
-    }).catch(error => {
-      if (error.message !== null) {
-        this.setState({ errorMessage: error.message });
+    }).
+    then(() => {
+      alert('Registration Successful! Please Log in to start booking.');
+      window.location='login.js';
+    }).
+    catch(error => {
+      if (error.message != null) {
+          this.setState({ errorMessage: error.message });
       } else {
-        this.setState({ errorMessage: null });        
+          this.setState({ errorMessage: null });
       }
-      });
+    });
   }
 
   render() {
@@ -82,9 +100,6 @@ class Registration extends Component {
                     Registration<br></br>
                   </Typography>
 
-                  {this.state.password !== this.state.confirmPassword ? (
-                    <Alert severity="error">Passwords do not match</Alert>
-                  ) : null}
 
                 </Grid>
                 <Grid item>
@@ -131,7 +146,7 @@ class Registration extends Component {
                   <label for="confirmPassword" class="confirmPassLabel" >Confirm Password </label>
                   <input type="password" required value={this.state.confirmPassword} onChange={this.handleChange} name="confirmPassword" class="confirmPassword" placeholder="6 Digit" /> <br />
 
-                  <button onClick={this.handleSubmit} class="registerButton" href = "menu.js"> Register </button>
+                  <button class="registerButton" href = "menu.js"> Register </button>
 
                 </Grid>
               </Grid>
