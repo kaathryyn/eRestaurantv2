@@ -44,16 +44,32 @@ import right_image from '../../Images/Login.jpg';
         var errorCode = error.code;
         var errorMessage = error.message;
         // [START_EXCLUDE]
-        if (errorCode === 'auth/wrong-password') {
+        if (errorCode == 'auth/wrong-password') {
           alert('Wrong password.');
-        } else {
+        } 
+        else {
           alert(errorMessage);
         }
         console.log(error);
         // [END_EXCLUDE]
-      });
+      })
       // [END authwithemail]
-    }
+
+    .then(() => {
+      // alert('Successful Login. You will be redirected to the menu.');
+      window.location='menu.js';
+
+    })
+    
+    .catch(error => {
+      if (error.message != null) {
+          this.setState({ errorMessage: error.message });
+      } else {
+          this.setState({ errorMessage: null });
+      }
+    });
+  }
+  
       
     
   render() {
@@ -69,7 +85,7 @@ return (
                   placeholder="Email"
                   ></input> 
                   <h2 className="password"> Password </h2> 
-                  <input type="text" value={this.state.password}
+                  <input type="password" value={this.state.password}
                   onChange={this.passwordhandler}
                   placeholder="6 digit"
                   ></input> 
@@ -84,6 +100,6 @@ return (
 
       );
     }
-}
-export default Login;
-       
+  }
+
+export default Login
