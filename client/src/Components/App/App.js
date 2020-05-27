@@ -53,7 +53,7 @@ class App extends Component {
         <Route path="/orderMenu" component={OrderMenu} />
         <Route path="/menuInventory" component={MenuInventory} />
         <Route path="/menu" component={Menu} />
-        <Route path="/emailConfirmBooking" component={EmailConfirmBooking}/>
+        <Route path="/confirmBooking" component={EmailConfirmBooking}/>
       </div>
     );
   }
