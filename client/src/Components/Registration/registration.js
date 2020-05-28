@@ -146,7 +146,7 @@ class Registration extends Component {
                   <label for="confirmPassword" class="confirmPassLabel" >Confirm Password </label>
                   <input type="password" required value={this.state.confirmPassword} onChange={this.handleChange} name="confirmPassword" class="confirmPassword" placeholder="6 Digit" /> <br />
 
-                  <button class="registerButton" href = "menu.js"> Register </button>
+                  <button class="registerButton"> Register </button>
 
                 </Grid>
               </Grid>
