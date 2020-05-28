@@ -109,7 +109,7 @@ class MenuInventory extends Component {
         firestore.collection("menuItems").doc(foodTitle).get().then(function (doc) {
             if (doc && doc.exists) {
                 var data = doc.data();
-                firestore.collection("menuItems").doc(docName).set(data)
+                firestore.collection("menuItems").doc(docName).set(data);
                 firestore.collection("menuItems").doc(foodTitle).delete();
             }
         })
@@ -120,7 +120,7 @@ class MenuInventory extends Component {
     }
     handleDeleteItem = (event, itemName) => {
         event.preventDefault();
-        alert('Item name has been updated');
+        alert('Item has been deleted from the Menu');
         this.setState({itemName: event.target.value});
         var foodTitle = itemName;
         foodTitle = foodTitle.replace(/\s/g, '');
