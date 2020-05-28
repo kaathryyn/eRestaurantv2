@@ -37,25 +37,57 @@ class Reservation extends Component {
     resDb.settings({
       timestampsInSnapshots: true
     });
-    return resDb.collection("reservations").add({
-      memberFullName: this.state.memberFullName,
-      numOfPpl: this.state.numOfPpl,
-      dateOfRes: this.state.dateOfRes,
-      timeOfRes: this.state.timeOfRes,
-      additionalComms: this.state.additionalComms,
-      timestamp: time,
-      resStatus: true
-    }).then(() => {
-      this.setState({
-        memberFullName: '',
-        numOfPpl: '',
-        dateOfRes: '',
-        timeOfRes: '',
-        additionalComms: '',
-        timestamp: time,
-        resStatus: false
-      })
-    });
+
+                        resDb.collection("trialReservations")
+                        .orderBy('id', 'desc').limit(1).get().then(querySnapshot => {
+                        querySnapshot.forEach(documentSnapshot => {
+                            var newID = documentSnapshot.id;
+                            console.log(`Found document at ${documentSnapshot.ref.path}`);
+                            console.log(`Document's ID: ${documentSnapshot.id}`);
+                            var newvalue = parseInt(newID, 10) + 1;
+                            var ToString = ""+ newvalue;
+                           return resDb.collection("trialReservations").doc(ToString).set({
+                                id: newvalue,
+                                memberFullName: this.state.memberFullName,
+                                numOfPpl: this.state.numOfPpl,
+                                dateOfRes: this.state.dateOfRes,
+                                timeOfRes: this.state.timeOfRes,
+                                additionalComms: this.state.additionalComms,
+                                timestamp: time,
+                                resStatus: true
+                              }).then(() => {
+                                this.setState({
+                                  memberFullName: '',
+                                  numOfPpl: '',
+                                  dateOfRes: '',
+                                  timeOfRes: '',
+                                  additionalComms: '',
+                                  timestamp: time,
+                                  resStatus: false
+                                })
+                              });
+                            });
+                        });
+    
+    // return resDb.collection("reservations").add({
+    //   memberFullName: this.state.memberFullName,
+    //   numOfPpl: this.state.numOfPpl,
+    //   dateOfRes: this.state.dateOfRes,
+    //   timeOfRes: this.state.timeOfRes,
+    //   additionalComms: this.state.additionalComms,
+    //   timestamp: time,
+    //   resStatus: true
+    // }).then(() => {
+    //   this.setState({
+    //     memberFullName: '',
+    //     numOfPpl: '',
+    //     dateOfRes: '',
+    //     timeOfRes: '',
+    //     additionalComms: '',
+    //     timestamp: time,
+    //     resStatus: false
+    //   })
+    // });
   }
 
   render() {
