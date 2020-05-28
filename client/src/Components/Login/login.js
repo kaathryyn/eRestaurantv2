@@ -8,6 +8,7 @@ import {Card, Box} from "@material-ui/core";
 // import { auth } from '../../config/firebase.js';
 import firebase from '../../config/firebase';
 import right_image from '../../Images/Login.jpg';
+// import Registration from '/registration'
 
 
   class Login extends Component {
@@ -91,8 +92,8 @@ return (
                   ></input> 
                   <h6 className="forgot_password"> Forgot Password? Click here</h6>
               </Box>
-            <button className="register_button" href = "registration.js"> Register </button>
-            <button onClick={this.handleSubmit} className="login_button"> Login </button>
+            <button className="register_button" > Register </button>
+            <button onClick={this.handleSubmit} className="login_button" > Login </button>
             </Box> 
             <div className="right_image"></div>
         </div>
