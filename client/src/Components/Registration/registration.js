@@ -77,6 +77,7 @@ class Registration extends Component {
             break;
         }
         // [END_EXCLUDE]
+      
       })
     }
   }
