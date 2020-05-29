@@ -44,6 +44,10 @@ class Registration extends Component {
       if (errorCode == 'auth/weak-password') {
         alert('The password is too weak.');
       } 
+      else if (this.state.password !== this.state.confirmPassword)
+      {
+      alert('Passwords do not match');
+      }
       else {
         alert(errorMessage);
       }
@@ -63,14 +67,14 @@ class Registration extends Component {
           confirmPassword: this.state.confirmPassword
         });
     }).
-    then(() => {
-      if (this.state.password !== this.state.confirmPassword) {
-        this.setState({ errorMessage: 'Passwords do not match' })
-      }
-      else {
-        this.setState({ errorMessage: null });
-      }
-    }).
+    // then(() => {
+    //   if (this.state.password !== this.state.confirmPassword) {
+    //     this.setState({ errorMessage: 'Passwords do not match' })
+    //   }
+    //   else {
+    //     this.setState({ errorMessage: null });
+    //   }
+    // })
     then(() => {
       alert('Registration Successful! Please Log in to start booking.');
       window.location='login';
