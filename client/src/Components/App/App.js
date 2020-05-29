@@ -56,15 +56,14 @@ class App extends Component {
 
         <NavBar/>
 
-        <Route path="/order" component={Order} />
         <Route path="/reservation" component={Reservation} />
         <Route path="/login" component={Login} />
-        <Route path="/registration" registerUser={this.registerUser} component={Registration}  />
+        <Route path="/register" registerUser={this.registerUser} component={Registration}  />
         <Route path="/registerStaff" component={StaffRegistration} />
-        <Route path="/GenerateStaffLogin" component = {GenerateStaffLogin} />
-        <Route path="/ForgotPassword" component={ForgotPassword} />
+        <Route path="/generateStaffLogin" component = {GenerateStaffLogin} />
+        <Route path="/forgotPassword" component={ForgotPassword} />
         <Route path="/staffList" component={StaffList} />
-        <Route path="/orderMenu" component={OrderMenu} />
+        <Route path="/order" component={OrderMenu} />
         <Route path="/menuInventory" component={MenuInventory} />
         <Route path="/menu" component={Menu} />
         <Route path="/confirmBooking" component={EmailConfirmBooking}/>
