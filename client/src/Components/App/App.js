@@ -4,15 +4,12 @@ import firebase from '../../config/firebase';
 import './App.css';
 import NavBar from '../NavBar/navBar';
 import Menu from '../Menu/menu';
-import Order from '../Order/order';
-import Reservation from '../Reservation/reservation';
+import CreateReservation from '../createReservation/createReservation';
 import Login from '../Login/login';
 import Registration from '../Registration/registration';
-import Register from '../Registration/registration';
 import OrderMenu from '../orderMenu/orderMenu';
 import MenuInventory from '../menuInventory/menuInventory';
 import StaffRegistration from '../StaffRegistration/staffRegistration';
-import GenerateStaffLogin from '../GenerateStaffLogin/GenerateStaffLogin';
 import ForgotPassword from '../ForgotPassword/ForgotPassword'
 import StaffList from '../StaffList/StaffList';
 import EmailConfirmBooking from '../emailConfirmBooking/emailConfirmBooking'
@@ -53,21 +50,19 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-
         <NavBar/>
-
-        <Route path="/order" component={Order} />
-        <Route path="/reservation" component={Reservation} />
+        <Route path="/menu" component={Menu} /> {/*This path is the home of our website */}
         <Route path="/login" component={Login} />
-        <Route path="/registration" registerUser={this.registerUser} component={Registration}  />
-        <Route path="/registerStaff" component={StaffRegistration} />
-        <Route path="/GenerateStaffLogin" component = {GenerateStaffLogin} />
-        <Route path="/ForgotPassword" component={ForgotPassword} />
+        <Route path="/registration" registerUser={this.registerUser} component={Registration} />
+        
+        <Route path="/reservation" component={CreateReservation} />
+        <Route path="/order" component={OrderMenu} />
+        <Route path="/confirmBooking" component={EmailConfirmBooking} />
+        <Route path="/forgotPassword" component={ForgotPassword} />
+        
         <Route path="/staffList" component={StaffList} />
-        <Route path="/orderMenu" component={OrderMenu} />
         <Route path="/menuInventory" component={MenuInventory} />
-        <Route path="/menu" component={Menu} />
-        <Route path="/confirmBooking" component={EmailConfirmBooking}/>
+        <Route path="/registerStaff" component={StaffRegistration} />
       </div>
     );
   }
