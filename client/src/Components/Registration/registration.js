@@ -33,83 +33,55 @@ class Registration extends Component {
     this.setState({ [itemName]: itemValue });
   }
 
-  //storing the state when the user provides data  
-  handleSubmit = (e) => {
-    e.preventDefault();
-    firebase.auth().createUserWithEmailAndPassword(this.state.emailAddress, this.state.password).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // [START_EXCLUDE]
-      if (errorCode == 'auth/weak-password') {
-        alert('The password is too weak.');
-      } 
-      else if (this.state.password !== this.state.confirmPassword)
-      {
-      alert('Passwords do not match');
-      }
-      else {
-        alert(errorMessage);
-      }
-      console.log(error);
-      // [END_EXCLUDE]
-      })
-    var pass1 = this.state.password;
-    var pass2 = this.state.confirmPassword;
-    firebase.auth().createUserWithEmailAndPassword(this.state.emailAddress, this.state.password)
-    .then(cred => {
-      const customerDb = firebase.firestore();
-      return customerDb.collection("customer").doc(cred.user.uid).set(
-        {
-          firstName: this.state.firstName,
-          lastName: this.state.lastName,
-          phoneNumber: this.state.phoneNumber,
-          gender: this.state.gender,
-          emailAddress: this.state.emailAddress,
-          password: this.state.password,
-          confirmPassword: this.state.confirmPassword
-        });
-    }).
-    // then(() => {
-    //   if (this.state.password !== this.state.confirmPassword) {
-    //     this.setState({ errorMessage: 'Passwords do not match' })
-    //   }
-    //   else {
-    //     this.setState({ errorMessage: null });
-    //   }
-    // })
-    then(() => {
-    }).then(() => {
-      alert('Registration Successful! Please Log in to start booking.');
-      window.location = 'login';
-    }).catch(function (error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-
-      // The test that determines whether passwords match and sets errorCode
-      if (pass1 != pass2) {
-        errorCode = 'passwords-do-not-match';
-      }
-
-      // [START_EXCLUDE]
-      switch (errorCode) {
-        case 'auth/weak-password':
-          alert('The password must be longer than 6 characters.');
-          break;
-        case 'auth/email-already-exists':
-          alert('An account with this email already exists.');
-          break;
-        case 'passwords-do-not-match':
-          alert("Passwords do not match! Please try again.");
-          break;
-        default:
-          alert(errorMessage);
-          break;
-      }
-      // [END_EXCLUDE]
-      })
-  }
+    //storing the state when the user provides data  
+    handleSubmit = (e) => {
+      e.preventDefault();
+      var pass1 = this.state.password;
+      var pass2 = this.state.confirmPassword;
+      firebase.auth().createUserWithEmailAndPassword(this.state.emailAddress, this.state.password)
+      .then(cred => {
+        const customerDb = firebase.firestore();
+        return customerDb.collection("customer").doc(cred.user.uid).set(
+          {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            phoneNumber: this.state.phoneNumber,
+            gender: this.state.gender,
+            emailAddress: this.state.emailAddress,
+            password: this.state.password,
+            confirmPassword: this.state.confirmPassword
+          });
+      }).then(() => {
+        alert('Registration Successful! Please Log in to start booking.');
+        window.location = 'login';
+      }).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+  
+        // The test that determines whether passwords match and sets errorCode
+        if (pass1 != pass2) {
+          errorCode = 'passwords-do-not-match';
+        }
+  
+        // [START_EXCLUDE]
+        switch (errorCode) {
+          case 'auth/weak-password':
+            alert('The password must be longer than 6 characters.');
+            break;
+          case 'auth/email-already-exists':
+            alert('An account with this email already exists.');
+            break;
+          case 'passwords-do-not-match':
+            alert("Passwords do not match! Please try again.");
+            break;
+          default:
+            alert(errorMessage);
+            break;
+        }
+        // [END_EXCLUDE]
+        })
+    }
 
   render() {
     return (
