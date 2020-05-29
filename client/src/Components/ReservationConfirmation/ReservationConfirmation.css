@@ -1,0 +1,25 @@
+html, body {height:100%;}
+.reservationBox{
+    height: 450px;
+    width: 450px;
+}
+.img {
+    background-image: url(../../Images/reservationImg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    
+    background-position: center;
+   }
+   .edit {
+    height: 19.14px;
+    width: 43.23px;
+    color: #E4283D;
+    font-family: "Helvetica Neue";
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.74px;
+    line-height: 18px;
+    border: 0cm;
+    background-color: white
+   };

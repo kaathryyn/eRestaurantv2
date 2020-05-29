@@ -15,7 +15,8 @@ import StaffRegistration from '../StaffRegistration/staffRegistration';
 import GenerateStaffLogin from '../GenerateStaffLogin/GenerateStaffLogin';
 import ForgotPassword from '../ForgotPassword/ForgotPassword'
 import StaffList from '../StaffList/StaffList';
-import EmailConfirmBooking from '../emailConfirmBooking/emailConfirmBooking'
+import EmailConfirmBooking from '../emailConfirmBooking/emailConfirmBooking';
+import ReservationConfirmation from'../ReservationConfirmation/ReservationConfirmation';
 
 
 class App extends Component {
@@ -68,6 +69,7 @@ class App extends Component {
         <Route path="/menuInventory" component={MenuInventory} />
         <Route path="/menu" component={Menu} />
         <Route path="/confirmBooking" component={EmailConfirmBooking}/>
+        <Route path="/reservationConfirmation" component={ReservationConfirmation}/>
       </div>
     );
   }
