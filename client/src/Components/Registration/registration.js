@@ -36,20 +36,9 @@ class Registration extends Component {
   //storing the state when the user provides data  
   handleSubmit = (e) => {
     e.preventDefault();
-    firebase.auth().createUserWithEmailAndPassword(this.state.emailAddress, this.state.password).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // [START_EXCLUDE]
-      if (errorCode == 'auth/weak-password') {
-        alert('The password is too weak.');
-      } 
-      else {
-        alert(errorMessage);
-      }
-      console.log(error);
-      // [END_EXCLUDE]
-      })
+    var pass1 = this.state.password;
+    var pass2 = this.state.confirmPassword;
+    firebase.auth().createUserWithEmailAndPassword(this.state.emailAddress, this.state.password)
     .then(cred => {
       const customerDb = firebase.firestore();
       return customerDb.collection("customer").doc(cred.user.uid).set(
@@ -62,26 +51,36 @@ class Registration extends Component {
           password: this.state.password,
           confirmPassword: this.state.confirmPassword
         });
-    }).
-    then(() => {
-      if (this.state.password !== this.state.confirmPassword) {
-        this.setState({ errorMessage: 'Passwords do not match' })
-      }
-      else {
-        this.setState({ errorMessage: null });
-      }
-    }).
-    then(() => {
+    }).then(() => {
       alert('Registration Successful! Please Log in to start booking.');
-      window.location='login';
-    }).
-    catch(error => {
-      if (error.message != null) {
-          this.setState({ errorMessage: error.message });
-      } else {
-          this.setState({ errorMessage: null });
+      window.location = 'login';
+    }).catch(function (error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+
+      // The test that determines whether passwords match and sets errorCode
+      if (pass1 != pass2) {
+        errorCode = 'passwords-do-not-match';
       }
-    });
+
+      // [START_EXCLUDE]
+      switch (errorCode) {
+        case 'auth/weak-password':
+          alert('The password must be longer than 6 characters.');
+          break;
+        case 'auth/email-already-exists':
+          alert('An account with this email already exists.');
+          break;
+        case 'passwords-do-not-match':
+          alert("Passwords do not match! Please try again.");
+          break;
+        default:
+          alert(errorMessage);
+          break;
+      }
+      // [END_EXCLUDE]
+      })
   }
 
   render() {
@@ -90,7 +89,6 @@ class Registration extends Component {
         <Grid item xs zeroMinWidth >
           <img style={{ width: '100%' }} src={customerRegistrationImage} alt="customerRegistrationImage" />
         </Grid>
-
         <Grid item xs>
           <form class="customerRegistrationForm" onSubmit={this.handleSubmit}>
             <FormControl>
