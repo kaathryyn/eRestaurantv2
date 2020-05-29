@@ -21,7 +21,8 @@ import StarRatingComponent from 'react-star-rating-component';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import { createMuiTheme } from '@material-ui/core/styles';
-
+import { auth } from '../../config/firebase.js';
+import firebase from '../../config/firebase';
 
 class orderMenu extends Component {
     constructor(props) {
@@ -32,6 +33,7 @@ class orderMenu extends Component {
         dessert: [],
         drinks: [],
         quantity: '',
+        id: 0
         };
     }
 
@@ -84,39 +86,60 @@ class orderMenu extends Component {
         alert('Food Removed from Reservation');
         this.setState({foodName: event.target.value});
         var foodTitle = foodName;
-        firestore.collection("resFood").doc("resId").collection("foodOrder").doc(foodTitle).delete()
+        
+        firestore.collection("trialReservations")
+        .orderBy('id', 'desc')
+        .limit(1).get()
+        .then(snap => {
+            snap.forEach(doc => {
+                console.log(doc.data());
+                if (doc && doc.exists) {
+                    var newvalue = doc.id;
+                    var ToString = ""+ newvalue;
+                    firestore.collection("trialReservations").doc(ToString).collection("foodOrder").doc(foodTitle).delete();
+                }
+            })
+        })
     }
+    
 
     handleSaveQty = (event, foodName, foodCost, foodCategory) => {
         event.preventDefault();
         alert('Food Added to Reservation');
         const { quantity } = this.state;
+        var user = firebase.auth().currentUser;
         this.setState({foodName: event.target.value});
         this.setState({foodCategory: event.target.value});
         this.setState({foodCost: event.target.value});
         var foodTitle = foodName;
         var foodCost = foodCost;
         var foodCategory = foodCategory;
-        // var orderDetails = firestore.collection("resFood").doc().collection('orderDeets');
-        // var qty = {quantity}
-        // var title = {foodName}
-        // orderDetails.({
-        //     orderDetails: { 
-        //         qty, 
-        //         title
-        //     }
-        // })
-        // db.collection('users').doc(this.username).collection('booksList').add
-       firestore.collection("resFood").doc("resId").collection("foodOrder").doc(foodTitle).set({
-           orderDetails: {quantity, foodName, foodCategory, foodCost},
-        //    title: {foodName}
-       })
-       
-        // firestore.collection("resFood").add({
-        //     orderDetails: {quantity},
-        //     name: {foodName}
-        //     })
+                    firestore.collection("trialReservations")
+                    .orderBy('id', 'desc')
+                    .limit(1).get()
+                    .then(snap => {
+                      
+                        snap.forEach(doc => {
+                            console.log(doc.data());
+                            if (doc && doc.exists) {
+                                var newvalue = doc.id;
+                                var ToString = ""+ newvalue;
+                                         var reservationDetails = doc.data();
+                                         
+                                         firestore.collection("trialReservations").doc(ToString).collection("foodOrder").doc(foodTitle)
+                                         .set({
+                                            // reservationDetails,
+                                            orderDetails: {quantity, foodName, foodCategory, foodCost},
+                                         }
+                                         );
+                            }
+                        });
+                   
+                    })
+                        
+                    
       }
+
   render() {
     const { entree } = this.state;
     const { main } = this.state;
@@ -294,7 +317,7 @@ class orderMenu extends Component {
                                      <ButtonGroup variant="contained"  aria-label="contained primary button group">
                                          <MyButton variant="contained"
                                          className="addButton"
-                                         onClick={event => this.handleSaveQty(event, mainItem.name)}
+                                         onClick={event => this.handleSaveQty(event, mainItem.name, mainItem.cost, mainItem.category)}
                                          startIcon={<AddIcon />}>
                                              Add</MyButton>
                                          <MyButton
@@ -370,7 +393,7 @@ class orderMenu extends Component {
                                     <ButtonGroup variant="contained"  aria-label="contained primary button group">
                                         <MyButton variant="contained"
                                         className="addButton"
-                                        onClick={event => this.handleSaveQty(event, dessertItem.name)}
+                                        onClick={event => this.handleSaveQty(event, dessertItem.name, dessertItem.cost, dessertItem.category)}
                                         startIcon={<AddIcon />}>
                                             Add</MyButton>
                                         <MyButton
@@ -446,7 +469,7 @@ class orderMenu extends Component {
                                     <ButtonGroup variant="contained"  aria-label="contained primary button group">
                                         <MyButton variant="contained"
                                         className="addButton"
-                                        onClick={event => this.handleSaveQty(event, drinksItem.name)}
+                                        onClick={event => this.handleSaveQty(event, drinksItem.name, drinksItem.cost, drinksItem.category)}
                                         startIcon={<AddIcon />}>
                                             Add</MyButton>
                                         <MyButton

@@ -15,3 +15,11 @@
    .sideImage {
        width: 50%;
    }
+.content {
+ height: 100%;
+}
+.background {
+    background-image: url(../../Images/headerbackground.jpg);
+    background-repeat: repeat;
+    height: 100%;
+}
