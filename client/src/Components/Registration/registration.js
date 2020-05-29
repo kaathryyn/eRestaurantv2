@@ -19,7 +19,7 @@ class Registration extends Component {
       password: '',
       confirmPassword: '',
       errorMessage: null,
-      emailError: null 
+      emailError: null
     };
 
     this.handleChange = this.handleChange.bind(this); //method used to bind the handleSubmit operation with the constructor - setting up the handle change method 
@@ -33,11 +33,14 @@ class Registration extends Component {
     this.setState({ [itemName]: itemValue });
   }
 
-    //storing the state when the user provides data  
-    handleSubmit = (e) => {
-      e.preventDefault();
-      var pass1 = this.state.password;
-      var pass2 = this.state.confirmPassword;
+  //storing the state when the user provides data  
+  handleSubmit = (e) => {
+    e.preventDefault();
+    var pass1 = this.state.password;
+    var pass2 = this.state.confirmPassword;
+    if (pass1 !== pass2) {
+      alert('Passwords do not match! Please try again.');
+    } else {
       firebase.auth().createUserWithEmailAndPassword(this.state.emailAddress, this.state.password)
       .then(cred => {
         const customerDb = firebase.firestore();
@@ -50,38 +53,33 @@ class Registration extends Component {
             emailAddress: this.state.emailAddress,
             password: this.state.password,
             confirmPassword: this.state.confirmPassword
-          });
-      }).then(() => {
-        alert('Registration Successful! Please Log in to start booking.');
+          })
+      })
+      .then(() => {
+          alert('Registration Successful! Please log in to start a booking.')
         window.location = 'login';
-      }).catch(function (error) {
+      })
+      .catch(function (error) {
         // Handle Errors here.
-        var errorCode = error.code;
+        var errorCode;
         var errorMessage = error.message;
-  
-        // The test that determines whether passwords match and sets errorCode
-        if (pass1 != pass2) {
-          errorCode = 'passwords-do-not-match';
-        }
-  
+
         // [START_EXCLUDE]
         switch (errorCode) {
           case 'auth/weak-password':
-            alert('The password must be longer than 6 characters.');
+            alert('Password must be longer than 6 characters.');
             break;
           case 'auth/email-already-exists':
             alert('An account with this email already exists.');
-            break;
-          case 'passwords-do-not-match':
-            alert("Passwords do not match! Please try again.");
             break;
           default:
             alert(errorMessage);
             break;
         }
         // [END_EXCLUDE]
-        })
+      })
     }
+  }
 
   render() {
     return (
@@ -137,10 +135,10 @@ class Registration extends Component {
 
                   <label for="emailAddress" class="emailLabel"> Email </label>
                   <input type="email" required value={this.state.emailAddress} onChange={this.handleChange} name="emailAddress" class="emailAddress" placeholder="Email" /> <br />
-                  
+
                   <label for="password" class="passwordLabel" >Password </label>
                   <input type="password" required value={this.state.password} onChange={this.handleChange} name="password" class="password" placeholder="6 Digit" /> <br />
-                  
+
                   <label for="confirmPassword" class="confirmPassLabel" >Confirm Password </label>
                   <input type="password" required value={this.state.confirmPassword} onChange={this.handleChange} name="confirmPassword" class="confirmPassword" placeholder="6 Digit" /> <br />
 
