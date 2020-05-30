@@ -9,36 +9,36 @@ import SignedInLinks from './signedInLinks';
 import './navBar.css';
 
 class NavBar extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            user: 'null'
-        }
-    }
+	constructor(props) {
+		super(props);
+		this.state = {
+			user: null
+		}
+	}
 
-    componentDidMount() {
-        firebase.auth().onAuthStateChanged(user => {
-            if (user) {
-                console.log(user.email);
-                this.setState({
-                    user: user
-                });
-            }
-        })
-    }
+	componentDidMount() {
+		firebase.auth().onAuthStateChanged(user => {
+			if (user) {
+				console.log(user.email);
+				this.setState({
+					user: user
+				});
+			}
+		})
+	}
 
-    render() {
-        var links = this.state.user ? <SignedInLinks /> : <SignedOutLinks />
-        
-        return (
-            <nav className="navBar">
-                <div className="container">
-                    <Link to='/'>Sapori Unici</Link>
-                    {links}
-                </div>
-            </nav>
-        )
-    }
+	render() {
+		var links = this.state.user ? <SignedInLinks /> : <SignedOutLinks />
+
+		return (
+			<nav className="navBar">
+				<div className="container">
+					<Link to='/menu'>Sapori Unici</Link>
+					{links}
+				</div>
+			</nav>
+		)
+	}
 }
 
 export default NavBar;

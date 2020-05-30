@@ -54,7 +54,8 @@ class CustomerProfile extends Component {
     signOut=(e) =>{
         e.preventDefault();
         firebase.auth().signOut().then(() => {
-            console.log("user signed out")
+            console.log("user signed out");
+            window.location = 'menu';
         })
     }
 

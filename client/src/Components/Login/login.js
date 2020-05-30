@@ -43,37 +43,27 @@ class Login extends Component {
 
   handleSubmit = (event) => { //storing the state when the user provides data 
     event.preventDefault();
-    this.props.logIn(this.state);
+    // this.props.logIn(this.state);
 
-      // firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(function (error) {
-      //   // Handle Errors here.
-      //   var errorCode = error.code;
-      //   var errorMessage = error.message;
-      //   // [START_EXCLUDE]
-      //   if (errorCode == 'auth/wrong-password') {
-      //     alert('Wrong password.');
-      //   }
-      //   else {
-      //     alert(errorMessage);
-      //   }
-      //   console.log(error);
-      //   // [END_EXCLUDE]
-      // })
-      //   // [END authwithemail]
-
-      //   .then(() => {
-      //     // alert('Successful Login. You will be redirected to the menu.');
-      //     window.location = 'menu.js';
-
-      //   })
-
-      //   .catch(error => {
-      //     if (error.message != null) {
-      //       this.setState({ errorMessage: error.message });
-      //     } else {
-      //       this.setState({ errorMessage: null });
-      //     }
-      //   });
+    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(() => {
+      window.location = 'menu';
+    })
+      .catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // [START_EXCLUDE]
+        if (errorCode == 'auth/wrong-password') {
+          alert('Wrong password.');
+          window.location = 'login';
+        }
+        else {
+          alert(errorMessage);
+          window.location = 'login';
+        }
+        console.log(error);
+        // [END_EXCLUDE]
+      })
   }
 
   render() {
@@ -110,17 +100,17 @@ class Login extends Component {
   }
 }
 
-    const mapStateToProps = (state) => {
-      return {
-        authError: state.auth.authError
-      }
-    }
+const mapStateToProps = (state) => {
+  return {
+    authError: state.auth.authError
+  }
+}
 
-    const mapDispatchToProps = (dispatch) => {
-      return {
-        logIn: (creds) => dispatch(logIn(creds))
-      }
-    }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logIn: (creds) => dispatch(logIn(creds))
+  }
+}
 
 
-    export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

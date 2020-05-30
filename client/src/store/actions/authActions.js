@@ -7,7 +7,7 @@ export const logIn = (credentials) => {
       credentials.email,
       credentials.password
     ).then(() => {
-      // window.location = 'menu';
+      window.location = 'menu';
       dispatch({ type: 'LOGIN_SUCCESS' });
     }).catch((err) => {
       dispatch({ type: 'LOGIN_ERROR', err});

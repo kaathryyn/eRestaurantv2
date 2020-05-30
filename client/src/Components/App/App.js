@@ -13,9 +13,7 @@ import EmailConfirmBooking from '../emailConfirmBooking/emailConfirmBooking'
 import MenuInventory from '../menuInventory/menuInventory';
 import StaffRegistration from '../StaffRegistration/staffRegistration';
 import StaffList from '../StaffList/StaffList';
-import EmailConfirmBooking from '../emailConfirmBooking/emailConfirmBooking';
 import CustomerProfile from '../CustomerProfile/CustomerProfile';
-import ReservationConfirmation from '../ReservationConfirmation/ReservationConfirmation';
 
 import './App.css';
 
@@ -71,7 +69,6 @@ class App extends Component {
             <Route path="/menu" component={Menu} />
             <Route path="/confirmBooking" component={EmailConfirmBooking} />
             <Route path="/myProfile" component={CustomerProfile} />
-            <Route path="/reservationConfirmation" component={ReservationConfirmation} />
           </Switch>
         </div>
       </BrowserRouter>
