@@ -44,6 +44,7 @@ class SignedInLinks extends Component {
 
     return (
       <ul className="signedInNavBar">
+        <text className="resTitle">Sapori Unici</text>
         {links}
       </ul>
     );

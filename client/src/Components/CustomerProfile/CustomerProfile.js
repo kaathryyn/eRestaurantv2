@@ -42,7 +42,7 @@ class CustomerProfile extends Component {
 				var staffRole = firebase.firestore().collection("staff").doc(userID).get();
 				var links = '';
 
-				if (customerRole.exists) {
+				if (customerRole) {
 					firestore.collection("customer").doc(user.uid).get().then(doc => {
 						console.log(doc.data())
 						this.setState({ firstName: doc.data().firstName });

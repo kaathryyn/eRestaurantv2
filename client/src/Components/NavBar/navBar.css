@@ -1,76 +1,41 @@
 .navBar {
-    background-color:  #A60C06;
-    height: 60px;
-    overflow: hidden;
+	background-color: #a70b06;
+	height: 60px;
+	overflow: hidden;
+	font-family: Arial;
 }
 
-/* .navBar ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-} */
+.navBar text {
+	color: #000;
+	font-family: "Apple Chancery";
+	font-size: 52px;
+	letter-spacing: 3.22px;
+	bottom: 18px;
+	margin-right: 400px;
+	position: relative;
+	float: left;
+}
 
 .navBar li {
-    display: inline;
+	display: inline;
 }
 
-/* .navBar li a {
-    padding-left: 20px;
-    padding-right: 20px;
-    font-family: Arial;
-    font-size: 18px;
-    text-decoration: none;
-    color: #F2F2F2;
-    position: relative;
-    bottom: 10px;
+.navBar a {
+	font-size: 18px;
+	letter-spacing: 1.11px;
+	line-height: 5px;
+	text-decoration: none;
+	color: #F2F2F2;
+	position: relative;
+	bottom: -6px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .navBar li a:hover {
-    border-bottom: 3px solid #FA9917;
+	border-bottom: 3px solid #FA9917;
 }
 
 .active {
-    border-bottom: 3px solid #FA9917;
-} */
-
-/* .navBar a.login {
-    height: 20px;
-    width: 56px;
-    letter-spacing: 1.11px;
-    line-height: 20px;
-} */
-
-/* .navBar text {
-    height: 82px;
-    width: 317px;
-    color: #000;
-    font-family: "Apple Chancery";
-    font-size: 52px;
-    letter-spacing: 3.22px;
-    margin-left: 380px;
-    margin-right: 180px;
-    position: relative;
-    bottom: 5px;
+	border-bottom: 3px solid #FA9917;
 }
-
-.navBar a.menu {
-    height: 20px;
-    width: 50px;
-    letter-spacing: 1.11px;
-    line-height: 20px;
-}
-
-.navBar a.order {
-    height: 20px;
-    width: 52px;
-    letter-spacing: 1.11px;
-    line-height: 20px;
-}
-
-.navBar a.reservation {
-    height: 20px;
-    width: 109px;
-    letter-spacing: 1.11px;
-    line-height: 20px;
-} */
-

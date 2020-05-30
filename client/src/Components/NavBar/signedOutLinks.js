@@ -4,9 +4,10 @@ import { NavLink } from 'react-router-dom';
 function SignedOutLinks() {
   return (
     <ul className="signedOutNavBar">
-      <li><NavLink to='/register'>Register</NavLink></li>
-      <li><NavLink to='/login'>Login</NavLink></li>
+      <text className="resTitle">Sapori Unici</text>
       <li><NavLink to='/menu'>Menu</NavLink></li>
+      <li><NavLink to='/login'>Login</NavLink></li>
+      <li><NavLink to='/register'>Register</NavLink></li>
     </ul>
   );
 }
