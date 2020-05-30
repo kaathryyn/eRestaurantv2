@@ -11,7 +11,7 @@
 	font-size: 52px;
 	letter-spacing: 3.22px;
 	bottom: 18px;
-	margin-right: 400px;
+	margin-right: 380px;
 	position: relative;
 	float: left;
 }
@@ -28,14 +28,10 @@
 	color: #F2F2F2;
 	position: relative;
 	bottom: -6px;
-	padding-left: 10px;
-	padding-right: 10px;
+	padding-left: 6px;
+	padding-right: 6px;
 }
 
 .navBar li a:hover {
-	border-bottom: 3px solid #FA9917;
-}
-
-.active {
 	border-bottom: 3px solid #FA9917;
 }

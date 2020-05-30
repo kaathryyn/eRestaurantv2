@@ -58,7 +58,7 @@ class App extends Component {
         <div className="App">
           <NavBar />
           <Switch>
-            <Route path="/" component={Home} />
+            <Route exact path="/" component={Home} />
             <Route path="/reservation" component={Reservation} />
             <Route path="/login" component={Login} />
             <Route path="/register" registerUser={this.registerUser} component={Registration} />

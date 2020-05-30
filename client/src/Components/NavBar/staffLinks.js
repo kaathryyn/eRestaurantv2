@@ -19,6 +19,7 @@ class StaffLinks extends Component {
   render() {
     return (
       <ul className="staffLinks">
+        <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/staffList'>Staff List</NavLink></li>
         <li><NavLink to='/registerStaff'>Add Staff</NavLink></li>
         <li><NavLink to='/menuInventory'> Edit Menu</NavLink></li>
