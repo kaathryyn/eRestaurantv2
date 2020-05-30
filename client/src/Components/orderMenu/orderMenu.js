@@ -24,9 +24,6 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { auth } from '../../config/firebase.js';
 import firebase from '../../config/firebase';
 
-import { confirmAlert } from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
-
 class orderMenu extends Component {
     constructor(props) {
         super(props);
@@ -144,63 +141,7 @@ class orderMenu extends Component {
       }
       
 
-      handleSubmit = () => {
-        // firestore.collection("resFood").doc("resId").collection("foodOrder")
-        //     .get()
-        //     .then((snapshot) => {
-        //         snapshot.docs.forEach(doc => {
-        //             // console.log(doc.data())
-        //             this.showConfirmation(doc);
-        //         });
-
-        //     });
-        firestore.collection("trialReservations")
-                    .orderBy('id', 'desc')
-                    .limit(1).get()
-                    .then(snap => {
-                      
-                        snap.forEach(doc => {
-                            console.log(doc.data());
-                            if (doc && doc.exists) {
-                                         var reservationDetails = doc.data();    
-                            }
-                        });
-                   
-})
-    }
-    showConfirmation = (doc) => {
-        const confirmationList = document.querySelector('#confirmation');
-        const li = document.createElement('li');
-        const foodName = document.createElement('span');
-        const foodQty = document.createElement('span');
-        const foodCost = document.createElement('span');
-        li.setAttribute('data-id', doc.id);
-        foodName.textContent = doc.data().orderDetails.foodName;
-        foodCost.textContent = "$" + doc.data().orderDetails.foodCost;
-        foodQty.textContent = "x " + doc.data().orderDetails.quantity;
-        //  console.log(doc.data().orderDetails.foodCost);
-
-        li.appendChild(foodName);
-        li.appendChild(foodCost);
-        li.appendChild(foodQty);
-        confirmationList.appendChild(li);
-    }
-    submit = () => {
-        confirmAlert({
-            customUI: ({ onClose }) => {
-                return (
-                    <div className='custom-ui'>
-                        <h1>Confirm Order</h1>
-                        <p>Is this all for today? </p>
-                       
-                            <ul  id="confirmation"></ul>
-                        <button onClick={onClose}>Edit</button>
-                        <button>Confirm </button>
-                    </div>
-                );
-            }
-        });
-    }
+   
 
   render() {
     const { entree } = this.state;
@@ -239,7 +180,7 @@ class orderMenu extends Component {
                <Grid item xs>
                <ButtonGroup variant="contained"  aria-label="contained primary button group">
                             <MyButton variant="contained" >Skip Food Pre-Ordering</MyButton>
-                            <MyButton variant="contained" onClick={this.handleSubmit}>Finished Food Pre-Ordering</MyButton>
+                            <MyButton variant="contained">Finished Food Pre-Ordering</MyButton>
                         </ButtonGroup>
                    </Grid> 
                </Grid>

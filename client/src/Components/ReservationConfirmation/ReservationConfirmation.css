@@ -2,6 +2,7 @@ html, body {height:100%;}
 .reservationBox{
     height: relative;
     width: 450px;
+    margin: 30px
 }
 .img {
     background-image: url(../../Images/reservationImg.png);
@@ -32,4 +33,19 @@ html, body {height:100%;}
        margin-bottom: 10px;
        color: green;
        
-   };
+   }
+   .registerButton {
+    height: 50px;
+    width: 150px;
+    color: #FFF;
+    font-family: Arial;
+    font-size: 18px;
+    letter-spacing: 1.41px;
+    line-height: 22px;
+    text-align: center;
+    }
+
+    .registerButton:hover {
+      background: #616060;
+  }
+;
