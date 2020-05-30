@@ -80,17 +80,195 @@ class Menu extends Component {
     state = { activeIndex: 0 }
     handleChange = (_, activeIndex) => this.setState({ activeIndex })
 
-    render() {
-        const { entree } = this.state;
-        const { main } = this.state;
-        const { dessert } = this.state;
-        const { drinks } = this.state;
-        const { activeIndex } = this.state;
-        const { inputValue } = this.state;
-        return (
-            <div className="wrapper">
-                <div className="header">
-                    <Grid
+  render() {
+    const { entree } = this.state;
+    const { main } = this.state;
+    const { dessert } = this.state;
+    const { drinks } = this.state;
+    const { activeIndex } = this.state;
+    const { inputValue } = this.state;
+      return(
+          <div className="wrapper">
+            <div className="header">
+                <Grid
+                container
+                spacing={10}
+                direction="column"
+                justify="space-evenly"
+                alignItems="center"
+                alignContent="center"
+                >
+                    <Grid item xs>
+                        <Paper className="topnav">
+                            <Tabs
+                            centered
+                            value={activeIndex}
+                            onChange={this.handleChange}
+                            variant="fullWidth"
+                            >
+                                <MyTab label="Entree" />
+                                <MyTab label="Main" />
+                                <MyTab label="Dessert" />
+                                <MyTab label="Drinks" />
+                            </Tabs>
+                        </Paper>
+               </Grid>  
+               </Grid>
+
+               { activeIndex === 0 && <TabContainer>
+                 <div className="alignPage"> 
+                 <Grid
+                         container
+                         spacing={3}
+                         direction="row"
+                         justify="center"
+                         alignItems="center"
+                         alignContent="center"
+                         className="entreebg"
+                     >
+                      
+                           {entree.map((entreeItem, index) => (
+                              
+                                 <Grid item xs key={entreeItem}> 
+                                    
+                                     <MyCard className="root" variant="outlined" raised="false"
+                                     boxShadow={3}>
+                                 
+                                         <CardHeader
+                                         style={{ textAlign: 'left', height: '6%', paddingLeft: '5%', paddingTop: '8%'}}
+                                             title={entreeItem.name}
+                                             subheader= {<StarRatingComponent 
+                                             name="rate2" 
+                                             editing={false}
+                                             renderStarIcon={() => <span1>✰</span1>}
+                                             starCount={5}
+                                             value={entreeItem.rating}
+                                             />}
+                                         />
+                                          <Divider className="divider" variant="middle" />
+                                     <div className="details">
+                                     <CardContent className="content">
+                                     <Typography gutterBottom variant="h5" component="h2">
+                                         <h2>{entreeItem.ingredients}</h2>
+                                     </Typography>
+                                     </CardContent>
+                                     <CardContent className="subcontent">
+                                     <Typography gutterBottom variant="h5" component="h2">
+                                         <h3>${entreeItem.cost}</h3>
+                                     </Typography>
+                                 </CardContent>
+                                 <Divider className="divider" variant="middle" />
+                                     </div>
+                                     </MyCard>
+                                 </Grid>
+                           ))}
+                     </Grid>
+                 </div>
+                 </TabContainer> }
+
+                 { activeIndex === 1 && <TabContainer>
+                 <div className="alignPage"> 
+                 <Grid
+                         container
+                         spacing={3}
+                         direction="row"
+                         justify="center"
+                         alignItems="center"
+                         alignContent="center"
+                         className="headerImg"
+                     >
+                      
+                           {main.map((mainItem, index) => (
+                              
+                                 <Grid item xs key={mainItem}> 
+                                    
+                                     <MyCard className="root" variant="outlined" raised="false"
+                                     boxShadow={3}>
+                                 
+                                         <CardHeader
+                                         style={{ textAlign: 'left', height: '6%', paddingLeft: '5%', paddingTop: '8%'}}
+                                             title={mainItem.name}
+                                             subheader= {<StarRatingComponent 
+                                             name="rate2" 
+                                             editing={false}
+                                             renderStarIcon={() => <span1>✰</span1>}
+                                             starCount={5}
+                                             value={mainItem.rating}
+                                             />}
+                                         />
+                                          <Divider className="divider" variant="middle" />
+                                     <div className="details">
+                                     <CardContent className="content">
+                                     <Typography gutterBottom variant="h5" component="h2">
+                                         <h2>{mainItem.ingredients}</h2>
+                                     </Typography>
+                                     </CardContent>
+                                     <CardContent className="subcontent">
+                                     <Typography gutterBottom variant="h5" component="h2">
+                                         <h3>${mainItem.cost}</h3>
+                                     </Typography>
+                                 </CardContent>
+                                 <Divider className="divider" variant="middle" />
+                                     </div>
+                                     </MyCard>
+                                 </Grid>
+                           ))}
+                     </Grid>
+                 </div>
+                 </TabContainer> }
+                 { activeIndex === 2 && <TabContainer>
+                <div className="alignPage"> 
+                <Grid
+                        container
+                        spacing={3}
+                        direction="row"
+                        justify="center"
+                        alignItems="center"
+                        alignContent="center"
+                        className="dessertbg"
+                    >
+                      
+                          {dessert.map((dessertItem, index) => (
+                              
+                                <Grid item xs key={dessertItem}> 
+                                    
+                                    <MyCard className="root" variant="outlined" raised="false"
+                                    boxShadow={3}>
+                                 
+                                        <CardHeader
+                                        style={{ textAlign: 'left', height: '6%', paddingLeft: '5%', paddingTop: '8%'}}
+                                            title={dessertItem.name}
+                                            subheader= {<StarRatingComponent 
+                                            name="rate2" 
+                                            editing={false}
+                                            renderStarIcon={() => <span1>✰</span1>}
+                                            starCount={5}
+                                            value={dessertItem.rating}
+                                            />}
+                                        />
+                                         <Divider className="divider" variant="middle" />
+                                    <div className="details">
+                                    <CardContent className="content">
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                        <h2>{dessertItem.ingredients}</h2>
+                                    </Typography>
+                                    </CardContent>
+                                    <CardContent className="subcontent">
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                        <h3>${dessertItem.cost}</h3>
+                                    </Typography>
+                                </CardContent>
+                                <Divider className="divider" variant="middle" />
+                                    </div>
+                                    </MyCard>
+                                </Grid>
+                          ))}
+                    </Grid>
+                </div>
+                </TabContainer> }
+                { activeIndex === 3 && <TabContainer>
+                <div className="alignPage"> 
+                <Grid
                         container
                         spacing={10}
                         direction="column"
