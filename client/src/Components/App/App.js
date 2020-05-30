@@ -3,6 +3,7 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import firebase from '../../config/firebase';
 
 import NavBar from '../NavBar/navBar';
+import Home from '../Home/home';
 import Registration from '../Registration/registration';
 import Login from '../Login/login';
 import ForgotPassword from '../ForgotPassword/ForgotPassword';
@@ -57,6 +58,7 @@ class App extends Component {
         <div className="App">
           <NavBar />
           <Switch>
+            <Route path="/" component={Home} />
             <Route path="/reservation" component={Reservation} />
             <Route path="/login" component={Login} />
             <Route path="/register" registerUser={this.registerUser} component={Registration} />

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import { NavLink } from 'react-router-dom';
 
 import CustomerLinks from './customerLinks';
 import StaffLinks from './staffLinks';
@@ -45,6 +46,7 @@ class SignedInLinks extends Component {
     return (
       <ul className="signedInNavBar">
         <text className="resTitle">Sapori Unici</text>
+        <li><NavLink to='/'>Home</NavLink></li>
         {links}
       </ul>
     );
