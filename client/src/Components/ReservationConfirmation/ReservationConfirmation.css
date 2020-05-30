@@ -1,6 +1,6 @@
 html, body {height:100%;}
 .reservationBox{
-    height: 450px;
+    height: relative;
     width: 450px;
 }
 .img {
@@ -22,4 +22,14 @@ html, body {height:100%;}
     line-height: 18px;
     border: 0cm;
     background-color: white
+   }
+   
+   input {
+    width: 30px;
+   }
+   
+   .addMore{
+       margin-bottom: 10px;
+       color: green;
+       
    };
