@@ -4,17 +4,17 @@
     overflow: hidden;
 }
 
-.navBar ul {
+/* .navBar ul {
     list-style: none;
     margin: 0;
     padding: 0;
-}
+} */
 
 .navBar li {
     display: inline;
 }
 
-.navBar li a {
+/* .navBar li a {
     padding-left: 20px;
     padding-right: 20px;
     font-family: Arial;
@@ -31,16 +31,16 @@
 
 .active {
     border-bottom: 3px solid #FA9917;
-}
+} */
 
-.navBar a.login {
+/* .navBar a.login {
     height: 20px;
     width: 56px;
     letter-spacing: 1.11px;
     line-height: 20px;
-}
+} */
 
-.navBar text {
+/* .navBar text {
     height: 82px;
     width: 317px;
     color: #000;
@@ -72,5 +72,5 @@
     width: 109px;
     letter-spacing: 1.11px;
     line-height: 20px;
-}
+} */
 
