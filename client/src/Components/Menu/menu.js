@@ -74,8 +74,6 @@ class Menu extends Component {
 
     state = { activeIndex: 0 }
     handleChange = (_, activeIndex) => this.setState({ activeIndex })
-
-    
     
   render() {
     const { entree } = this.state;
