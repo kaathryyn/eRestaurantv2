@@ -495,8 +495,10 @@ class Menu extends Component {
                         </div>
                     </TabContainer>}
                 </div>
+                </TabContainer>}
+                </div>
             </div>
-
+            
         );
     }
 }
