@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import staffRegoImg from '../../Images/staff_registration.jpg';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl'
-import { Card } from '@material-ui/core';
+import { Card, Button } from '@material-ui/core';
 import firebase from '../../config/firebase';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
@@ -38,12 +38,12 @@ class StaffRegistration extends Component {
 
     addStaff = (e) => {
         e.preventDefault();
+        const staffDb = firebase.firestore();
         firebase.auth().createUserWithEmailAndPassword(
             this.state.email,
             this.state.password
         ).then(cred => {
-            const staffDb = firebase.firestore();
-            return staffDb.collection("staff").doc(cred.user.uid).set(
+            staffDb.collection("staff").doc(cred.user.uid).set(
                 {
                     firstName: this.state.firstName,
                     lastName: this.state.lastName,
@@ -55,6 +55,18 @@ class StaffRegistration extends Component {
                     accBSB: this.state.accBSB,
                     password: this.state.password
                 });
+        }).then(() => {
+            this.setState({
+                firstName: '',
+                lastName: '',
+                mobNum: '',
+                gender: '',
+                email: '',
+                role: '',
+                accNum: '',
+                accBSB: '',
+                password: ''
+            })
         }).catch(error => {
             if (error.message != null) {
                 this.setState({ errorMessage: error.message });
