@@ -22,7 +22,6 @@ import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import { firestore } from'../../config/firebase.js';
-import MenuItem from '@material-ui/core/MenuItem';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 
@@ -217,117 +216,83 @@ class MenuInventory extends Component {
                         </Tabs>
                     </Paper>
                     { activeIndex === 0 && <TabContainer>
-                        <Card >
-                            <CardHeader
-                                style={{ textAlign: 'left', height: '6%', paddingLeft: '5%', paddingTop: '8%'}}
-                                title="Add New Item to the Sapori Unici Menu"
-                                
-                                
-                            />
-                            <Divider className="divider" variant="middle" />
-                            <CardActions>  
-                            <MyTextField
-                                        id="filledNumber"
-                                        label="Item Name"
-                                        fullWidth="true"
-                                        // value={this.state.value}
-                                        InputLabelProps={{
-                                          shrink: true,
-                                        }}
-                                        variant="filled"
+                        <div className="page">
+                        <form className="card" onSubmit={event => this.handleSaveItem(event)}>
+                        <h1>Add New Item to the Sapori Unici Menu</h1>
+                        <h4>Item Name</h4>
+                        <div className='form-group row'>
+                        <input
+                        id="inputNew"
+                            required
+                                        placeholder="Item Name"
                                         onChange={this.handleItemName}
-                            />
-                            </CardActions>
-                            <CardActions>
-                            <MyTextField
-                                        id="filledNumber"
-                                        label="Item Ingredients"
-                                        fullWidth="true"
-                                        // value={this.state.value}
-                                        InputLabelProps={{
-                                          shrink: true,
-                                        }}
-                                        variant="filled"
-                                        onChange={this.handleItemIngredients}
-                                    />
-                            </CardActions>
-                            <CardActions>
-                                <MyTextField
-                                        id="filledNumber"
-                                        label="Item Rating"
-                                        type="number"
-                                        fullWidth="true"
-                                        // value={this.state.value}
-                                        InputProps = {{
-                                            inputProps: {
-                                                min: 1, max: 5},
-                                        }}
-                                        InputLabelProps={{
-                                          shrink: true,
-                                        }}
-                                        variant="filled"
-                                        onChange={this.handleItemRating}
-                                    />
-                            </CardActions>
-                           
-                                    <CardActions>
-                                    <MyTextField
-                                    
-                                    id="input-with-icon-textfield"
-                                    label="Item Cost"
-                                    type="number"
-                                    fullWidth="true"
-                                    variant="filled"
-                                    onChange={this.handleItemCost}
-                                    InputProps={{
-                                        inputProps: {
-                                            min: 1, max: 50},
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                        <AttachMoneyIcon />
-                                        </InputAdornment>
-                                    ),
-                                    }}
-                                />
-                                    </CardActions> 
-                                   
-                            <CardActions className="controls">
-                            <RadioGroup row aria-label="position" name="position" defaultValue="Entree" onChange={this.handleItemCategory}>
-                                    <FormControlLabel
-                                    value="Entree"
-                                    control={<Radio color="primary" />}
-                                    label="Entree"
-                                    labelPlacement="top"
-                                    />
-                                    <FormControlLabel
-                                    value="Main"
-                                    control={<Radio color="primary" />}
-                                    label="Main"
-                                    labelPlacement="top"
-                                    />
-                                    <FormControlLabel
-                                    value="Dessert"
-                                    control={<Radio color="primary" />}
-                                    label="Dessert"
-                                    labelPlacement="top"
-                                    />
-                                    <FormControlLabel
-                                    value="Drinks"
-                                    control={<Radio color="primary" />}
-                                    label="Drinks"
-                                    labelPlacement="top"
-                                    />
-                                    </RadioGroup>
-                      </CardActions>
-                      <CardActions className="controls">
-                      <MyButton variant="contained"
                                         
-                                        onClick={event => this.handleSaveItem(event)}
-                                        startIcon={<AddIcon />}>
-                                            Add to Menu</MyButton>
-                                            
-                      </CardActions>
-                        </Card>
+                            />
+                        </div>
+                       
+                            <h4>Item Ingredients</h4>
+                            <div className='form-group row'>
+                            <input
+                            id="inputNew"
+                                        placeholder="Item Ingredients"
+                                        onChange={this.handleItemIngredients}
+                                        required
+                                    /> 
+                            </div>
+                            <h4>Item Rating</h4>
+                            <div className='form-group row'>
+                            <input
+                            id="rating"
+                                        type="number"
+                                        placeholder="Item Rating"
+                                        min="1" max="5"
+                                        onChange={this.handleItemRating}
+                                        required
+                                    />
+                            </div>
+                                   <h4>Item Cost</h4>
+                                   <div className='form-group row'>
+                                   <input
+                                   id="cost"
+                                    placeholder="Item Cost"
+                                    min="1" max="100"
+                                    type="number"
+                                    onChange={this.handleItemCost}
+                                    required
+                                />
+                                   </div>
+                                  <h4>Item Category</h4>
+                                  <div id="radioGroup">
+                                        <div className="wrap">
+                                        <input type="radio" name="category" value="Entree" required onChange={this.handleItemCategory}/><label>Entree
+                                        </label>
+                                        </div>
+                                        <div className="wrap">
+                                        <label>
+                                        <input type="radio" name="category" value="Main" onChange={this.handleItemCategory}/>Main
+                                        </label>
+                                        </div>
+                                        <div className="wrap">
+                                        <label>
+                                        <input type="radio" name="category" value="Dessert" onChange={this.handleItemCategory}/>Dessert
+                                        </label>
+                                        </div><div className="wrap">
+                                        <label>
+                                        <input type="radio" name="category" value="Drinks" onChange={this.handleItemCategory}/>Drinks
+                                        </label>
+                                  </div>
+                                  </div>
+                                  
+                                       
+  
+                                <div className="alignButton">
+                                <input type="submit"
+                                value="Add to Menu"/>
+                                </div>
+                             
+                        </form>
+                        </div>
+                        
                     </TabContainer> }
                     { activeIndex === 1 && <TabContainer>
                         <Grid
@@ -337,7 +302,6 @@ class MenuInventory extends Component {
                          justify="center"
                          alighnItems="center"
                          alignContent="center"
-                         className="background"
                      >
                            {items.map((entreeItem, index) => (
                               
@@ -354,6 +318,7 @@ class MenuInventory extends Component {
                                      <div className="details">
                                      <CardContent className="content">
                                      <Typography gutterBottom variant="h5" component="h2">
+                                       
                                        
                                        <h3>Item Name: {entreeItem.name}</h3>
                                        <p><input
@@ -387,7 +352,10 @@ class MenuInventory extends Component {
                                     
                                     <h3>Item Cost: ${entreeItem.cost}</h3> 
                                     <p><input
+                                    id="editCost"
                                         placeholder="Item Cost"
+                                        type="number"
+                                        min="1" max="100"
                                         onChange={this.handleUpdateCost}
                                     /> <MyButton variant="contained"
                                     className="addButton"
@@ -397,6 +365,9 @@ class MenuInventory extends Component {
                                     
                                     <h3>Item Rating: {entreeItem.rating}</h3>
                                     <p><input
+                                        id="editRating"
+                                        type="number"
+                                        min="1" max="5"
                                         placeholder="Item Rating"
                                         onChange={this.handleUpdateRating}
                                     /> <MyButton variant="contained"
