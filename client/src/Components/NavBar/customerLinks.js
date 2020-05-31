@@ -8,7 +8,7 @@ const CustomerLinks = () => {
       <li><NavLink to="/myProfile">My Profile</NavLink></li>
       <li><NavLink to='/menu'>Menu</NavLink></li>
       <li><NavLink to='/order'>Order</NavLink></li>
-      <li><NavLink to='/reservation'>Reservation</NavLink></li>
+      <li><NavLink to='/book'>Book</NavLink></li>
     </ul>
   )
 }

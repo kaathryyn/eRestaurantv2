@@ -117,7 +117,7 @@ class Reservation extends Component {
           <form class="reservation" onSubmit={this.addReservation} noValidate>
             <FormControl>
               <Card className="reservation_Info" variant="outlined">
-                <h1>Reservation</h1>
+                <h1 className="resTitle">Make a Reservation</h1>
                 <label for="numOfPpl" class="numOfPplLbl"><b>No. of People</b></label>
                 <br />
                 <input type="number" min="1" max="12" name="numOfPpl" class="numOfPpl" required value={this.state.numOfPpl} onChange={this.handleChange} />
@@ -162,7 +162,7 @@ class Reservation extends Component {
                 <input type="text" name="additionalComms" class="comments" value={this.state.additionalComms} onChange={this.handleChange} />
                 <br></br>
                 <br></br>
-                <button>Book</button>
+                <button className="bookBtn">Book</button>
               </Card>
             </FormControl>
           </form>
