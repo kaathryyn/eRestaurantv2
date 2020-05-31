@@ -5,7 +5,7 @@ import firebase from '../../config/firebase';
 import Grid from '@material-ui/core/Grid';
 import right_image from '../../Images/Login.jpg';
 import "./login.css";
-import customerRegistrationImage from '../../Images/customer_registration.jpg';
+import login from '../../Images/background.jpg';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import CardActions from '@material-ui/core/CardActions';
@@ -107,7 +107,7 @@ class Login extends Component {
           </Card>
         </Grid>
         <Grid item xs={6}>
-          <img style={{ width: '100%', height: '100' }} src={customerRegistrationImage} alt="customerRegistrationImage" />
+          <img style={{ width: '100%', height: '100', position:' static' }} src={login} alt="login" />
         </Grid>
       </Grid>
 
