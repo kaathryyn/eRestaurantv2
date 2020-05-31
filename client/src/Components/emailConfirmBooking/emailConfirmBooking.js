@@ -15,14 +15,15 @@ class EmailConfirmBooking extends Component {
     }
 
     handleHomePage(e) {
+        e.preventDefault();
         window.location = 'home';
     }
 
     handleEditBooking (e) {
+        e.preventDefault();
         window.location = 'reservation';
     }
 
-    
 
     render() {
         return (
@@ -32,8 +33,8 @@ class EmailConfirmBooking extends Component {
         <h2>Thanks for making a reservation with us!</h2>
         <p>You'll soon receive an email from us to confirm your booking details.</p>
         <p>Please not that if you've changed your mind on your order, you can always change this by asking our staff at the store.</p>
-        <button className = "homeButton" href = "home.js">Return to Home </button>
-        <button className = "editBooking"> Edit Booking</button>
+        <button className = "homeButton" onClick = {this.handleHomePage}> Return to Home </button>
+        <button className = "editBooking" onClick = {this.handleEditBooking}> Edit Booking</button>
         </div>
        )
     }
