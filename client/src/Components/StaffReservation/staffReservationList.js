@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import './staffReservationList.css';
 import StaffReservationTable from './staffReservationTable.js';
 import InvoicePopUp from '../Invoicing/invoicingPopup.js';
+import { makeStyles } from '@material-ui/core/styles';
 
 class StaffReservationList extends Component {
 
@@ -64,6 +65,7 @@ class StaffReservationList extends Component {
                 <Grid item>
                 <div>
                     <StaffReservationTable
+                        title="Reservations"
                         data={this.state.reservations}
                         header={[
                             {
@@ -83,14 +85,11 @@ class StaffReservationList extends Component {
                                 prop: 'numPeople',
                             },
                             {
-                                name: 'Status',
-                                prop: 'resStatus',
-                            },
-                            {
                                 name: 'Comments',
                                 prop: 'addComms',
                             }
-                            ]} />  
+                            ]}
+                            />
                     </div>
                     </Grid>
                     <InvoicePopUp />
