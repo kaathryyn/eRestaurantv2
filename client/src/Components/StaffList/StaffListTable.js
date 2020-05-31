@@ -69,13 +69,7 @@ export default function StaffListTable({ data, header }) {
 
 
   return (
-    <Grid container
-      direction="column"
-      justify="center"
-      alignItems="center"
-    >
-      {/* <TableContainer component={Paper}> */}
-      <Grid item xs={9}>
+    <div>
         <Table className={classes.table} aria-label="staffListTable">
           <TableHead>
             <TableRow>
@@ -107,10 +101,10 @@ export default function StaffListTable({ data, header }) {
             onChangeRowsPerPage={handleChangeRowsPerPage}
           />
         </Table>
-      </Grid>
-      <button className="button"> <img src={greenPlus} className="greenPlus" alt="plus" />
-      <Link to="registerStaff">Add New</Link>
+      
+      <button  onClick={() => window.location = '/registerStaff'}className="button"> <img src={greenPlus} className="greenPlus" alt="plus" />
+       Add New
       </button>
-    </Grid>
+    </div>
   );
 }

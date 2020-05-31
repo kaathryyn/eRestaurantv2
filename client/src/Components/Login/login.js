@@ -11,8 +11,16 @@ import button from "@material-ui/core/Button";
 import { Card, Box } from "@material-ui/core";
 // import { auth } from '../../config/firebase.js';
 import firebase from '../../config/firebase';
+
+
+import Grid from '@material-ui/core/Grid';
 import right_image from '../../Images/Login.jpg';
-// import Registration from '/registration'
+import "./login.css";
+import login from '../../Images/background.jpg';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
 
 
 class Login extends Component {
@@ -48,6 +56,11 @@ class Login extends Component {
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(() => {
       window.location = 'menu';
     })
+
+    // [END authwithemail]
+
+
+
       .catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -64,38 +77,58 @@ class Login extends Component {
         console.log(error);
         // [END_EXCLUDE]
       })
+
   }
 
   render() {
     const { authError } = this.props;
 
     return (
-      <div className="wrapper">
-        <form className="loginForm" onSubmit={this.handleSubmit}>
-          <Box className="main_box" variant="outlined">
-            <Box className="toggle-inactive-label"></Box>
-            <h1 className="loginheader"> Log in </h1>
-            <Box className="details_box" variant="outlined">
-              <h2 className="email"> Email </h2>
-              <input type="text" value={this.state.email}
-                onChange={this.emailhandler}
-                placeholder="Email"
-              ></input>
-              <h2 className="password"> Password </h2>
-              <input type="password" value={this.state.password}
-                onChange={this.passwordhandler}
-                placeholder="6 digit" />
-              <h6 className="forgot_password"> Forgot Password? Click here</h6>
-            </Box>
-            <div className="authError">
-              {authError ? <p>{authError}</p> : null}
-            </div>
-            <button type="submit" className="login_button" > Login </button>
-            <Link to='/register' className="register_button"> Register </Link>
-          </Box>
-          <div className="right_image" />
-        </form>
-      </div >
+
+      <Grid container direction="row"  >
+        <Grid item xs={6} justify="center" alignItems="center" >
+          {/* <Box className="main_box" variant="outlined"> */}
+          <Card style={{ marginTop: "25%", marginLeft: "5%", marginRight: "5%", height: '100' }}>
+            {/* <h1 className="loginheader"> Log in </h1> */}
+            <br></br>
+            <Typography variant="h4" component="h2">
+              Login
+        </Typography>
+            <br></br><br></br>
+            <Typography variant="h6" component="h2">
+              Email
+        </Typography>
+            <input type="text" value={this.state.email}
+              onChange={this.emailhandler}
+              placeholder="Email"
+            ></input>
+            <br></br><br></br>
+            <Typography variant="h6" component="h2">
+              Password
+        </Typography>
+            {/* <input type="text" type="password" className = "login-input" value={this.state.password}
+              onChange={this.passwordhandler}
+              placeholder="6 digit"
+            ></input> */}
+            <TextField
+              id="standard-password-input"
+              type="password"
+              autoComplete="current-password"
+              value={this.state.password}
+              onChange={this.passwordhandler}
+            />
+            <h6 className="forgot_password"> Forgot Password? Click here</h6>
+
+            <button className="register_button" > Register </button>
+            <button onClick={this.handleSubmit} className="login_button" > Login </button>
+            {/* </Box> */}
+          </Card>
+        </Grid>
+        <Grid item xs={6}>
+          <img style={{ width: '100%', height: '100', position:' static' }} src={login} alt="login" />
+        </Grid>
+      </Grid>
+
     );
   }
 }
@@ -105,6 +138,7 @@ const mapStateToProps = (state) => {
     authError: state.auth.authError
   }
 }
+
 
 const mapDispatchToProps = (dispatch) => {
   return {
