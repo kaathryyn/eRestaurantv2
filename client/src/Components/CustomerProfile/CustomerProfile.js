@@ -99,7 +99,7 @@ class CustomerProfile extends Component {
                             <CardActions >
                                 <button className="edit" onClick={this.doneEdit}>Done</button>
                             </CardActions>
-                            <Typography component="h5" variant="h5">
+                            <Typography component="h5" variant="h4">
                                 Profile
                             </Typography>
                             <Divider className="divider" variant="middle" />
@@ -187,7 +187,7 @@ class CustomerProfile extends Component {
                             <CardActions >
                                 <button className="edit" onClick={this.editProfile}>Edit</button>
                             </CardActions>
-                            <Typography component="h5" variant="h5">
+                            <Typography component="h5" variant="h4">
                                 Profile
          </Typography>
                             <Divider className="divider" variant="middle" />
