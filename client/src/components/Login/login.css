@@ -1,32 +1,36 @@
-.wrapper {
-  /* display: flex; */
-  align-items: center;
-  /* height: 600x;
+.wrapper{
+    /* display: flex; */
+     align-items: center;
+     /* height: 600x;
      width: 1300px; */
-}
-
-.right_image {
-  background-image: url(../../Images/Login.jpg);
-  /* height: 960px;
+ }
+ 
+ .right_image{
+     background-image: url(../../Images/Login.jpg);
+         /* height: 960px;
          width: 640px; */
          height: 100%;
          /* align-items: right; */
          float: right;
          position: static;
        }
-
+ 
+ 
+ 
  .details_box {
      display: flex;
      flex-direction: column;
      justify-content: space-evenly;
      align-items: left;
      border: 3px solid #E0E0E0;
+ 
      /* border-right: 3px solid #E0E0E0;
      width: 50%;
      height: 100%;
      position: fixed;
      left: 0px;  */
-
+   }
+ 
    .main_box {
      /* display: flex; */
      /* flex-direction: row; */
@@ -34,7 +38,6 @@
      width: relative
      /* align-items: left; */
    }
-   
    .loginheader {
      height: 33.06px;
      width: 155.81px;
@@ -50,9 +53,9 @@
  /* label {
      padding-top: 5px;
  } */
-
-/*Email*/
-/* .emailLbl {
+ 
+ /*Email*/
+ /* .emailLbl {
      float: left;
      padding-left: 16px;
      height: 21.22px;
@@ -69,9 +72,9 @@
      width: 82%; 
  }
  */
-
-/*Password*/
-/* .PasswordLbl {
+ 
+ /*Password*/
+ /* .PasswordLbl {
      float: left;
      padding-left: 16px;
      height: 21.22px;
@@ -123,6 +126,7 @@
   text-align: center;
   background-color: white;
   margin:5%
+ 
  }
  
  .login_button{
