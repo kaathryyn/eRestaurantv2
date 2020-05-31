@@ -10,7 +10,19 @@ class EmailConfirmBooking extends Component {
         this.state = {
 
         }
+        this.handleHomePage = this.handleHomePage.bind(this); //method used to bind the handleSubmit operation with the constructor - setting up the handle change method 
+        this.handleEditBooking = this.handleEditBooking.bind(this);
     }
+
+    handleHomePage(e) {
+        window.location = 'home';
+    }
+
+    handleEditBooking (e) {
+        window.location = 'reservation';
+    }
+
+    
 
     render() {
         return (
