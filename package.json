@@ -24,6 +24,7 @@
     "materialize-css": "^1.0.0-rc.2",
     "react-bootstrap": "^1.0.1",
     "react-bootstrap-validation": "^0.1.11",
+    "react-confirm-alert": "^2.6.1",
     "react-image": "^2.4.0",
     "react-redux": "^7.2.0",
     "react-redux-firebase": "^3.5.0",
