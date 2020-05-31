@@ -231,6 +231,10 @@ class orderMenu extends Component {
                                          label="Quantity"
                                          type="number"
                                          value={this.state.value}
+                                         InputProps = {{
+                                            inputProps: {
+                                                min: 1, max: 20},
+                                        }}
                                          InputLabelProps={{
                                            shrink: true,
                                          }}
@@ -308,6 +312,10 @@ class orderMenu extends Component {
                                          label="Quantity"
                                          type="number"
                                          value={this.state.value}
+                                         InputProps = {{
+                                            inputProps: {
+                                                min: 1, max: 20},
+                                        }}
                                          InputLabelProps={{
                                            shrink: true,
                                          }}
@@ -384,6 +392,10 @@ class orderMenu extends Component {
                                         label="Quantity"
                                         type="number"
                                         value={this.state.value}
+                                        InputProps = {{
+                                            inputProps: {
+                                                min: 1, max: 20},
+                                        }}
                                         InputLabelProps={{
                                           shrink: true,
                                         }}
@@ -460,6 +472,10 @@ class orderMenu extends Component {
                                         label="Quantity"
                                         type="number"
                                         value={this.state.value}
+                                        InputProps = {{
+                                            inputProps: {
+                                                min: 1, max: 20},
+                                        }}
                                         InputLabelProps={{
                                           shrink: true,
                                         }}
