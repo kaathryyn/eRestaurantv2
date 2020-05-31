@@ -15,6 +15,7 @@ import MenuInventory from '../menuInventory/menuInventory';
 import StaffRegistration from '../StaffRegistration/staffRegistration';
 import StaffList from '../StaffList/StaffList';
 import CustomerProfile from '../CustomerProfile/CustomerProfile';
+import StaffReservationList from '../StaffReservation/staffReservationList';
 
 import './App.css';
 
@@ -70,6 +71,7 @@ class App extends Component {
             <Route path="/menu" component={Menu} />
             <Route path="/confirmBooking" component={EmailConfirmBooking} />
             <Route path="/myProfile" component={CustomerProfile} />
+            <Route path="/staffReservation" component={StaffReservationList} />
           </Switch>
         </div>
       </BrowserRouter>
