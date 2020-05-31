@@ -2,8 +2,14 @@ import React, { useState, Component } from 'react';
 import { Card, Box } from "@material-ui/core";
 import firebase from '../../config/firebase';
 
+import Grid from '@material-ui/core/Grid';
 import right_image from '../../Images/Login.jpg';
 import "./login.css";
+import customerRegistrationImage from '../../Images/customer_registration.jpg';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
 
 class Login extends Component {
   constructor(props) {
@@ -54,36 +60,56 @@ class Login extends Component {
     })
     // [END authwithemail]
 
-    
+
   }
 
 
 
   render() {
     return (
-      <div className="wrapper">
-        <Box className="main_box" variant="outlined">
-          <Box className="toggle-inactive-label"></Box>
-          <h1 className="loginheader"> Log in </h1>
-          <Box className="details_box" variant="outlined">
-            <h2 className="email"> Email </h2>
+      <Grid container direction="row"  >
+        <Grid item xs={6} justify="center" alignItems="center" >
+          {/* <Box className="main_box" variant="outlined"> */}
+          <Card style={{ marginTop: "25%", marginLeft: "5%", marginRight: "5%", height: '100' }}>
+            {/* <h1 className="loginheader"> Log in </h1> */}
+            <br></br>
+            <Typography variant="h4" component="h2">
+              Login
+        </Typography>
+            <br></br><br></br>
+            <Typography variant="h6" component="h2">
+              Email
+        </Typography>
             <input type="text" value={this.state.email}
               onChange={this.emailhandler}
               placeholder="Email"
             ></input>
-            <h2 className="password"> Password </h2>
-            <input type="password" value={this.state.password}
+            <br></br><br></br>
+            <Typography variant="h6" component="h2">
+              Password
+        </Typography>
+            {/* <input type="text" type="password" className = "login-input" value={this.state.password}
               onChange={this.passwordhandler}
               placeholder="6 digit"
-            ></input>
+            ></input> */}
+            <TextField
+              id="standard-password-input"
+              type="password"
+              autoComplete="current-password"
+              value={this.state.password}
+              onChange={this.passwordhandler}
+            />
             <h6 className="forgot_password"> Forgot Password? Click here</h6>
-          </Box>
-          <button className="register_button" > Register </button>
-          <button onClick={this.handleSubmit} className="login_button" > Login </button>
-        </Box>
-        <div className="right_image"></div>
-      </div>
 
+            <button className="register_button" > Register </button>
+            <button onClick={this.handleSubmit} className="login_button" > Login </button>
+            {/* </Box> */}
+          </Card>
+        </Grid>
+        <Grid item xs={6}>
+          <img style={{ width: '100%', height: '100' }} src={customerRegistrationImage} alt="customerRegistrationImage" />
+        </Grid>
+      </Grid>
 
     );
   }
