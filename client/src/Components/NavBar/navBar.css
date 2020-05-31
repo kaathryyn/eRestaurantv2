@@ -28,8 +28,8 @@
 	color: #F2F2F2;
 	position: relative;
 	bottom: -6px;
-	padding-left: 6px;
-	padding-right: 6px;
+	padding-left: 8px;
+	padding-right: 8px;
 }
 
 .navBar li a:hover {

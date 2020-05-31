@@ -43,10 +43,8 @@ class Login extends Component {
 
   handleSubmit = (event) => { //storing the state when the user provides data 
     event.preventDefault();
-    // this.props.logIn(this.state);
-
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(() => {
-      window.location = 'menu';
+      window.location = '/';
     })
       .catch(function (error) {
         // Handle Errors here.
@@ -85,7 +83,7 @@ class Login extends Component {
               <input type="password" value={this.state.password}
                 onChange={this.passwordhandler}
                 placeholder="6 digit" />
-              <h6 className="forgot_password"> Forgot Password? Click here</h6>
+              <a href="../ForgotPassword/ForgotPassword.js" className="forgot_password"> Forgot Password? Click here</a>
             </Box>
             <div className="authError">
               {authError ? <p>{authError}</p> : null}
