@@ -3,12 +3,41 @@
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
-  
   background-position: center;
 }
 
 .resError {
+  color: red; 
+  font-size: 14px;
+}
+
+/* Label & Input formatting */
+input[type=text],
+input[type=number],
+input[type=date],
+select {
+    padding: 6px 10px;
+    margin: 6px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}
+
+.bookBtn {
+  height: 40px;
+  width: 150px;
+  background-color: #333333;
+  color: white;
+  border-radius: 25px;
+  font-family: Arial;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.bookBtn:hover {
+  background: #616060;
+
   color: red;
   font-size: 10px;
   font-weight: bold;
+
 }

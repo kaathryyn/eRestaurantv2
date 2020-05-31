@@ -14,46 +14,39 @@
          float: right;
          position: static;
        }
- 
- 
- 
+
  .details_box {
      display: flex;
      flex-direction: column;
      justify-content: space-evenly;
      align-items: left;
      border: 3px solid #E0E0E0;
- 
      /* border-right: 3px solid #E0E0E0;
      width: 50%;
      height: 100%;
      position: fixed;
      left: 0px;  */
-   }
- 
-   .main_box {
-     /* display: flex; */
-     /* flex-direction: row; */
-     background-color: #FFF;
-     width: relative
-     /* align-items: left; */
-   }
-   .loginheader {
-     height: 33.06px;
-     width: 155.81px;
-     color: #0B2031;
-     font-family: "Helvetica Neue";
-     font-size: 30px;
-     font-weight: 700;
-     letter-spacing: 1.86px;
-     line-height: 36px;
-     text-align: center;
-   }
- 
- /* label {
-     padding-top: 5px;
- } */
- 
+}
+
+.main_box {
+  /* display: flex; */
+  /* flex-direction: row; */
+  background-color: #FFF;
+  width: relative
+  /* align-items: left; */
+}
+
+.loginheader {
+  height: 33.06px;
+  width: 155.81px;
+  color: #0B2031;
+  font-family: "Helvetica Neue";
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 1.86px;
+  line-height: 36px;
+  text-align: center;
+}
  /*Email*/
  /* .emailLbl {
      float: left;
@@ -71,7 +64,6 @@
  .email{
      width: 82%; 
  }
- */
  
  /*Password*/
  /* .PasswordLbl {
@@ -90,8 +82,8 @@
  .password {
      width: 82%;
  } */
- 
- /* .password {
+
+/* .password {
      height: 21.22px;
      width: 92.89px;
      color: #0B2031;
@@ -112,8 +104,12 @@
      letter-spacing: 0.69px;
      line-height: 16px;
      }  */
- 
- .register_button {
+
+.standard-password-input:focus {
+  border: none;
+}
+
+.register_button {
   box-sizing: border-box;
   height: 50px;
   width: 167px;
@@ -125,10 +121,12 @@
   line-height: 20px;
   text-align: center;
   background-color: white;
-  margin:5%
- 
- }
- 
+  margin: 5%
+
+.register_button:hover {
+  background-color: #929292;
+}
+
  .login_button{
   color: #FFF;
   font-family: Arial;
@@ -140,18 +138,28 @@
   width: 167px;
   border-radius: 25px;
   background-color: #333;
-  margin:5%;
- }
- 
- .forgot-password{
-     height: 24px;
-     width: 222.5px;
-     color: #0B2031;
-     font-family: "Helvetica Neue";
-     font-size: 14px;
-     letter-spacing: 0.69px;
-     line-height: 16px;
- }
- /* .login-input{
+  margin: 5%;
+}
+
+.login_button:hover {
+  background-color: #555555;
+}
+
+.forgot_password {
+  height: 24px;
+  width: 222.5px;
+  color: #0B2031;
+  font-family: "Helvetica Neue";
+  font-size: 14px;
+  letter-spacing: 0.69px;
+  line-height: 16px;
+  text-decoration: none;
+}
+
+.forgot_password:hover {
+  color: orange;
+}
+
+/* .login-input{
    width: 60px
  }; */
