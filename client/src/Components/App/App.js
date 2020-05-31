@@ -16,6 +16,7 @@ import StaffRegistration from '../StaffRegistration/staffRegistration';
 import StaffList from '../StaffList/StaffList';
 import CustomerProfile from '../CustomerProfile/CustomerProfile';
 import StaffReservationList from '../StaffReservation/staffReservationList';
+import ReservationConfirmation from '../ReservationConfirmation/ReservationConfirmation';
 
 import './App.css';
 
@@ -72,6 +73,7 @@ class App extends Component {
             <Route path="/confirmBooking" component={EmailConfirmBooking} />
             <Route path="/myProfile" component={CustomerProfile} />
             <Route path="/staffReservation" component={StaffReservationList} />
+            <Route path="/reservationConfirmation" component={ReservationConfirmation} />
           </Switch>
         </div>
       </BrowserRouter>

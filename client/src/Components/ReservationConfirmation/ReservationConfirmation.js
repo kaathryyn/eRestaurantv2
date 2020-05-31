@@ -133,6 +133,36 @@ class ReservationConfirmation extends Component {
             ]
           });
     }
+=======
+    // readInput = (id, e) => {
+
+    //     console.log(id)
+
+    //     const index = this.state.data.findIndex((user) => {
+    //         return (user.id === id);
+    //     })
+    //     console.log(index)
+    //     const quan = document.querySelectorAll('#input').value;
+    //     console.log(quan)
+
+    // }
+    // handleSubmit = () => {
+    //     confirmAlert({
+    //         // title: 'Thanks for making a reservation with us!',
+    //         // message: 'You will soon receive an email from us with the details of your booking',
+    //         // buttons: [
+    //         //   {
+    //         //     label: 'Return to homepage',
+    //             onClick: ()  window.location = '/confirmBooking'
+    //     //       }
+    //     //     ]
+    //        });
+    // }
+
+    handleSubmit (e) {
+        e.preventDefault();
+        window.location = 'confirmBooking';
+    }
     render() {
         return this.state.isInEditMode ? (
 
