@@ -121,6 +121,19 @@ class ReservationConfirmation extends Component {
 
         })
     }
+    handleSubmit = () => {
+        confirmAlert({
+            title: 'Thanks for making a reservation with us!',
+            message: 'You will soon receive an email from us with the details of your booking',
+            buttons: [
+              {
+                label: 'Return to homepage',
+                onClick: () => window.location = '/menu'
+              }
+            ]
+          });
+    }
+=======
     // readInput = (id, e) => {
 
     //     console.log(id)
@@ -150,7 +163,6 @@ class ReservationConfirmation extends Component {
         e.preventDefault();
         window.location = 'confirmBooking';
     }
-
     render() {
         return this.state.isInEditMode ? (
 
