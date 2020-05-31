@@ -49,7 +49,10 @@ class StaffList extends Component {
 
     render() {
         return (
-          <div>
+          <Grid container justify="center" 
+          
+          alignItems="center">
+              <Grid item xs={10}> 
                 <StaffListTable
                     data={this.state.data}
                     header={[
@@ -74,8 +77,8 @@ class StaffList extends Component {
                             prop: 'email',
                         }
                     ]} />
-                
-                </div>
+                </Grid>
+                </Grid>
         )
     }
 }

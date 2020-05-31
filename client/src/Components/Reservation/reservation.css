@@ -1,5 +1,10 @@
 .reservationPage {
   background-image: url('../../Images/headerImage.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  
+  background-position: center;
 }
 
 .resTitle {

@@ -36,7 +36,7 @@ class Reservation extends Component {
     let numPplError = '';
     let dateError = '';
     let timeError = '';
-    
+
     var date = new Date();
     var today = Date.parse(date);
     var selectedDate = Date.parse(this.state.dateOfRes);
@@ -61,6 +61,17 @@ class Reservation extends Component {
     return true;
   };
 
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        firebase.firestore().collection('customer').doc(user.uid).get().then(doc => {
+          var fName = doc.data().firstName;
+          var lName = doc.data().lastName;
+          this.setState({ memberFullName: fName + ' ' + lName })
+        })
+      }
+    })
+  }
 
   addReservation = (e) => {
     e.preventDefault();
@@ -71,33 +82,33 @@ class Reservation extends Component {
     resDb.settings({
       timestampsInSnapshots: true
     });
-                      if (isValid) {
-                        resDb.collection("trialReservations")
-                          .orderBy('id', 'desc').limit(1).get().then(querySnapshot => {
-                            querySnapshot.forEach(documentSnapshot => {
-                              var newID = documentSnapshot.id;
-                              console.log(`Found document at ${documentSnapshot.ref.path}`);
-                              console.log(`Document's ID: ${documentSnapshot.id}`);
-                              var newvalue = parseInt(newID, 10) + 1;
-                              var ToString = "" + newvalue;
-                              return resDb.collection("trialReservations").doc(ToString).set({
-                                id: newvalue,
-                                userID: userID,
-                                memberFullName: this.state.memberFullName,
-                                numOfPpl: this.state.numOfPpl,
-                                dateOfRes: this.state.dateOfRes,
-                                timeOfRes: this.state.timeOfRes,
-                                additionalComms: this.state.additionalComms,
-                                timestamp: time,
-                                resStatus: true
-                              }).then(() => {
-                                alert('Booking successful!');
-                                window.location = 'order';
-                                })
-                              });
-                            });
-                          }
-                        };
+    if (isValid) {
+      resDb.collection("trialReservations")
+        .orderBy('id', 'desc').limit(1).get().then(querySnapshot => {
+          querySnapshot.forEach(documentSnapshot => {
+            var newID = documentSnapshot.id;
+            console.log(`Found document at ${documentSnapshot.ref.path}`);
+            console.log(`Document's ID: ${documentSnapshot.id}`);
+            var newvalue = parseInt(newID, 10) + 1;
+            var ToString = "" + newvalue;
+            return resDb.collection("trialReservations").doc(ToString).set({
+              id: newvalue,
+              userID: userID,
+              memberFullName: this.state.memberFullName,
+              numOfPpl: this.state.numOfPpl,
+              dateOfRes: this.state.dateOfRes,
+              timeOfRes: this.state.timeOfRes,
+              additionalComms: this.state.additionalComms,
+              timestamp: time,
+              resStatus: true
+            }).then(() => {
+              alert('Booking successful!');
+              window.location = 'order';
+            })
+          });
+        });
+    }
+  };
 
   render() {
     return (
@@ -156,7 +167,7 @@ class Reservation extends Component {
             </FormControl>
           </form>
         </Grid>
-        </Grid >
+      </Grid >
     );
   }
 }

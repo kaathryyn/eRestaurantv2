@@ -117,8 +117,8 @@ label {
 /*Confirm Password*/
 .confirmPassLabel {
   float: left;
-  padding-left: 85px;
-  padding-right: 500px;
+  padding-left: 83px;
+  /* padding-right: 500px; */
   }
 
 .confirmPassword {
@@ -127,6 +127,9 @@ label {
   }
 
   .registerButton {
+
+    margin-top: 6%;
+
     height: 50px;
     width: 150px;
     background-color: #333333;
