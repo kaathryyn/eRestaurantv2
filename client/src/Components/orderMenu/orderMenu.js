@@ -139,9 +139,6 @@ class orderMenu extends Component {
                         
                     
       }
-      
-
-   
 
   render() {
     const { entree } = this.state;

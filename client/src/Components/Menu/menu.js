@@ -504,44 +504,41 @@ class Menu extends Component {
 }
 
 const MyTab = withStyles(theme => ({
-    selected: {
-        color: 'maroon',
-        borderTop: '10px solid maroon',
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    }
+	selected: {
+		color: 'maroon',
+		borderTop: '10px solid maroon',
+		boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+	}
 }))(Tab);
 
 const MyButton = withStyles(theme => ({
-    root: {
-        backgroundColor: 'maroon',
-    },
-    contained: {
-        textTransform: 'capitalize',
-        color: 'white',
-        fontSize: '70%',
-    },
+	root: {
+		backgroundColor: 'maroon',
+	},
+	contained: {
+		textTransform: 'capitalize',
+		color: 'white',
+		fontSize: '70%',
+	},
 
 }))(Button);
 
-
-
 const MyCard = withStyles(theme => ({
-    root: {
-        boxShadow: '0 16px 40px -12.125px rgba(0,0,0,0.3)',
-        borderRadius: '2%',
-        transition: '0.3s',
-        backgroundColor: 'transparent white'
-    }
+	root: {
+		boxShadow: '0 16px 40px -12.125px rgba(0,0,0,0.3)',
+		borderRadius: '2%',
+		transition: '0.3s',
+		backgroundColor: 'transparent white'
+	}
 
 }))(Card);
 
-
-
 function TabContainer(props) {
-    return (
-        <Typography component="div" style={{ padding: 24 }}>
-            {props.children}
-        </Typography>
-    );
+	return (
+		<Typography component="div" style={{ padding: 24 }}>
+			{props.children}
+		</Typography>
+	);
 }
+
 export default Menu;
