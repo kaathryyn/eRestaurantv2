@@ -1,6 +1,17 @@
 import React, { useState, Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { logIn } from '../../store/actions/authActions.js';
+
+import "./login.css";
+// import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+// import TextField from "@material-ui/core/TextField";
+//import AppBar from "@material-ui/core/AppBar";
+import button from "@material-ui/core/Button";
 import { Card, Box } from "@material-ui/core";
+// import { auth } from '../../config/firebase.js';
 import firebase from '../../config/firebase';
+
 
 import Grid from '@material-ui/core/Grid';
 import right_image from '../../Images/Login.jpg';
@@ -10,6 +21,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+
 
 class Login extends Component {
   constructor(props) {
@@ -39,34 +51,40 @@ class Login extends Component {
 
   handleSubmit = (event) => { //storing the state when the user provides data 
     event.preventDefault();
+    // this.props.logIn(this.state);
 
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(() => {
-      window.location = 'menu'
-    }).catch(function (error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // [START_EXCLUDE]
-      if (errorCode == 'auth/wrong-password') {
-        alert('Wrong password.');
-        window.location = 'login';
-      }
-      else {
-        alert(errorMessage);
-        window.location = 'login';
-      }
-      console.log(error);
-      // [END_EXCLUDE]
+      window.location = 'menu';
     })
+
     // [END authwithemail]
 
 
+
+      .catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // [START_EXCLUDE]
+        if (errorCode == 'auth/wrong-password') {
+          alert('Wrong password.');
+          window.location = 'login';
+        }
+        else {
+          alert(errorMessage);
+          window.location = 'login';
+        }
+        console.log(error);
+        // [END_EXCLUDE]
+      })
+
   }
 
-
-
   render() {
+    const { authError } = this.props;
+
     return (
+
       <Grid container direction="row"  >
         <Grid item xs={6} justify="center" alignItems="center" >
           {/* <Box className="main_box" variant="outlined"> */}
@@ -115,4 +133,18 @@ class Login extends Component {
   }
 }
 
-export default Login
+const mapStateToProps = (state) => {
+  return {
+    authError: state.auth.authError
+  }
+}
+
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logIn: (creds) => dispatch(logIn(creds))
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
