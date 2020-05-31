@@ -15,6 +15,7 @@ import MenuInventory from '../menuInventory/menuInventory';
 import StaffRegistration from '../StaffRegistration/staffRegistration';
 import StaffList from '../StaffList/StaffList';
 import CustomerProfile from '../CustomerProfile/CustomerProfile';
+import StaffReservationList from '../StaffReservation/staffReservationList';
 import ReservationConfirmation from '../ReservationConfirmation/ReservationConfirmation';
 
 import './App.css';
@@ -60,7 +61,7 @@ class App extends Component {
           <NavBar />
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/book" component={Reservation} />
+            <Route path="/reservation" component={Reservation} />
             <Route path="/login" component={Login} />
             <Route path="/register" registerUser={this.registerUser} component={Registration} />
             <Route path="/registerStaff" component={StaffRegistration} />
@@ -71,6 +72,7 @@ class App extends Component {
             <Route path="/menu" component={Menu} />
             <Route path="/confirmBooking" component={EmailConfirmBooking} />
             <Route path="/myProfile" component={CustomerProfile} />
+            <Route path="/staffReservation" component={StaffReservationList} />
             <Route path="/reservationConfirmation" component={ReservationConfirmation} />
           </Switch>
         </div>

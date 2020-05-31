@@ -176,8 +176,8 @@ class orderMenu extends Component {
                     
                <Grid item xs>
                <ButtonGroup variant="contained"  aria-label="contained primary button group">
-                            <MyButton variant="contained" >Skip Food Pre-Ordering</MyButton>
-                            <MyButton variant="contained">Finished Food Pre-Ordering</MyButton>
+                            <MyButton variant="contained" onClick={() => window.location = '/ReservationConfirmation'} >Skip Food Pre-Ordering</MyButton>
+                            <MyButton variant="contained" onClick={() => window.location = '/ReservationConfirmation'}>Finished Food Pre-Ordering</MyButton>
                         </ButtonGroup>
                    </Grid> 
                </Grid>

@@ -6,12 +6,6 @@
   background-position: center;
 }
 
-.resTitle {
-  margin-left: 50px;
-  margin-right: auto;
-  padding-bottom: 10px;
-}
-
 .resError {
   color: red; 
   font-size: 14px;
@@ -41,4 +35,9 @@ select {
 
 .bookBtn:hover {
   background: #616060;
+
+  color: red;
+  font-size: 10px;
+  font-weight: bold;
+
 }

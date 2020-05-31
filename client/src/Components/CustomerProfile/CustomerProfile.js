@@ -62,7 +62,7 @@ class CustomerProfile extends Component {
 		e.preventDefault();
 		firebase.auth().signOut().then(() => {
 			console.log("user signed out");
-			window.location = '/';
+			window.location = 'menu';
 		})
 	}
 

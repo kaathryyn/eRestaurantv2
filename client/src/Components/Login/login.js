@@ -51,8 +51,10 @@ class Login extends Component {
 
   handleSubmit = (event) => { //storing the state when the user provides data 
     event.preventDefault();
+    // this.props.logIn(this.state);
+
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(() => {
-      window.location = '/';
+      window.location = 'menu';
     })
 
     // [END authwithemail]
@@ -82,6 +84,7 @@ class Login extends Component {
     const { authError } = this.props;
 
     return (
+
       <Grid container direction="row"  >
         <Grid item xs={6} justify="center" alignItems="center" >
           {/* <Box className="main_box" variant="outlined"> */}
@@ -135,6 +138,7 @@ class Login extends Component {
           <img style={{ width: '100%', height: '100', position:' static' }} src={login} alt="login" />
         </Grid>
       </Grid>
+
     );
   }
 }
