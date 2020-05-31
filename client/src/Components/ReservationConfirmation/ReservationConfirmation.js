@@ -148,10 +148,6 @@ class ReservationConfirmation extends Component {
 
     handleSubmit (e) {
         e.preventDefault();
-        var user = firebase.auth().currentUser;
-        user.sendEmailVerification().then(function() {
-        }).catch(function(error){
-        });
         window.location = 'confirmBooking';
     }
 
