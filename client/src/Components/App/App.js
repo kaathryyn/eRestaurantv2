@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import firebase from '../../config/firebase';
-import './App.css';
+
 import NavBar from '../NavBar/navBar';
-import Menu from '../Menu/menu';
-import Order from '../Order/order';
-import Reservation from '../Reservation/reservation';
-import Login from '../Login/login';
+import Home from '../Home/home';
 import Registration from '../Registration/registration';
-import Register from '../Registration/registration';
+import Login from '../Login/login';
+import ForgotPassword from '../ForgotPassword/ForgotPassword';
+import Menu from '../Menu/menu';
+import Reservation from '../Reservation/reservation';
 import OrderMenu from '../orderMenu/orderMenu';
+import EmailConfirmBooking from '../emailConfirmBooking/emailConfirmBooking'
 import MenuInventory from '../menuInventory/menuInventory';
 import StaffRegistration from '../StaffRegistration/staffRegistration';
-import GenerateStaffLogin from '../GenerateStaffLogin/GenerateStaffLogin';
-import ForgotPassword from '../ForgotPassword/ForgotPassword'
 import StaffList from '../StaffList/StaffList';
-import EmailConfirmBooking from '../emailConfirmBooking/emailConfirmBooking'
+import CustomerProfile from '../CustomerProfile/CustomerProfile';
 
+import './App.css';
 
 class App extends Component {
   //constructor to initialise user that is on website
@@ -24,51 +24,55 @@ class App extends Component {
     super();
     this.state = {
       user: null,
+      userID: null
     };
   }
 
   //collects a snapshot of the current data (user) and determines if changes need to made to website
   componentDidMount() {
-    const ref = firebase.database().ref('user');
-
-    ref.on('value', snapshot => {
-      let webUser = snapshot.val();
-      this.setState({ user: webUser });
-    })
+    firebase.auth().onAuthStateChanged(webUser => {
+      if (webUser) {
+        this.setState({
+          user: webUser,
+          userID: webUser.uid
+        });
+      }
+    });
   }
 
   registerUser = userName => {
     firebase.auth().onAuthStateChanged(webUser => {
       webUser.updateProfile({
         displayName: userName
-      }).then(()=>{
+      }).then(() => {
         this.setState({
           user: webUser,
         });
       })
-
     })
-  }
+  };
 
   render() {
     return (
-      <div className="App">
-
-        <NavBar/>
-
-        <Route path="/order" component={Order} />
-        <Route path="/reservation" component={Reservation} />
-        <Route path="/login" component={Login} />
-        <Route path="/registration" registerUser={this.registerUser} component={Registration}  />
-        <Route path="/registerStaff" component={StaffRegistration} />
-        <Route path="/GenerateStaffLogin" component = {GenerateStaffLogin} />
-        <Route path="/ForgotPassword" component={ForgotPassword} />
-        <Route path="/staffList" component={StaffList} />
-        <Route path="/orderMenu" component={OrderMenu} />
-        <Route path="/menuInventory" component={MenuInventory} />
-        <Route path="/menu" component={Menu} />
-        <Route path="/confirmBooking" component={EmailConfirmBooking}/>
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <NavBar />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/reservation" component={Reservation} />
+            <Route path="/login" component={Login} />
+            <Route path="/register" registerUser={this.registerUser} component={Registration} />
+            <Route path="/registerStaff" component={StaffRegistration} />
+            <Route path="/forgotPassword" component={ForgotPassword} />
+            <Route path="/staffList" component={StaffList} />
+            <Route path="/order" component={OrderMenu} />
+            <Route path="/menuInventory" component={MenuInventory} />
+            <Route path="/menu" component={Menu} />
+            <Route path="/confirmBooking" component={EmailConfirmBooking} />
+            <Route path="/myProfile" component={CustomerProfile} />
+          </Switch>
+        </div>
+      </BrowserRouter>
     );
   }
 }
