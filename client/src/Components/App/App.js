@@ -60,7 +60,7 @@ class App extends Component {
           <NavBar />
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/book" component={Reservation} />
+            <Route path="/reservation" component={Reservation} />
             <Route path="/login" component={Login} />
             <Route path="/register" registerUser={this.registerUser} component={Registration} />
             <Route path="/registerStaff" component={StaffRegistration} />

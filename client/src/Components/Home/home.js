@@ -10,7 +10,7 @@ class Home extends Component {
     return (
       <div className="home">
         <br></br>
-        <text className="homeTitle">Ciao e Benvenuto!</text>
+        <text className="homeTitle">Buongiorno!</text>
         <br></br>
         <br></br>
         <div className="homeRow">
