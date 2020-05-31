@@ -24,11 +24,12 @@ class CustomerProfile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            firstName:"",
+            firstName: "",
             lastName: "",
             gender: "",
             email: "",
-            phone: ""
+            phone: "",
+            isInEditMode: false,
 
         };
     }
@@ -39,10 +40,10 @@ class CustomerProfile extends Component {
                 firestore.collection("customer").doc(user.uid).get().then(doc => {
                     console.log(doc.data())
                     this.setState({ firstName: doc.data().firstName });
-                        this.setState({ lastName: doc.data().lastName });
-                        this.setState({ gender: doc.data().gender });
-                        this.setState({ email: doc.data().emailAddress });
-                        this.setState({ phone: doc.data().phoneNumber });
+                    this.setState({ lastName: doc.data().lastName });
+                    this.setState({ gender: doc.data().gender });
+                    this.setState({ email: doc.data().emailAddress });
+                    this.setState({ phone: doc.data().phoneNumber });
 
                 })
             } else {
@@ -51,21 +52,44 @@ class CustomerProfile extends Component {
         })
     }
 
-    signOut=(e) =>{
+    signOut = (e) => {
         e.preventDefault();
         firebase.auth().signOut().then(() => {
             console.log("user signed out")
         })
     }
 
+    editProfile = () => {
+        this.setState({ isInEditMode: !this.state.isInEditMode })
+    }
+    doneEdit = () => {
+        this.setState({ isInEditMode: !this.state.isInEditMode })
+    }
 
+    handleUpdateName = (evt) => {
+        this.setState({ updatedName: evt.target.value });
+    }
+    handleSaveUpdateName = (event, itemName) => {
+        event.preventDefault();
+        // alert('Item category has been updated');
+        const { updatedCategory } = this.state;
+        this.setState({itemName: event.target.value});
+        var foodTitle = itemName;
+        foodTitle = foodTitle.replace(/\s/g, '');
+        var category = updatedCategory;
+        firestore.collection("menuItems").doc(foodTitle).update({
+            category
+        })
 
     render() {
-        return (
+        return this.state.isInEditMode ? (
             <Grid container className="img" justify="center">
                 <Grid item>
-                <Card className="reservationBox" variant="outlined">
+                    <Card className="reservationBox" variant="outlined">
                         <CardContent>
+                            <CardActions >
+                                <button className="edit" onClick={this.doneEdit}>Done</button>
+                            </CardActions>
                             <Typography component="h5" variant="h5">
                                 Profile
                             </Typography>
@@ -74,9 +98,15 @@ class CustomerProfile extends Component {
                             <Typography color="textSecondary" gutterBottom>
                                 Name
                         </Typography>
-                            <Typography variant="body2" component="p">
-                                {this.state.firstName} &emsp; {this.state.lastName}
-                            </Typography>
+                            <input
+                                className="input"
+                                defaultValue={this.state.firstName}
+                                ref="qtyInput"
+                                id="input"
+                                onChange={this.handleUpdateName}
+                            />
+
+
                             <br />
                             <Typography color="textSecondary" gutterBottom>
                                 Gender
@@ -98,19 +128,72 @@ class CustomerProfile extends Component {
                             <Typography variant="body2" component="p">
                                 {this.state.phone}
                             </Typography>
-                            
+
                         </CardContent>
-                        
-                        <Button size="small" color="primary" onClick={this.signOut}> 
-          Log out
+
+                        <Button size="small" color="primary" onClick={this.signOut}>
+                            Log out
         </Button>
-                        
+
                     </Card>
-                    </Grid>
-                    </Grid>
+                </Grid>
+            </Grid>
 
 
-        );
+        ) :
+
+
+
+            <Grid container className="img" justify="center">
+                <Grid item>
+                    <Card className="reservationBox" variant="outlined">
+                        <CardContent>
+                            <CardActions >
+                                <button className="edit" onClick={this.editProfile}>Edit</button>
+                            </CardActions>
+                            <Typography component="h5" variant="h5">
+                                Profile
+                    </Typography>
+                            <Divider className="divider" variant="middle" />
+                            <br />
+                            <Typography color="textSecondary" gutterBottom>
+                                Name
+                </Typography>
+                            <Typography variant="body2" component="p">
+                                {this.state.firstName} &emsp; {this.state.lastName}
+                            </Typography>
+                            <br />
+                            <Typography color="textSecondary" gutterBottom>
+                                Gender
+                </Typography>
+                            <Typography variant="body2" component="p">
+                                {this.state.gender}
+                            </Typography>
+                            <br />
+                            <Typography color="textSecondary" gutterBottom>
+                                Email
+                </Typography>
+                            <Typography variant="body2" component="p">
+                                {this.state.email}
+                            </Typography>
+                            <br />
+                            <Typography color="textSecondary" gutterBottom>
+                                Phone
+                </Typography>
+                            <Typography variant="body2" component="p">
+                                {this.state.phone}
+                            </Typography>
+
+                        </CardContent>
+
+                        <Button size="small" color="primary" onClick={this.signOut}>
+                            Log out
+</Button>
+
+                    </Card>
+                </Grid>
+            </Grid>
+
     }
 }
 
