@@ -12,6 +12,8 @@ class EmailConfirmBooking extends Component {
         }
     }
 
+    handleSubmit
+
     render() {
         return (
         <div className = "success">
