@@ -83,7 +83,7 @@ class StaffReservationList extends Component {
                                 prop: 'numPeople',
                             },
                             {
-                                name: 'Reservation Status',
+                                name: 'Status',
                                 prop: 'resStatus',
                             },
                             {
