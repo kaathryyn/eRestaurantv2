@@ -161,6 +161,7 @@ class CustomerProfile extends Component {
                                 className="input"
                                 defaultValue={this.state.phone}
                                 ref="phoneInput"
+                                minLength={8} maxLength={10}
 
                             />
                             <IconButton onClick={this.updateComponentValue} aria-label="delete">
