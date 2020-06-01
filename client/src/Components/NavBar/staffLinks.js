@@ -20,6 +20,7 @@ class StaffLinks extends Component {
     return (
       <ul className="staffLinks">
         <li><NavLink to='/'>Home</NavLink></li>
+        <li><NavLink to='/menu'>Menu</NavLink></li>
         <li><NavLink to='/staffReservation'>Reservations</NavLink></li>
         <li><NavLink to='/staffList'>Staff List</NavLink></li>
         <li><NavLink to='/menuInventory'> Edit Menu</NavLink></li>
