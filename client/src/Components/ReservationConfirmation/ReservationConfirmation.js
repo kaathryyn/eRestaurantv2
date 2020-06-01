@@ -286,12 +286,9 @@ class ReservationConfirmation extends Component {
 
 
             <Grid container  className="img">
-
-
-                <Grid 
-
-                >
-                    <Card className="reservationBox" variant="outlined">
+                <Grid item 
+                > 
+                <Card className="reservationBox" variant="outlined">
                         <CardContent>
                             <Typography component="h5" variant="h5">
                                 Booking Details
@@ -389,13 +386,12 @@ class ReservationConfirmation extends Component {
                                         </List>
                                     </div>
                                 ))}
+                                <button class="registerButton"  onClick={this.handleSubmit}> Confirm </button>
                             </CardContent>
                         </Card>
 
                     </div>
                 </Grid>
-                <button class="registerButton"  onClick={this.handleSubmit}> Confirm </button>
-                
             </Grid>
     }
 }
