@@ -130,7 +130,7 @@ class ReservationConfirmation extends Component {
 			buttons: [
 				{
 					label: 'Return to homepage',
-					onClick: () => window.location = '/menu'
+					onClick: () => window.location = '/'
 				}
 			]
 		});
@@ -294,7 +294,7 @@ class ReservationConfirmation extends Component {
 									</div>
 								))}
 							</CardContent>
-							<button className="addMore" onClick={() => window.location = '/orderMenu'} size="small" variant="contained" color="secondary">
+							<button className="addMore" onClick={() => window.location = '/order'} size="small" variant="contained" color="secondary">
 								Add more
                             </button>
 						</Card>
