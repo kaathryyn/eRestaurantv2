@@ -305,16 +305,15 @@ class ReservationConfirmation extends Component {
 		) :
 
 
-			<Grid container className="img">
 
+            <Grid container  className="img">
+                <Grid item 
+                > 
+                <Card className="reservationBox" variant="outlined">
+                        <CardContent>
+                            <Typography component="h5" variant="h5">
+                                Booking Details
 
-				<Grid
-
-				>
-					<Card className="reservationBox" variant="outlined">
-						<CardContent>
-							<Typography component="h5" variant="h5">
-								Booking Details
                             </Typography>
 							<Divider className="divider" variant="middle" />
 							<br />
@@ -405,18 +404,19 @@ class ReservationConfirmation extends Component {
                                             <DeleteIcon />
                                         </IconButton>
                                     </ListItemSecondaryAction> */}
-											<Divider variant="middle" />
-										</List>
-									</div>
-								))}
-							</CardContent>
-						</Card>
 
-					</div>
-				</Grid>
-				<button class="registerButton" onClick={this.handleSubmit}> Confirm </button>
+                                            <Divider variant="middle" />
+                                        </List>
+                                    </div>
+                                ))}
+                                <button class="registerButton"  onClick={this.handleSubmit}> Confirm </button>
+                            </CardContent>
+                        </Card>
 
-			</Grid>
-	}
+                    </div>
+                </Grid>
+            </Grid>
+    }
+
 }
 export default ReservationConfirmation;
