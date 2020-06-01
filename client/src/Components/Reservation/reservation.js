@@ -3,18 +3,22 @@ import { Card, Grid, FormControl, Button } from '@material-ui/core';
 import firebase from '../../config/firebase';
 
 import './reservation.css';
+import resImg from '../../Images/headerImage.png';
 
 class Reservation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      memberFullName: "Donkey Kong",
+      memberFullName: '',
       numOfPpl: '',
       dateOfRes: '',
       timeOfRes: '',
       additionalComms: '',
       timestamp: '',
-      resStatus: false
+      resStatus: false,
+      numPplError: '',
+      dateError: '',
+      timeError: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -28,86 +32,104 @@ class Reservation extends Component {
     this.setState({ [itemName]: itemValue });
   }
 
+  validate = () => {
+    let numPplError = '';
+    let dateError = '';
+    let timeError = '';
+
+    var date = new Date();
+    var today = Date.parse(date);
+    var selectedDate = Date.parse(this.state.dateOfRes);
+
+    if (!this.state.numOfPpl) {
+      numPplError = 'Please select number of people attending';
+    }
+
+    if (!this.state.timeOfRes) {
+      timeError = 'Please indicate time of booking';
+    }
+
+    if ((selectedDate < today) || (!this.state.dateOfRes)) {
+      dateError = 'Invalid date selected'
+    }
+
+    if (numPplError || timeError || dateError) {
+      this.setState({ numPplError, timeError, dateError });
+      return false;
+    }
+
+    return true;
+  };
+
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        firebase.firestore().collection('customer').doc(user.uid).get().then(doc => {
+          var fName = doc.data().firstName;
+          var lName = doc.data().lastName;
+          this.setState({ memberFullName: fName + ' ' + lName })
+        })
+      }
+    })
+  }
+
   addReservation = (e) => {
     e.preventDefault();
-    alert('Booking made');
-    var user = firebase.auth().currentUser; //will congifure this when we sort out different user settings
+    var isValid = this.validate();
+    var userID = firebase.auth().currentUser.uid; //will congifure this when we sort out different user settings
     var time = firebase.firestore.FieldValue.serverTimestamp();
     const resDb = firebase.firestore();
     resDb.settings({
       timestampsInSnapshots: true
     });
-
-                        resDb.collection("trialReservations")
-                        .orderBy('id', 'desc').limit(1).get().then(querySnapshot => {
-                        querySnapshot.forEach(documentSnapshot => {
-                            var newID = documentSnapshot.id;
-                            console.log(`Found document at ${documentSnapshot.ref.path}`);
-                            console.log(`Document's ID: ${documentSnapshot.id}`);
-                            var newvalue = parseInt(newID, 10) + 1;
-                            var ToString = ""+ newvalue;
-                           return resDb.collection("trialReservations").doc(ToString).set({
-                                id: newvalue,
-                                memberFullName: this.state.memberFullName,
-                                numOfPpl: this.state.numOfPpl,
-                                dateOfRes: this.state.dateOfRes,
-                                timeOfRes: this.state.timeOfRes,
-                                additionalComms: this.state.additionalComms,
-                                timestamp: time,
-                                resStatus: true
-                              }).then(() => {
-                                this.setState({
-                                  memberFullName: '',
-                                  numOfPpl: '',
-                                  dateOfRes: '',
-                                  timeOfRes: '',
-                                  additionalComms: '',
-                                  timestamp: time,
-                                  resStatus: false
-                                })
-                              });
-                            });
-                        });
-    
-    // return resDb.collection("reservations").add({
-    //   memberFullName: this.state.memberFullName,
-    //   numOfPpl: this.state.numOfPpl,
-    //   dateOfRes: this.state.dateOfRes,
-    //   timeOfRes: this.state.timeOfRes,
-    //   additionalComms: this.state.additionalComms,
-    //   timestamp: time,
-    //   resStatus: true
-    // }).then(() => {
-    //   this.setState({
-    //     memberFullName: '',
-    //     numOfPpl: '',
-    //     dateOfRes: '',
-    //     timeOfRes: '',
-    //     additionalComms: '',
-    //     timestamp: time,
-    //     resStatus: false
-    //   })
-    // });
-  }
+    if (isValid) {
+      resDb.collection("trialReservations")
+        .orderBy('id', 'desc').limit(1).get().then(querySnapshot => {
+          querySnapshot.forEach(documentSnapshot => {
+            var newID = documentSnapshot.id;
+            console.log(`Found document at ${documentSnapshot.ref.path}`);
+            console.log(`Document's ID: ${documentSnapshot.id}`);
+            var newvalue = parseInt(newID, 10) + 1;
+            var ToString = "" + newvalue;
+            return resDb.collection("trialReservations").doc(ToString).set({
+              id: newvalue,
+              userID: userID,
+              memberFullName: this.state.memberFullName,
+              numOfPpl: this.state.numOfPpl,
+              dateOfRes: this.state.dateOfRes,
+              timeOfRes: this.state.timeOfRes,
+              additionalComms: this.state.additionalComms,
+              timestamp: time,
+              resStatus: true
+            }).then(() => {
+              alert('Booking successful!');
+              window.location = 'order';
+            })
+          });
+        });
+    }
+  };
 
   render() {
     return (
-      <Grid container>
+      <Grid container className="reservationPage">
         <Grid item xs={6}>
-          <form class="reservation" onSubmit={this.addReservation}>
+          <form class="reservation" onSubmit={this.addReservation} noValidate>
             <FormControl>
               <Card className="reservation_Info" variant="outlined">
                 <h1>Reservation</h1>
                 <label for="numOfPpl" class="numOfPplLbl"><b>No. of People</b></label>
                 <br />
                 <input type="number" min="1" max="12" name="numOfPpl" class="numOfPpl" required value={this.state.numOfPpl} onChange={this.handleChange} />
-                <br />
-                <br />
+                <div class="resError">
+                  {this.state.numPplError}
+                </div>
                 <label for="dateofRes" class="dateLbl"><b>Date</b></label>
                 <br />
                 <input type="date" name="dateOfRes" class="date" required value={this.state.dateOfRes} onChange={this.handleChange} />
-                <br />
-                <br />
+                <div class="resError">
+                  {this.state.dateError}
+                </div>
                 <label for="timeOfRes" class="timeLbl"><b>Time</b></label>
                 <br />
                 <select name="timeOfRes" class="time" required value={this.state.timeOfRes} onChange={this.handleChange}>
@@ -132,8 +154,9 @@ class Reservation extends Component {
                   <option value="8.30pm">20:30</option>
                   <option value="5pm">21:00</option>
                 </select>
-                <br></br>
-                <br></br>
+                <div class="resError">
+                  {this.state.timeError}
+                </div>
                 <label for="additionalComms" class="commentsLbl"><b>Additional Comments</b></label>
                 <br />
                 <input type="text" name="additionalComms" class="comments" value={this.state.additionalComms} onChange={this.handleChange} />
@@ -144,12 +167,6 @@ class Reservation extends Component {
             </FormControl>
           </form>
         </Grid>
-        {/* This is for the image */}
-        {/* <Grid item xs={6}>
-          <div class="reservationImg">
-            <img src={}></img>
-          </div>
-        </Grid> */}
       </Grid >
     );
   }

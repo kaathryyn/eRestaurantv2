@@ -94,7 +94,7 @@ class Registration extends Component {
               <Grid container spacing={2} justify="center">
                 <Grid item>
                   <Typography variant="h4" component="h2">
-                    Registration<br></br>
+                    <br></br>Registration<br></br>
                   </Typography>
 
 
@@ -103,8 +103,8 @@ class Registration extends Component {
                   <table class="tableNames" align="center">
 
                     <tr>
-                      <td><label for="firstName" class="firstNameLabel"> <b>First Name</b> </label> </td>
-                      <td><label class="lastNameLabel"> <b>Last Name</b> </label></td>
+                      <td><label  for="firstName" class="firstNameLabel"> First Name </label> </td>
+                      <td><label class="lastNameLabel"> Last Name </label></td>
                     </tr>
 
                     <tr>
@@ -122,7 +122,7 @@ class Registration extends Component {
                     </tr>
 
                     <tr>
-                      <td><input type="text" required value={this.state.phoneNumber} onChange={this.handleChange} name="phoneNumber" class="phone" placeholder="Phone Number " /> <br /> </td>
+                      <td><input type="text" required value={this.state.phoneNumber} minLength={8} maxLength={10} onChange={this.handleChange} name="phoneNumber" class="phone" placeholder="Phone Number" /> <br /> </td>
                       <td><select name="gender" class="gender" value={this.state.gender} onChange={this.handleChange}>
                         <option selected value="" disabled hidden>Gender</option>
                         <option value="male">Male</option>
@@ -133,18 +133,22 @@ class Registration extends Component {
                     </tr>
 
                   </table>
-
+                  <tr>
                   <label for="emailAddress" class="emailLabel"> Email </label>
                   <input type="email" required value={this.state.emailAddress} onChange={this.handleChange} name="emailAddress" class="emailAddress" placeholder="Email" /> <br />
+                  </tr>
 
+                  <tr>
                   <label for="password" class="passwordLabel" >Password </label>
-                  <input type="password" required value={this.state.password} onChange={this.handleChange} name="password" class="password" placeholder="6 Digit" /> <br />
+                  <input type="password" required value={this.state.password} onChange={this.handleChange} name="password" class="password" placeholder="Password" /> <br />
+                  </tr>
 
-                  <label for="confirmPassword" class="confirmPassLabel" >Confirm Password </label>
-                  <input type="password" required value={this.state.confirmPassword} onChange={this.handleChange} name="confirmPassword" class="confirmPassword" placeholder="6 Digit" /> <br />
+                  <tr>
+                  <label  for="confirmPassword" class="confirmPassLabel" >Confirm Password </label>
+                  <input type="password" required value={this.state.confirmPassword} onChange={this.handleChange} name="confirmPassword" class="confirmPassword" placeholder="Confirm Password" /> <br />
+                  </tr>
 
                   <button class="registerButton"> Register </button>
-
                 </Grid>
               </Grid>
             </FormControl>

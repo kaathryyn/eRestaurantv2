@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -9,9 +8,7 @@ import TableRow from '@material-ui/core/TableRow';
 import TablePagination from '@material-ui/core/TablePagination';
 import Grid from '@material-ui/core/Grid';
 
-import './StaffList.css';
-import greenPlus from "../../Images/green_plus.png"
-
+import './staffReservationList.css';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -35,7 +32,7 @@ const StyledTableRow = withStyles((theme) => ({
 const useStyles = makeStyles({
   table: {
     height: '500px',
-    width: '1200px',
+    width: '900px',
     marginTop: '55px'
   },
 });
@@ -52,9 +49,9 @@ const row = (x, i, header) => (
   </StyledTableRow>
 );
 
-export default function StaffListTable({ data, header }) {
-  const classes = useStyles();
+export default function StaffReservationTable({ data, header }) {
 
+  const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -67,10 +64,14 @@ export default function StaffListTable({ data, header }) {
     setPage(0);
   };
 
-
   return (
-    <div>
-        <Table className={classes.table} aria-label="staffListTable">
+    <Grid container
+      direction="column"
+      justify="center"
+      alignItems="center"
+    >
+      <Grid item xs={15}>
+        <Table className={classes.table} aria-label="staffReservationTable">
           <TableHead>
             <TableRow>
               {
@@ -79,11 +80,6 @@ export default function StaffListTable({ data, header }) {
                     {x.name}
                   </StyledTableCell>)
               }
-              {/* <StyledTableCell>First Name</StyledTableCell>
-            <StyledTableCell>Last Name</StyledTableCell>
-            <StyledTableCell>Role</StyledTableCell>
-            <StyledTableCell>Phone</StyledTableCell>
-            <StyledTableCell>Email</StyledTableCell> */}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -101,10 +97,7 @@ export default function StaffListTable({ data, header }) {
             onChangeRowsPerPage={handleChangeRowsPerPage}
           />
         </Table>
-      
-      <button  onClick={() => window.location = '/registerStaff'}className="button"> <img src={greenPlus} className="greenPlus" alt="plus" />
-       Add New
-      </button>
-    </div>
+      </Grid>
+    </Grid>
   );
 }
