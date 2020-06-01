@@ -98,10 +98,18 @@ class Login extends Component {
             <Typography variant="h6" component="h2">
               Email
         </Typography>
-            <input type="text" value={this.state.email}
+            {/* <input type="text" value={this.state.email}
               onChange={this.emailhandler}
               placeholder="Email"
-            ></input>
+            ></input> */}
+            <TextField
+              id="standard-email-input"
+              type="email"
+              autoComplete="email"
+              value={this.state.email}
+              onChange={this.emailhandler}
+              placeholder="Email"
+            />
             <br></br><br></br>
             <Typography variant="h6" component="h2">
               Password
@@ -116,10 +124,12 @@ class Login extends Component {
               autoComplete="current-password"
               value={this.state.password}
               onChange={this.passwordhandler}
+              placeholder="Password"
             />
-            <h6 className="forgot_password"> Forgot Password? Click here</h6>
-
-            <button className="register_button" > Register </button>
+            <br/>
+            <a href="/forgotPassword" className="forgot_password"> Forgot Password? Click here</a>
+            <br/>
+            <a href="/register"><button className="register_button" > Register </button></a>
             <button onClick={this.handleSubmit} className="login_button" > Login </button>
             {/* </Box> */}
           </Card>

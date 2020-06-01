@@ -1,10 +1,15 @@
-html, body {height:100%;}
-.reservationBox{
-    height: relative;
-    width: 450px;
-    margin: 30px
+html, body {
+	height: 100%;
 }
+
+.reservationBox {
+	height: relative;
+	width: 450px;
+	margin: 30px
+}
+
 .img {
+
     background-image: url(../../Images/reservationConfirmationImg.png);
     background-repeat: no-repeat;
     background-size: cover;
@@ -49,4 +54,6 @@ html, body {height:100%;}
     .registerButton:hover {
       background: #616060;
   }
+
+
 ;

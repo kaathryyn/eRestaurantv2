@@ -17,6 +17,17 @@ admin.initializeApp({
 
 exports.app = functions.https.onRequest(app);
 
+exports.getSubCollections = functions.https.onCall(async (data, context) => {
+
+  const docPath = data.docPath;
+
+  const collections = await admin.firestore().doc(docPath).listCollections();
+  const collectionIds = collections.map(col => col.id);
+
+  return { collections: collectionIds };
+
+});
+
 //Sample output of database ONLY using Express
 // app.listen(port, () => console.log(`Server started on port ${port}`));
 // app.get('/api/employees', (req,res) => {
