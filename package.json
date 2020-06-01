@@ -14,6 +14,7 @@
   "author": "Kathryn Corpuz",
   "license": "ISC",
   "dependencies": {
+    "@babel/plugin-syntax-class-properties": "^7.10.1",
     "@material-ui/core": "^4.10.0",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.54",
@@ -22,6 +23,7 @@
     "express": "^4.17.1",
     "firebase": "^7.14.5",
     "generate-password": "^1.5.1",
+    "jest-cli": "^26.0.1",
     "materialize-css": "^1.0.0-rc.2",
     "react-bootstrap": "^1.0.1",
     "react-bootstrap-validation": "^0.1.11",
@@ -31,6 +33,7 @@
     "react-redux-firebase": "^3.5.0",
     "react-router-dom": "^5.2.0",
     "react-star-rating-component": "^1.4.1",
+    "react-test-renderer": "^16.13.1",
     "reactjs-popup": "^1.5.0",
     "redux": "^4.0.5",
     "redux-firestore": "^0.13.0",
