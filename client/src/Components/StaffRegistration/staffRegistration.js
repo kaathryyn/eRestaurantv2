@@ -56,6 +56,7 @@ class StaffRegistration extends Component {
                     accBSB: this.state.accBSB,
                     password: this.state.password
                 });
+            alert("Staff member has been added.");
         }).then(() => {
             this.setState({
                 firstName: '',
@@ -78,7 +79,7 @@ class StaffRegistration extends Component {
     }
 
     //It's using a library that generates random passwords
-    generatePassword = () => {
+    generatePassword = (e) => {
         const generator = require('generate-password');
 
         const newPassword = generator.generate({
@@ -88,6 +89,7 @@ class StaffRegistration extends Component {
         this.setState({
             password: newPassword
         })
+        e.preventDefault();
     }
 
     render() {
