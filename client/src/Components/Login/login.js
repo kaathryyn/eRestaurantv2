@@ -1,7 +1,6 @@
 import React, { useState, Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { logIn } from '../../store/actions/authActions.js';
 
 import "./login.css";
 // import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
@@ -143,18 +142,4 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    authError: state.auth.authError
-  }
-}
-
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    logIn: (creds) => dispatch(logIn(creds))
-  }
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default Login;
